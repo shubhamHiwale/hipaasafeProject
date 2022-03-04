@@ -59,7 +59,7 @@ const FutureAppoint = () => {
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Total Doctors
+                        Total Appointments
                       </div>
                     </div>
                   </div>
@@ -83,7 +83,7 @@ const FutureAppoint = () => {
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Total Doctors
+                        Confirmaton Pending
                       </div>
                     </div>
                   </div>
@@ -107,7 +107,7 @@ const FutureAppoint = () => {
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Total Doctors
+                        Confirmed
                       </div>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ const FutureAppoint = () => {
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Nurses Patients
+                        Cancelled
                       </div>
                     </div>
                   </div>
