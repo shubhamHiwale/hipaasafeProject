@@ -1,11 +1,14 @@
 import React from "react";
-import undrawPostingPhoto from "../../assets/img/undraw_posting_photo.svg";
 import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import DataTable from "../dataTable/DataTable";
+import DoctorTable from "./DoctorTable";
+import NurseTable from "./NurseTable";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
-const Beginpage = () => {
+const SupportDash = () => {
   return (
     <>
       {/* <!-- Begin Page Content --> */}
@@ -28,28 +31,7 @@ const Beginpage = () => {
         {/* <!-- Content Row --> */}
         <div class="row">
           {/* <!-- Earnings (Monthly) Card Example --> */}
-          {/* <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Earnings (Monthly)
-                    </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      $40,000
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
-          {/* <!-- Earnings (Monthly) Card Example --> */}
-          <div class="col-xl-4 col-md-6 mb-4">
+          <div class="col-xl-6 col-md-6 mb-4">
             <div class="card shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -60,7 +42,7 @@ const Beginpage = () => {
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Total Patients
+                        Total Doctors
                       </div>
                     </div>
                   </div>
@@ -73,7 +55,7 @@ const Beginpage = () => {
           </div>
 
           {/* <!-- Earnings (Monthly) Card Example --> */}
-          <div class="col-xl-4 col-md-6 mb-4">
+          <div class="col-xl-6 col-md-6 mb-4">
             <div class="card shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -84,31 +66,7 @@ const Beginpage = () => {
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Completed Patients
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* <!-- Pending Requests Card Example --> */}
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="d-flex align-items-center col mr-2">
-                    <img src={CardIcon3} alt="card-icon-3"></img>
-                    <div className="card-title">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        3
-                      </div>
-                      <div class="text-xs font-weight-bold text-success mb-1">
-                        Waiting Patient
+                        Nurses Patients
                       </div>
                     </div>
                   </div>
@@ -124,8 +82,20 @@ const Beginpage = () => {
         {/* <!-- Content Row --> */}
 
         <div class="row">
+          <Tabs>
+            <TabList>
+              <Tab>Doctors List</Tab>
+              <Tab>Nurses List</Tab>
+            </TabList>
+
+            <TabPanel>
+              <DoctorTable />
+            </TabPanel>
+            <TabPanel>
+              <NurseTable />
+            </TabPanel>
+          </Tabs>
           {/* <!-- Area Chart --> */}
-          <DataTable />
         </div>
 
         {/* <!-- Content Row --> */}
@@ -135,4 +105,4 @@ const Beginpage = () => {
   );
 };
 
-export default Beginpage;
+export default SupportDash;

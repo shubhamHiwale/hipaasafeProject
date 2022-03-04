@@ -1,55 +1,54 @@
 import React from "react";
-import undrawPostingPhoto from "../../assets/img/undraw_posting_photo.svg";
 import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
-import DataTable from "../dataTable/DataTable";
+import DoctorTable from "../supportDash/DoctorTable";
+import NurseTable from "../supportDash/NurseTable";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Form, Row, Col, Button } from "react-bootstrap";
+import PatientListTable from "./PatientListTable";
 
-const Beginpage = () => {
+const FutureAppoint = () => {
   return (
     <>
       {/* <!-- Begin Page Content --> */}
       <div class="container-fluid">
         {/* <!-- Page Heading --> */}
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <div class="d-sm-flex align-items-center justify-content-between mb-2">
           <span class="font-weight-bold mb-0 text-gray-800">
-            Dashboard
+            Future Appointments
             <span className="dash-date">Today, 03 Feb 2022</span>
           </span>
+        </div>
 
-          {/* <a
-            href="#"
-            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-          >
-            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-          </a> */}
+        <div class="d-sm-flex align-items-center justify-content-between mb-1">
+          <span class="font-weight-bold mb-0 text-gray-800">
+            <Form className="mt-4">
+              <Row>
+                <Col className="col-sm-16 mb-4">
+                  <Form.Control className="p-4" placeholder="First name" />
+                </Col>
+              </Row>
+            </Form>
+          </span>
+          <Button>Create an Appointment</Button>
+        </div>
+
+        <div class="d-sm-flex bg-white p-2 align-items-center justify-content-between mb-4">
+          <span class="font-weight-bold mb-0 text-gray-800">
+            <span className="ml-4 status__">Tommorow (12)</span>
+            <span className="ml-4 status__">3 Feb (08)</span>
+            <span className="ml-4 status__">4 Feb (05)</span>
+            <span className="ml-4 status__">5 Feb (00)</span>
+            <span className="ml-4 status__">6 Feb (02)</span>
+            <span className="ml-4 status__">7 Feb (04)</span>
+          </span>
         </div>
 
         {/* <!-- Content Row --> */}
         <div class="row">
           {/* <!-- Earnings (Monthly) Card Example --> */}
-          {/* <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Earnings (Monthly)
-                    </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      $40,000
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
-          {/* <!-- Earnings (Monthly) Card Example --> */}
-          <div class="col-xl-4 col-md-6 mb-4">
+          <div class="col-xl-3 col-md-6 mb-4">
             <div class="card shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -60,7 +59,7 @@ const Beginpage = () => {
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Total Patients
+                        Total Doctors
                       </div>
                     </div>
                   </div>
@@ -73,18 +72,18 @@ const Beginpage = () => {
           </div>
 
           {/* <!-- Earnings (Monthly) Card Example --> */}
-          <div class="col-xl-4 col-md-6 mb-4">
+          <div class="col-xl-3 col-md-6 mb-4">
             <div class="card shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="d-flex align-items-center col mr-2">
-                    <img src={CardIcon2} alt="card-icon-2"></img>
+                    <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
                         12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Completed Patients
+                        Total Doctors
                       </div>
                     </div>
                   </div>
@@ -96,19 +95,43 @@ const Beginpage = () => {
             </div>
           </div>
 
-          {/* <!-- Pending Requests Card Example --> */}
-          <div class="col-xl-4 col-md-6 mb-4">
+          {/* <!-- Earnings (Monthly) Card Example --> */}
+          <div class="col-xl-3 col-md-6 mb-4">
             <div class="card shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="d-flex align-items-center col mr-2">
-                    <img src={CardIcon3} alt="card-icon-3"></img>
+                    <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        3
+                        12
                       </div>
                       <div class="text-xs font-weight-bold text-success mb-1">
-                        Waiting Patient
+                        Total Doctors
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* <!-- Earnings (Monthly) Card Example --> */}
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="d-flex align-items-center col mr-2">
+                    <img src={CardIcon2} alt="card-icon-2"></img>
+                    <div className="card-title">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        12
+                      </div>
+                      <div class="text-xs font-weight-bold text-success mb-1">
+                        Nurses Patients
                       </div>
                     </div>
                   </div>
@@ -124,8 +147,8 @@ const Beginpage = () => {
         {/* <!-- Content Row --> */}
 
         <div class="row">
+          <PatientListTable />
           {/* <!-- Area Chart --> */}
-          <DataTable />
         </div>
 
         {/* <!-- Content Row --> */}
@@ -135,4 +158,4 @@ const Beginpage = () => {
   );
 };
 
-export default Beginpage;
+export default FutureAppoint;

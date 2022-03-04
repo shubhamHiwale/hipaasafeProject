@@ -2,6 +2,7 @@ import Rootpage from "./components/rootPage/Rootpage";
 import "bootstrap/dist/css/bootstrap.css";
 import "./assets/css/sb-admin-2.min.css";
 import "./assets/css/sb-admin-2.css";
+import "./assets/css/style.css";
 
 function App() {
   return (

@@ -3,6 +3,7 @@ import UndrawProfile from "../../assets/img/undraw_profile.svg";
 import UndrawProfile1 from "../../assets/img/undraw_profile_1.svg";
 import UndrawProfile2 from "../../assets/img/undraw_profile_2.svg";
 import UndrawProfile3 from "../../assets/img/undraw_profile_3.svg";
+import ExitIcon from "../../assets/img/exit.svg";
 
 const Topbar = () => {
   return (
@@ -18,7 +19,7 @@ const Topbar = () => {
         </button>
 
         {/* <!-- Topbar Search --> */}
-        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        {/* <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
           <div class="input-group">
             <input
               type="text"
@@ -33,7 +34,7 @@ const Topbar = () => {
               </button>
             </div>
           </div>
-        </form>
+        </form> */}
 
         {/* <!-- Topbar Navbar --> */}
         <ul class="navbar-nav ml-auto">
@@ -85,9 +86,7 @@ const Topbar = () => {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <i class="fas fa-bell fa-fw"></i>
               {/* <!-- Counter - Alerts --> */}
-              <span class="badge badge-danger badge-counter">3+</span>
             </a>
             {/* <!-- Dropdown - Alerts --> */}
             <div
@@ -148,9 +147,7 @@ const Topbar = () => {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <i class="fas fa-envelope fa-fw"></i>
               {/* <!-- Counter - Messages --> */}
-              <span class="badge badge-danger badge-counter">7</span>
             </a>
             {/* <!-- Dropdown - Messages --> */}
             <div
@@ -234,11 +231,16 @@ const Topbar = () => {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                Douglas McGee
+              <img
+                class="mr-2 img-profile rounded-circle"
+                src={UndrawProfile}
+              />
+              <span class="mr-5 d-none d-lg-inline text-gray-600 small">
+                Shivam
               </span>
-              <img class="img-profile rounded-circle" src={UndrawProfile} />
+              <img src={ExitIcon}></img>
             </a>
+
             {/* <!-- Dropdown - User Information --> */}
             <div
               class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
