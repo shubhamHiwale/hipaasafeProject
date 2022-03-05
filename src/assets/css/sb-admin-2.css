@@ -10418,13 +10418,6 @@ a:focus {
   cursor: pointer;
 }
 
-.sidebar #sidebarToggle::after {
-  font-weight: 900;
-  content: '\f104';
-  font-family: 'Font Awesome 5 Free';
-  margin-right: 0.1rem;
-}
-
 .sidebar #sidebarToggle:hover {
   text-decoration: none;
 }
@@ -10861,13 +10854,13 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background: #0098FF;
   background-position: center;
   background-size: cover;
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+  background: #0098FF;
   background-position: center;
   background-size: cover;
 }
