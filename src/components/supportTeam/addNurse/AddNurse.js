@@ -4,7 +4,7 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 const AddNurse = () => {
   return (
     <>
-      <div class="container-fluid d-flex flex-column">
+      <div className="container-fluid d-flex flex-column">
         <div className="add-doctor">Add Nurse</div>
         <Form className="mt-4">
           <span>Personal Details</span>

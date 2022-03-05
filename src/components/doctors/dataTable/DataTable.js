@@ -4,14 +4,14 @@ import { Table } from "react-bootstrap";
 const DataTable = () => {
   return (
     <>
-      <div class="card shadow mb-4">
-        <div class="py-2">
-          <h6 class="m-0 font-weight-bold">Patients List</h6>
+      <div className="card shadow mb-4">
+        <div className="py-2">
+          <h6 className="m-0 font-weight-bold">Patients List</h6>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
+        <div className="card-body">
+          <div className="table-responsive">
             <Table
-              class="table text-sm-start"
+              className="table text-sm-start"
               id="dataTable"
               width="100%"
               cellspacing="0"
@@ -66,7 +66,7 @@ const DataTable = () => {
                   <td>
                     <button
                       type="button"
-                      class="btn btn-outline-success w-100 d-inline-block rounded"
+                      className="btn btn-outline-success w-100 d-inline-block rounded"
                     >
                       Completed
                     </button>
@@ -111,7 +111,7 @@ const DataTable = () => {
                   <td>
                     <button
                       type="button"
-                      class="btn btn-outline-success w-100 d-inline-block rounded"
+                      className="btn btn-outline-success w-100 d-inline-block rounded"
                     >
                       Completed
                     </button>
@@ -156,7 +156,7 @@ const DataTable = () => {
                   <td>
                     <button
                       type="button"
-                      class="btn btn-outline-success w-100 d-inline-block rounded"
+                      className="btn btn-outline-success w-100 d-inline-block rounded"
                     >
                       Completed
                     </button>

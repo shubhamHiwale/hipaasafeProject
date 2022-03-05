@@ -4,11 +4,11 @@ import { Button, Table } from "react-bootstrap";
 const NurseTable = () => {
   return (
     <>
-      <div class="card shadow mb-4">
-        <div class="card-body">
-          <div class="table-responsive">
+      <div className="card shadow mb-4">
+        <div className="card-body">
+          <div className="table-responsive">
             <Table
-              class="table text-sm-start"
+              className="table text-sm-start"
               id="dataTable"
               width="100%"
               cellspacing="0"

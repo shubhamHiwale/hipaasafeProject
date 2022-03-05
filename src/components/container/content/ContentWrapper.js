@@ -13,7 +13,7 @@ const ContentWrapper = () => {
   return (
     <>
       {/* <!-- Content Wrapper --> */}
-      <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content-wrapper" className="d-flex flex-column">
         {/* <!-- Main Content --> */}
         <div id="content">
           <Topbar />

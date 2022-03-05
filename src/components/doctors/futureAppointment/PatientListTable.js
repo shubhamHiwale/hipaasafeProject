@@ -5,16 +5,16 @@ import { Form, Row, Col } from "react-bootstrap";
 const PatientListTable = () => {
   return (
     <>
-      <div class="card shadow mb-4">
-        <div class="card-body">
-          <div class="table-responsive">
+      <div className="card shadow mb-4">
+        <div className="card-body">
+          <div className="table-responsive">
             <div className="mb-2">
               <span className="font-weight-bold">
                 Dr. Sanjeev Arora Patient List
               </span>
             </div>
             <Table
-              class="table text-sm-start"
+              className="table text-sm-start"
               id="dataTable"
               width="100%"
               cellspacing="0"
