@@ -10024,7 +10024,7 @@ a:focus {
 }
 
 .text-gray-800 {
-  color: #5a5c69 !important;
+  color: #071B2A !important;
 }
 
 .text-gray-900 {
@@ -10322,6 +10322,7 @@ a:focus {
 .sidebar {
   width: 6.5rem;
   min-height: 100vh;
+  padding: 0 1rem;
 }
 
 .sidebar .nav-item {
@@ -10529,14 +10530,13 @@ a:focus {
     width: 100%;
     text-align: left;
     padding: 1rem;
-    width: 14rem;
   }
   .sidebar .nav-item .nav-link i {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     margin-right: 0.25rem;
   }
   .sidebar .nav-item .nav-link span {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     display: inline;
   }
   .sidebar .nav-item .nav-link[data-toggle="collapse"]::after {

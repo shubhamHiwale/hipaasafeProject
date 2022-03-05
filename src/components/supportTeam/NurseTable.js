@@ -25,7 +25,7 @@ const NurseTable = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>Tiger Nixon</td>
+                  <td>Nurse Nixon</td>
                   <td>System Architect</td>
                   <td>Edinburgh</td>
                   <td>61</td>

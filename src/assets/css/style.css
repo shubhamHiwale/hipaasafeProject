@@ -20,12 +20,11 @@
 .bg-th {
     background-color: #F8F8F8;
     color: #1C1C1C;
-    border: white;
-    font: normal normal medium 14px/17px Proxima Nova;
+    border: white;    
 }
 
 .bg-th th {
-    border: white;
+    border: none;
 }
 
 #dataTable {
@@ -73,3 +72,65 @@
     margin-bottom: 2rem;
 }
 
+
+.sidebar-light .nav-item .nav-link i.fa {
+    padding-right: 0.3rem;
+    font-size: 1rem;
+}
+
+.sidebar-light .nav-item .nav-link:hover, .sidebar-light .nav-item .nav-link:active {
+    background:#F0F9FF;
+    border-radius: 8px;
+    cursor: pointer;    
+}
+
+.sidebar-light .nav-item .nav-link:hover span, .sidebar-light .nav-item .nav-link:active span{
+    opacity: 1;
+    color: #0098FF;
+    font-weight: 600;
+}
+
+.sidebar-light .nav-item .nav-link:hover i.fa, .sidebar-light .nav-item .nav-link:active i.fa {
+    color: #0098FF;
+}
+
+.total-numbers {
+    color: #1D9BFF;
+    opacity: 1;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.total-label {
+    color: #808591;
+    font-size: 1rem;
+}
+
+.tabs-header {
+    padding: 0px 10px;
+    margin-bottom: 0px;
+    background: #fff;
+    width: 100%;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.tabs-header .list-group-item {
+    border: 0px;
+    margin-right: 20px;
+}
+
+.tabs-header .list-group-item.react-tabs__tab--selected {
+    color: #0098FF;
+    border-bottom: 3px solid #0098FF;
+    font-weight: 600;
+}
+
+.tabs-header .list-group-item:focus-visible{
+    outline: none;
+}
+
+.custom-tab-panel .card.shadow {
+    box-shadow: none !important;
+    border: 0px;
+}

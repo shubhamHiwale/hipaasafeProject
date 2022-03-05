@@ -1,7 +1,6 @@
 import React from "react";
-import CardIcon1 from "../../assets/img/cardIcon1.svg";
-import CardIcon2 from "../../assets/img/cardIcon2.svg";
-import CardIcon3 from "../../assets/img/cardIcon3.svg";
+import TotalDoctorIcon from "../../assets/img/total-doctors.svg";
+import TotalNursesIcon from "../../assets/img/total-nurse.svg";
 import DataTable from "../doctors/dataTable/DataTable";
 import DoctorTable from "./DoctorTable";
 import NurseTable from "./NurseTable";
@@ -11,39 +10,22 @@ import "react-tabs/style/react-tabs.css";
 const SupportDash = () => {
   return (
     <>
-      {/* <!-- Begin Page Content --> */}
+      
       <div className="container-fluid">
-        {/* <!-- Page Heading --> */}
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <span className="font-weight-bold mb-0 text-gray-800">
-            Dashboard
-            <span className="dash-date">Today, 03 Feb 2022</span>
-          </span>
-
-          {/* <a
-            href="#"
-            className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-          >
-            <i className="fas fa-download fa-sm text-white-50"></i> Generate Report
-          </a> */}
+          <span className="font-weight-bold mb-0 text-gray-800">Dashboard</span>         
         </div>
-
-        {/* <!-- Content Row --> */}
+        
         <div className="row">
-          {/* <!-- Earnings (Monthly) Card Example --> */}
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
               <div className="card-body">
                 <div className="row no-gutters align-items-center">
                   <div className="d-flex align-items-center col mr-2">
-                    <img src={CardIcon1} alt="card-icon-1"></img>
+                    <img src={TotalDoctorIcon} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
-                        12
-                      </div>
-                      <div className="text-xs font-weight-bold text-success mb-1">
-                        Total Doctors
-                      </div>
+                      <div className="total-numbers">12</div>
+                      <div className="total-label">Total Doctors</div>
                     </div>
                   </div>
                   <div className="col-auto">
@@ -60,14 +42,10 @@ const SupportDash = () => {
               <div className="card-body">
                 <div className="row no-gutters align-items-center">
                   <div className="d-flex align-items-center col mr-2">
-                    <img src={CardIcon2} alt="card-icon-2"></img>
+                    <img src={TotalNursesIcon} alt="card-icon-2"></img>
                     <div className="card-title">
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
-                        12
-                      </div>
-                      <div className="text-xs font-weight-bold text-success mb-1">
-                        Nurses Patients
-                      </div>
+                      <div className="total-numbers">21</div>
+                      <div className="total-label">Total Nurses</div>
                     </div>
                   </div>
                   <div className="col-auto">
@@ -79,26 +57,32 @@ const SupportDash = () => {
           </div>
         </div>
 
-        {/* <!-- Content Row --> */}
-
+        {/* tabs */}
         <div className="row">
-          <Tabs>
-            <TabList className="d-flex">
-              <Tab className="bg-success list-group-item border rounded text-white">
-                Doctors List
-              </Tab>
-              <Tab className="bg-success list-group-item border rounded text-white ml-2">
-                Nurses List
-              </Tab>
-            </TabList>
+          <div className="col-12">
+            <div className="card">
+              <div className="card-body">
+                <Tabs>
+                  <TabList className="d-flex tabs-header">
+                    <Tab className="list-group-item">
+                      Doctors List
+                    </Tab>
+                    <Tab className="list-group-item">
+                      Nurses List
+                    </Tab>
+                  </TabList>
 
-            <TabPanel>
-              <DoctorTable />
-            </TabPanel>
-            <TabPanel>
-              <NurseTable />
-            </TabPanel>
-          </Tabs>
+                  <TabPanel className="custom-tab-panel">
+                    <DoctorTable />
+                  </TabPanel>
+                  <TabPanel className="custom-tab-panel">
+                    <NurseTable />
+                  </TabPanel>
+                </Tabs>
+              </div>
+            </div>
+          </div>
+          
           {/* <!-- Area Chart --> */}
         </div>
 
