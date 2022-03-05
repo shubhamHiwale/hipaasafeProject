@@ -37,3 +37,39 @@
 .status__ {
     font-size: 12px;
 }
+
+.loginblock{
+    height: "100vh";
+    display: "flex";
+    justify-content: center;
+    align-items: center;
+}
+
+.loginblock .logo {
+    width: 45%;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-content {
+    width: 50%;
+}
+
+.login-form-content .title {
+    color: #212121;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.login-form-content p {
+    color: #7D7D7D;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
