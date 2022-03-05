@@ -2,11 +2,11 @@ import React from "react";
 import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
-import DoctorTable from "../supportDash/DoctorTable";
-import NurseTable from "../supportDash/NurseTable";
+import DoctorTable from "../supportTeam/DoctorTable";
+import NurseTable from "../supportTeam/NurseTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import PatientListTable from "./PatientListTable";
+import PatientListTable from "../doctors/futureAppointment/PatientListTable";
 
 const FutureAppoint = () => {
   return (
@@ -36,12 +36,12 @@ const FutureAppoint = () => {
 
         <div class="d-sm-flex bg-white p-2 align-items-center justify-content-between mb-4">
           <span class="font-weight-bold mb-0 text-gray-800">
-            <span className="ml-4 status__">Tommorow (12)</span>
-            <span className="ml-4 status__">3 Feb (08)</span>
-            <span className="ml-4 status__">4 Feb (05)</span>
-            <span className="ml-4 status__">5 Feb (00)</span>
-            <span className="ml-4 status__">6 Feb (02)</span>
-            <span className="ml-4 status__">7 Feb (04)</span>
+            <button className="ml-1 btn status__">Tommorow (12)</button>
+            <button className="ml-2 btn status__">3 Feb (08)</button>
+            <button className="ml-2 btn status__">4 Feb (05)</button>
+            <button className="ml-2 btn status__">5 Feb (00)</button>
+            <button className="ml-2 btn status__">6 Feb (02)</button>
+            <button className="ml-2 btn status__">7 Feb (04)</button>
           </span>
         </div>
 

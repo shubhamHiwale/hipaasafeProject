@@ -2,7 +2,7 @@ import React from "react";
 import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
-import DataTable from "../dataTable/DataTable";
+import DataTable from "../doctors/dataTable/DataTable";
 import DoctorTable from "./DoctorTable";
 import NurseTable from "./NurseTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";

@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import DatePicker from "react-date-picker";
 
 const History = () => {
+  const [startValue, startDate] = useState(new Date());
+  const [endValue, endDate] = useState(new Date());
+
   return (
     <>
       <div class="container-fluid">
@@ -17,7 +23,11 @@ const History = () => {
                 </Col>
               </Row>
             </Form>
-            <Button className="ml-3">Create an Appointment</Button>
+            <div className="d-flex ml-4">
+              <DatePicker onChange={startDate} value={startValue} />
+              <div className="p-2">TO</div>
+              <DatePicker onChange={endDate} value={endValue} />
+            </div>
           </div>
         </div>
         {/* <div class="d-sm-flex align-items-center justify-content-between mb-1">
