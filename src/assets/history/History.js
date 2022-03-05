@@ -10,9 +10,9 @@ const History = () => {
 
   return (
     <>
-      <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-2">
-          <span class="font-weight-bold mb-0 text-gray-800">
+      <div className="container-fluid">
+        <div className="d-sm-flex align-items-center justify-content-between mb-2">
+          <span className="font-weight-bold mb-0 text-gray-800">
             Appointment History
           </span>
           <div className="d-flex align-items-center">
@@ -30,8 +30,8 @@ const History = () => {
             </div>
           </div>
         </div>
-        {/* <div class="d-sm-flex align-items-center justify-content-between mb-1">
-          <span class="font-weight-bold mb-0 text-gray-800">
+        {/* <div className="d-sm-flex align-items-center justify-content-between mb-1">
+          <span className="font-weight-bold mb-0 text-gray-800">
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-16 mb-4">

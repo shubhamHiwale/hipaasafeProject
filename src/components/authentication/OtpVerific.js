@@ -1,6 +1,6 @@
 import React from "react";
 
-const OtpVerific = ({ demoFunc }) => {
+const OtpVerific = ({ demoFunc, uEmail }) => {
   const verificationOtp = () => {
     demoFunc();
   };
@@ -16,52 +16,52 @@ const OtpVerific = ({ demoFunc }) => {
     <>
       <div
         style={style}
-        class="d-flex justify-content-center align-item-center bg-gradient-primary w-100 d-inline-block"
+        className="d-flex justify-content-center align-item-center bg-gradient-primary w-100 d-inline-block"
       >
-        <div class="container">
+        <div className="container">
           {/* <!-- Outer Row --> */}
-          <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-              <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
+          <div className="row justify-content-center">
+            <div className="col-xl-10 col-lg-12 col-md-9">
+              <div className="card o-hidden border-0 shadow-lg my-5">
+                <div className="card-body p-0">
                   {/* <!-- Nested Row within Card Body --> */}
-                  <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                    <div class="col-lg-6">
-                      <div class="p-5">
-                        <div class="text-center">
-                          <h1 class="h4 text-gray-900 mb-0">
+                  <div className="row">
+                    <div className="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    <div className="col-lg-6">
+                      <div className="p-5">
+                        <div className="text-center">
+                          <h1 className="h4 text-gray-900 mb-0">
                             OTP VERIFICATION
                           </h1>
                         </div>
-                        <div class="text-center m-0">
-                          <a class="small" href="forgot-password.html">
+                        <div className="text-center m-0">
+                          <a className="small" href="forgot-password.html">
                             Enter 4 digit OTP sent to
                           </a>
                         </div>
-                        <div class="text-center mb-2">
-                          <a class="small" href="register.html">
-                            Praveenmourya61@gmail.com
+                        <div className="text-center mb-2">
+                          <a className="small" href="register.html">
+                            {uEmail}
                           </a>
                         </div>
-                        <form class="user">
-                          <div class="form-group">
+                        <form className="user">
+                          <div className="form-group">
                             <input
                               type="email"
-                              class="form-control form-control-user"
+                              className="form-control form-control-user"
                               id="exampleInputEmail"
                               aria-describedby="emailHelp"
                               placeholder="Enter Email Address..."
                             />
                           </div>
 
-                          <div class="text-center m-0">
-                            <a class="small" href="forgot-password.html">
+                          <div className="text-center m-0">
+                            <a className="small" href="forgot-password.html">
                               &#x278A;<b>3:00</b>
                             </a>
                           </div>
-                          <div class="text-center mb-2">
-                            <a class="small">
+                          <div className="text-center mb-2">
+                            <a className="small">
                               Didn't received the otp?
                               <b>
                                 <span
@@ -76,7 +76,7 @@ const OtpVerific = ({ demoFunc }) => {
 
                           <a
                             href="index.html"
-                            class="btn btn-primary btn-user btn-block"
+                            className="btn btn-primary btn-user btn-block"
                           >
                             Login
                           </a>
