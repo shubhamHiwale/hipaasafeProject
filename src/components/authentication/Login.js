@@ -40,10 +40,8 @@ const Login = () => {
   return (
     <>
       {!otpVeri ? (
-        <div className="loginblock">
-          <div className="container-fluid">
-            <div className="row justify-content-center">
-              <div className="col-lg-12">
+        <div className="loginblock">          
+            <div className="justify-content-center">              
                 <div className="card o-hidden border-0 shadow-lg">
                   <div className="card-body p-0">
                     <div className="row">
@@ -80,10 +78,8 @@ const Login = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                </div>              
+            </div>          
         </div>
       ) : (
         <OtpVerific
