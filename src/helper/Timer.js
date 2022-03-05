@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { timeUp } from "../redux/actions/actions";
 
 const Timer = ({ hours = 0, minutes = 0, seconds = 0 }) => {
+  const tm = useSelector((state) => state.timeUpReducer);
+
+  const dispatch = useDispatch();
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [[h, m, s], setTime] = useState([hours, minutes, seconds]);
@@ -25,6 +30,10 @@ const Timer = ({ hours = 0, minutes = 0, seconds = 0 }) => {
 
   useEffect(() => {
     const timerID = setInterval(() => tick(), 1000);
+    console.log("timerID : ", timerID);
+    if (timerID > 38) {
+      dispatch(timeUp(true));
+    }
     return () => clearInterval(timerID);
   });
 
@@ -32,10 +41,9 @@ const Timer = ({ hours = 0, minutes = 0, seconds = 0 }) => {
     <>
       <div className="d-flex justify-content-center">
         &#x278A;&nbsp;
-        <p>{`${m.toString().padStart(2, "0")}:${s
-          .toString()
-          .padStart(2, "0")}`}</p>
+        <p>{`${s.toString().padStart(2, "0")}`}</p>
         {/* ${h.toString().padStart(2, "0")}: */}
+        {/* {m.toString().padStart(2, "0")}: */}
       </div>
     </>
   );
