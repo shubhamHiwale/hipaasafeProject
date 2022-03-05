@@ -1,6 +1,7 @@
 import React from "react";
 import Countdown from "react-countdown";
 import Timer from "../../helper/Timer";
+import logo from "../../assets/img/logo.svg";
 
 const OtpVerific = ({ demoFunc, uEmail }) => {
   const editEmail = () => {
@@ -16,37 +17,27 @@ const OtpVerific = ({ demoFunc, uEmail }) => {
 
   return (
     <>
-      <div
-        style={style}
-        className="d-flex justify-content-center align-item-center bg-gradient-primary w-100 d-inline-block"
-      >
-        <div className="container">
+      <div className="loginblock">
+        <div className="container-fluid">
           {/* <!-- Outer Row --> */}
           <div className="row justify-content-center">
-            <div className="col-xl-10 col-lg-12 col-md-9">
-              <div className="card o-hidden border-0 shadow-lg my-5">
+            <div className="col-lg-12">
+              <div className="card o-hidden border-0 shadow-lg">
                 <div className="card-body p-0">
                   {/* <!-- Nested Row within Card Body --> */}
                   <div className="row">
-                    <div className="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                    <div className="col-lg-6">
-                      <div className="p-5">
+                  <div className="col-lg-6 bg-login-image">
+                        <img src={logo} alt="logo" className="logo"/>
+                      </div>
+                    <div className="col-lg-6 login-form">
+                      <div className="login-form-content">
                         <div className="text-center">
-                          <h1 className="h4 text-gray-900 mb-0">
-                            OTP VERIFICATION
-                          </h1>
-                        </div>
-                        <div className="text-center m-0">
-                          <a className="small">Enter 4 digit OTP sent to</a>
+                          <h1 className="title">OTP VERIFICATION</h1>
+                          <p>Enter 4 digit OTP sent to</p>
                         </div>
                         <div className="text-center mb-2">
                           <a className="small">{uEmail}</a>{" "}
-                          <button
-                            onClick={editEmail}
-                            className="btn btn-sm bg-success text-white"
-                          >
-                            {"<-"}
-                          </button>
+                          <button onClick={editEmail} className="btn"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                         </div>
                         <form className="user">
                           <div className="form-group">
@@ -82,7 +73,7 @@ const OtpVerific = ({ demoFunc, uEmail }) => {
                             Login
                           </a>
                         </form>
-                        <hr />
+                        
                       </div>
                     </div>
                   </div>
