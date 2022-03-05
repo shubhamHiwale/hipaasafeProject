@@ -83,9 +83,13 @@ const SupportDash = () => {
 
         <div class="row">
           <Tabs>
-            <TabList>
-              <Tab>Doctors List</Tab>
-              <Tab>Nurses List</Tab>
+            <TabList className="d-flex">
+              <Tab className="bg-success list-group-item border rounded text-white">
+                Doctors List
+              </Tab>
+              <Tab className="bg-success list-group-item border rounded text-white ml-2">
+                Nurses List
+              </Tab>
             </TabList>
 
             <TabPanel>

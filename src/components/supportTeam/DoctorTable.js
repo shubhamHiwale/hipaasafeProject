@@ -7,6 +7,7 @@ const DoctorTable = () => {
       <div class="card shadow mb-4">
         <div class="card-body">
           <div class="table-responsive">
+            <span>doctor table</span>
             <Table
               class="table text-sm-start"
               id="dataTable"

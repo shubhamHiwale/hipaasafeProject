@@ -36,12 +36,24 @@ const FutureAppoint = () => {
 
         <div class="d-sm-flex bg-white p-2 align-items-center justify-content-between mb-4">
           <span class="font-weight-bold mb-0 text-gray-800">
-            <button className="ml-1 btn status__">Tommorow (12)</button>
-            <button className="ml-2 btn status__">3 Feb (08)</button>
-            <button className="ml-2 btn status__">4 Feb (05)</button>
-            <button className="ml-2 btn status__">5 Feb (00)</button>
-            <button className="ml-2 btn status__">6 Feb (02)</button>
-            <button className="ml-2 btn status__">7 Feb (04)</button>
+            <button className="ml-1 btn bg-success text-white p-3 status__">
+              Tommorow (12)
+            </button>
+            <button className="ml-2 btn bg-success text-white p-3 status__">
+              3 Feb (08)
+            </button>
+            <button className="ml-2 btn bg-success text-white p-3 status__">
+              4 Feb (05)
+            </button>
+            <button className="ml-2 btn bg-success text-white p-3 status__">
+              5 Feb (00)
+            </button>
+            <button className="ml-2 btn bg-success text-white p-3 status__">
+              6 Feb (02)
+            </button>
+            <button className="ml-2 btn bg-success text-white p-3 status__">
+              7 Feb (04)
+            </button>
           </span>
         </div>
 
