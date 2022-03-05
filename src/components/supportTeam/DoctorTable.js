@@ -16,103 +16,73 @@ const DoctorTable = () => {
             >
               <thead>
                 <tr className="bg-th">
-                  <th>Queue No.</th>
-                  <th>Patient Name</th>
-                  <th>Age</th>
-                  <th>Time</th>
+                  <th>Sr. No.</th>
+                  <th>Doctors Name</th>
+                  <th>Specialty</th>
+                  <th>Yrs Of Erp.</th>
                   <th>Phone</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
+                  <td>1</td>
+                  <td>Dr. Praveenkumar Motilal Maurya</td>
+                  <td>Cardiologist</td>
+                  <td>10</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
+                  <td>2</td>
+                  <td>Dr. Jessie Clarcson</td>
+                  <td>Orthopedic</td>
+                  <td>11</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
+                  <td>3</td>
+                  <td>Dr. Praveenkumar Motilal Maurya</td>
+                  <td>Cardiologist</td>
+                  <td>10</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
+                  <td>4</td>
+                  <td>Dr. Jessie Clarcson</td>
+                  <td>Orthopedic</td>
+                  <td>11</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
+                  <td>5</td>
+                  <td>Dr. Praveenkumar Motilal Maurya</td>
+                  <td>Cardiologist</td>
+                  <td>10</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
+                  <td>6</td>
+                  <td>Dr. Jessie Clarcson</td>
+                  <td>Orthopedic</td>
+                  <td>11</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>
-                    <Button variant="outline-info">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
-                  <td>
-                    <Button variant="outline-info">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
-                  <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
               </tbody>

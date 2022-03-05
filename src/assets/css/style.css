@@ -118,6 +118,7 @@
 .tabs-header .list-group-item {
     border: 0px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .tabs-header .list-group-item.react-tabs__tab--selected {
@@ -133,4 +134,24 @@
 .custom-tab-panel .card.shadow {
     box-shadow: none !important;
     border: 0px;
+}
+
+.btn.btn-edit {
+    border-radius: 17px;
+    padding: 0.6rem 1.1rem;
+    line-height: 1;
+}
+
+@media(max-width:768px){
+    .bg-login-image {
+        height: 30vh;
+    }
+
+    .login-form {
+        padding: 3rem 0px;
+    }
+
+    .login-form-content {
+        width: 75%;
+    }
 }

@@ -15,103 +15,66 @@ const NurseTable = () => {
             >
               <thead>
                 <tr className="bg-th">
-                  <th>Queue No.</th>
-                  <th>Patient Name</th>
-                  <th>Age</th>
-                  <th>Time</th>
-                  <th>Phone</th>
+                  <th>Sr. No.</th>
+                  <th>Nurse Name</th>
+                  <th>Yrs Of Erp.</th>
+                  <th>Phone</th>                  
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Nurse Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
+                  <td>1</td>
+                  <td>Praveenkumar Motilal Maurya</td>
+                  <td>26</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
+                  <td>2</td>
+                  <td>Jessie Clarcson</td>
+                  <td>12</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
+                  <td>3</td>
+                  <td>Praveenkumar Motilal Maurya</td>
+                  <td>26</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
+                  <td>4</td>
+                  <td>Jessie Clarcson</td>
+                  <td>12</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
+                  <td>5</td>
+                  <td>Praveenkumar Motilal Maurya</td>
+                  <td>26</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
                 <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
+                  <td>6</td>
+                  <td>Jessie Clarcson</td>
+                  <td>12</td>
+                  <td>+91 9876543210</td>
                   <td>
-                    <Button variant="outline-info">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>
-                    <Button variant="outline-info">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
-                  <td>
-                    <Button variant="outline-info">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
-                  <td>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-primary btn-edit">Edit</Button>
                   </td>
                 </tr>
               </tbody>
