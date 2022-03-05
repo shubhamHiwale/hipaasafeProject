@@ -1,7 +1,9 @@
 import React from "react";
+import Countdown from "react-countdown";
+import Timer from "../../helper/Timer";
 
 const OtpVerific = ({ demoFunc, uEmail }) => {
-  const verificationOtp = () => {
+  const editEmail = () => {
     demoFunc();
   };
 
@@ -35,14 +37,16 @@ const OtpVerific = ({ demoFunc, uEmail }) => {
                           </h1>
                         </div>
                         <div className="text-center m-0">
-                          <a className="small" href="forgot-password.html">
-                            Enter 4 digit OTP sent to
-                          </a>
+                          <a className="small">Enter 4 digit OTP sent to</a>
                         </div>
                         <div className="text-center mb-2">
-                          <a className="small" href="register.html">
-                            {uEmail}
-                          </a>
+                          <a className="small">{uEmail}</a>{" "}
+                          <button
+                            onClick={editEmail}
+                            className="btn btn-sm bg-success text-white"
+                          >
+                            {"<-"}
+                          </button>
                         </div>
                         <form className="user">
                           <div className="form-group">
@@ -56,28 +60,25 @@ const OtpVerific = ({ demoFunc, uEmail }) => {
                           </div>
 
                           <div className="text-center m-0">
-                            <a className="small" href="forgot-password.html">
-                              &#x278A;<b>3:00</b>
+                            <a className="small">
+                              <b>
+                                {/* <Countdown date={Date.now() + 100000} /> */}
+                                <Timer minutes={1} seconds={30} />
+                              </b>
                             </a>
                           </div>
                           <div className="text-center mb-2">
                             <a className="small">
                               Didn't received the otp?
                               <b>
-                                <span
-                                  style={{ cursor: "pointer" }}
-                                  onClick={verificationOtp}
-                                >
+                                <span style={{ cursor: "pointer" }}>
                                   Resend OTP
                                 </span>
                               </b>
                             </a>
                           </div>
 
-                          <a
-                            href="index.html"
-                            className="btn btn-primary btn-user btn-block"
-                          >
+                          <a className="btn btn-primary btn-user btn-block">
                             Login
                           </a>
                         </form>
