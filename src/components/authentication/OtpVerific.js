@@ -5,7 +5,7 @@ import logo from "../../assets/img/logo.svg";
 import { useHistory } from "react-router-dom";
 import { otpVerification } from "../../services/apis/loginAuth";
 import { useSelector, useDispatch } from "react-redux";
-import { sideBarAuth } from "../../redux/actions/actions";
+import { sideBarAuth, timeUp } from "../../redux/actions/actions";
 
 const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
 
   const reSendOtp = () => {
     verificationOtp();
+    dispatch(timeUp(true));
   };
 
   const handleChange = (e) => {

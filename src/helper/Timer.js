@@ -4,6 +4,7 @@ import { timeUp } from "../redux/actions/actions";
 
 const Timer = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   const tm = useSelector((state) => state.timeUpReducer);
+  const tst = false;
 
   const dispatch = useDispatch();
   const [paused, setPaused] = useState(false);
@@ -23,19 +24,23 @@ const Timer = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   };
 
   const reset = () => {
-    setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
-    setPaused(false);
-    setOver(false);
+    console.log("reset");
+    setTime([parseInt(0), parseInt(0), parseInt(0)]);
+    setPaused(true);
+    setOver(true);
   };
 
   useEffect(() => {
     const timerID = setInterval(() => tick(), 1000);
     console.log("timerID : ", timerID);
-    if (timerID > 30) {
+    if (timerID === 10 && timerID <= 10) {
       dispatch(timeUp(true));
+      reset();
     }
     return () => clearInterval(timerID);
   });
+
+  useEffect(() => {}, [tm]);
 
   return (
     <>
