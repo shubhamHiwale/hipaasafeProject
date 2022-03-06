@@ -18,7 +18,7 @@ const ContentWrapper = () => {
         <div id="content">
           <Topbar />
           <Switch>
-            <Route path="/main/support-dash">
+            <Route path="/main/support-dashboard">
               <SupportDash />
             </Route>
             <Route path="/main/add-docter">
@@ -27,15 +27,17 @@ const ContentWrapper = () => {
             <Route path="/main/add-nurse">
               <AddNurse />
             </Route>
-            <Route path="/main/future-appointment">
+            <Route path="/main/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="/main/schedule">
               <NurseSched />
             </Route>
             <Route path="/main/history">
               <History />
             </Route>
           </Switch>
-        </div>
-        {/* <!-- Main Content end--> */}
+        </div>        
       </div>
       {/* <!-- Content Wrapper end --> */}
     </>

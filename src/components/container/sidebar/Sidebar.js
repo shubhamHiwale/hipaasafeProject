@@ -1,6 +1,7 @@
 import React from "react";
 import sidebarLogo from "../../../assets/img/hipaasafe-blue-logo.svg";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink, Route, Switch } from "react-router-dom";
 
 const Sidebar = () => {
   const sbrAuth = useSelector((state) => state.sideBAuthReducer);
@@ -21,44 +22,44 @@ const Sidebar = () => {
         </a>
         {sbrAuth ? (
           <>
-            <li className="nav-item">
-              <a className="nav-link">
+            <li className="nav-item active">
+              <NavLink to="/main/support-dashboard" className="nav-link">
                 <i class="fa fa-home" aria-hidden="true"></i>
                 <span>Dashboard</span>
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link">
+              <NavLink to="/main/add-docter" className="nav-link">
                 <i class="fa fa-user-md" aria-hidden="true"></i>
                 <span>Add Doctors</span>
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link">
+              <NavLink to="/main/add-nurse" className="nav-link">
                 <i class="fa fa-female" aria-hidden="true"></i>
                 <span>Add Nurses</span>
-              </a>
+              </NavLink>
             </li>
           </>
         ) : (
           <>
             <li className="nav-item">
-              <a className="nav-link">
+              <NavLink to="/main/dashboard" className="nav-link">
                 <i class="fa fa-home" aria-hidden="true"></i>
                 <span>Dashboard</span>
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link">
+              <NavLink to="/main/history" className="nav-link">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <span>History</span>
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link">
+              <NavLink to="/main/schedule" className="nav-link">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 <span>Schedule</span>
-              </a>
+              </NavLink>
             </li>
           </>
         )}

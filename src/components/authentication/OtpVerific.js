@@ -32,10 +32,10 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
         if (res.success) {
           if (res.data.role_name === "SUPPORT") {
             dispatch(sideBarAuth(true));
-            histroy.push("/main/support-dash");
+            histroy.push("/main/support-dashboard");
           }
         } else {
-          console.log("no response from server");
+          histroy.push("/main/dashboard");
         }
         console.log("res : ", res);
       }
