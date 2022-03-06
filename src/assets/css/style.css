@@ -206,10 +206,23 @@
   margin-bottom: 1.2rem;
 }
 
-@media (max-width: 768px) {
-  .bg-login-image {
-    height: 30vh;
-  }
+.input-group-floting.input-group .input-group-text {
+    width: 12%;
+}
+
+.input-group-floting.input-group .form-floating {
+    width: 88%;    
+}
+
+.input-group-floting.input-group .form-floating .form-control{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+@media(max-width:768px){
+    .bg-login-image {
+        height: 30vh;
+    }
 
   .login-form {
     padding: 3rem 0px;
