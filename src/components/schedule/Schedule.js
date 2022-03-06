@@ -41,8 +41,7 @@ const FutureAppoint = () => {
         </div>
 
         {/* <!-- Content Row --> */}
-        <div class="row">
-          {/* <!-- Earnings (Monthly) Card Example --> */}
+        <div class="row dashboard-counter-cards">
           <div class="col-xl-3 col-md-6 mb-4">
             <div class="card shadow h-100 py-2">
               <div class="card-body">
@@ -50,12 +49,8 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="total-numbers">
-                        12
-                      </div>
-                      <div class="total-label">
-                        Total Appointments
-                      </div>
+                      <div class="total-numbers">12</div>
+                      <div class="total-label">Total Appointments</div>
                     </div>
                   </div>
                   <div class="col-auto">

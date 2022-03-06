@@ -15,7 +15,7 @@ const SupportDash = () => {
           <span className="page-title">Dashboard</span>         
         </div>
         
-        <div className="row">
+        <div className="row dashboard-counter-cards">
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
               <div className="card-body">

@@ -22,9 +22,10 @@ const AddDoctor = () => {
   });
   console.log("doctor data : ", docterData);
   const options = [
-    { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry" },
+    { label: "Cardiologist", value: "Cardiologist" },
+    { label: "Radiologist", value: "Radiologist" },
+    { label: "Neurologist", value: "Neurologist" },
+    { label: "Dentist", value: "Dentist" },
   ];
 
   const [selected, setSelected] = useState([]);
@@ -70,7 +71,7 @@ const AddDoctor = () => {
                     <FloatingLabel label="Name">
                       <Form.Control
                         type="text"
-                        className="p-4"
+                        className=""
                         placeholder="Name"
                         onChange={handleChanges}
                         name="name"
@@ -87,7 +88,7 @@ const AddDoctor = () => {
                     <FloatingLabel label="Email">
                       <Form.Control
                         type="email"
-                        className="p-4"
+                        className=""
                         placeholder="Email"
                         onChange={handleChanges}
                         name="email"
@@ -104,7 +105,7 @@ const AddDoctor = () => {
                     <FloatingLabel label="Mobile Number">
                       <Form.Control
                         type="tel"
-                        className="p-4"
+                        className=""
                         placeholder="Mobile Number"
                         onChange={handleChanges}
                         name="mobile"
@@ -121,7 +122,7 @@ const AddDoctor = () => {
                     <FloatingLabel label="City">
                       <Form.Control
                         type="text"
-                        className="p-4"
+                        className=""
                         placeholder="City"
                         onChange={handleChanges}
                         name="city"
@@ -157,7 +158,7 @@ const AddDoctor = () => {
                       <i class="fa fa-user-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <MultiSelect
-                      className="col-sm-10"
+                      className="custom-multiselectbox"
                       options={options}
                       value={selected}
                       onChange={setSelected}
@@ -173,7 +174,7 @@ const AddDoctor = () => {
                     <FloatingLabel label="Year of experience">
                       <Form.Control
                         type="text"
-                        className="p-4"
+                        className=""
                         placeholder="Year of experience"
                         onChange={handleChanges}
                         name="year_of_exp"

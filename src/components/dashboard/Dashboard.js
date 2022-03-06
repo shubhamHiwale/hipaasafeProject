@@ -17,7 +17,7 @@ const Dashboard = () => {
         </div>
 
         
-        <div className="row">
+        <div className="row dashboard-counter-cards">
           <div className="col-xl-4 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
               <div className="card-body">
@@ -41,7 +41,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* <!-- Earnings (Monthly) Card Example --> */}
           <div className="col-xl-4 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
               <div className="card-body">
@@ -65,7 +64,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* <!-- Pending Requests Card Example --> */}
           <div className="col-xl-4 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
               <div className="card-body">
@@ -90,12 +88,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* <!-- Content Row --> */}
-
         <div className="row">
-          
-              <PatientsList />
-            
+              <PatientsList />            
         </div>
 
         {/* <!-- Content Row --> */}

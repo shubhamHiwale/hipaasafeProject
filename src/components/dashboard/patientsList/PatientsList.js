@@ -38,7 +38,46 @@ const PatientsList = () => {
                     <td>
                       <button
                         style={{ backgroundColor: "#0098FF" }}
-                        className="btn btn-primary px-4 d-inline-block rounded-pill"
+                        className="btn btn-primary px-4 rounded-pill"
+                      >
+                        Mark Complete
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                    <td>2011/07/25</td>
+                    <td>
+                      <button type="button" className="btn btn-light px-4 rounded-pill">
+                        Waiting
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ashton Cox</td>
+                    <td>Junior Technical Author</td>
+                    <td>San Francisco</td>
+                    <td>66</td>
+                    <td>2009/01/12</td>
+                    <td>
+                      <button type="button" className="btn btn-success px-4 rounded-pill">
+                        Completed
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                      <button
+                        style={{ backgroundColor: "#0098FF" }}
+                        className="btn btn-primary px-4 rounded-pill"
                       >
                         Mark Complete
                       </button>
@@ -53,7 +92,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-light px-4 d-inline-block rounded-pill"
+                        className="btn btn-light px-4 rounded-pill"
                       >
                         Waiting
                       </button>
@@ -68,7 +107,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-success px-4 d-inline-block rounded-pill"
+                        className="btn btn-success px-4 rounded-pill"
                       >
                         Completed
                       </button>
@@ -83,7 +122,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         style={{ backgroundColor: "#0098FF" }}
-                        className="btn btn-primary px-4 d-inline-block rounded-pill"
+                        className="btn btn-primary px-4 rounded-pill"
                       >
                         Mark Complete
                       </button>
@@ -98,7 +137,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-light px-4 d-inline-block rounded-pill"
+                        className="btn btn-light px-4 rounded-pill"
                       >
                         Waiting
                       </button>
@@ -113,52 +152,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-success px-4 d-inline-block rounded-pill"
-                      >
-                        Completed
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>
-                      <button
-                        style={{ backgroundColor: "#0098FF" }}
-                        className="btn btn-primary px-4 d-inline-block rounded-pill"
-                      >
-                        Mark Complete
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-light px-4 d-inline-block rounded-pill"
-                      >
-                        Waiting
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-success px-4 d-inline-block rounded-pill"
+                        className="btn btn-success px-4 rounded-pill"
                       >
                         Completed
                       </button>
