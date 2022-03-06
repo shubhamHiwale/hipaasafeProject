@@ -38,7 +38,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         style={{ backgroundColor: "#0098FF" }}
-                        className="btn btn-primary w-100 d-inline-block rounded"
+                        className="btn btn-primary w-100 d-inline-block rounded-pill"
                       >
                         Mark Complete
                       </button>
@@ -53,7 +53,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-light w-100 d-inline-block rounded"
+                        className="btn btn-light w-100 d-inline-block rounded-pill"
                       >
                         Waiting
                       </button>
@@ -68,7 +68,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-outline-success w-100 d-inline-block rounded"
+                        className="btn btn-outline-success w-100 d-inline-block rounded-pill"
                       >
                         Completed
                       </button>
@@ -83,7 +83,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         style={{ backgroundColor: "#0098FF" }}
-                        className="btn btn-primary w-100 d-inline-block rounded"
+                        className="btn btn-primary w-100 d-inline-block rounded-pill"
                       >
                         Mark Complete
                       </button>
@@ -98,7 +98,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-light w-100 d-inline-block rounded"
+                        className="btn btn-light w-100 d-inline-block rounded-pill"
                       >
                         Waiting
                       </button>
@@ -113,7 +113,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-outline-success w-100 d-inline-block rounded"
+                        className="btn btn-outline-success w-100 d-inline-block rounded-pill"
                       >
                         Completed
                       </button>
@@ -128,7 +128,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         style={{ backgroundColor: "#0098FF" }}
-                        className="btn btn-primary w-100 d-inline-block rounded"
+                        className="btn btn-primary w-100 d-inline-block rounded-pill"
                       >
                         Mark Complete
                       </button>
@@ -143,7 +143,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-light w-100 d-inline-block rounded"
+                        className="btn btn-light w-100 d-inline-block rounded-pill"
                       >
                         Waiting
                       </button>
@@ -158,7 +158,7 @@ const PatientsList = () => {
                     <td>
                       <button
                         type="button"
-                        className="btn btn-outline-success w-100 d-inline-block rounded"
+                        className="btn btn-outline-success w-100 d-inline-block rounded-pill"
                       >
                         Completed
                       </button>
