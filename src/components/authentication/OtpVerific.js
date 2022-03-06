@@ -67,14 +67,14 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                   <img src={logo} alt="logo" className="logo" />
                 </div>
                 <div className="col-lg-6 login-form">
-                  <div className="login-form-content">
+                  <div className="login-form-content otp-form">
                     <div className="text-center">
                       <h1 className="title">OTP VERIFICATION</h1>
                       <p>Enter 4 digit OTP sent to</p>
                     </div>
-                    <div className="text-center mb-2">
-                      <a className="small">{uEmail}</a>
-                      <button onClick={editEmail} className="btn">
+                    <div className="text-center mb-2">                      
+                      <button onClick={editEmail} className="btn btn-pencil">
+                        <span className="small">{uEmail}</span>
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                       </button>
                     </div>
@@ -101,15 +101,15 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                       ) : (
                         ""
                       )}
-                      <div className="text-center m-0">
-                        <a className="small">
+                      <div className="text-center m-0 p-3">
+                        <div className="small">
                           <b>
                             {/* <Countdown date={Date.now() + 100000} /> */}
                             <Timer seconds={10} />
                           </b>
-                        </a>
+                        </div>
                       </div>
-                      <div className="text-center mb-2">
+                      <div className="text-center mb-4 p-3">
                         Didn't received the otp?
                         <b className="small">
                           <span
@@ -125,7 +125,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                         onClick={verifyOtp}
                         className="btn btn-primary btn-user btn-block"
                       >
-                        Done
+                        Verify
                       </a>
                     </form>
                   </div>

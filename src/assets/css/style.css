@@ -71,13 +71,28 @@
   font-size: 1rem;
   margin-bottom: 2rem;
 }
+.login-form-content.otp-form p {
+  margin-bottom: 0rem;
+}
+.btn.btn-pencil {
+  color: #0098ff;
+  font-size: 1.2rem;
+}
+
+.btn.btn-pencil .fa{
+  padding: 0px 5px;
+}
+
 .disable-otp {
   color: #d1d3e2;
+  padding: 0px 5px;
   cursor: none;
 }
 .enable-otp {
   color: #0098ff;
   cursor: pointer;
+  padding: 0px 5px;
+  font-weight: 600;
 }
 
 .sidebar-light .nav-item .nav-link i.fa {
@@ -217,6 +232,13 @@
 .input-group-floting.input-group .form-floating .form-control{
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+}
+
+span.clock-icon {
+  padding: 5px 5px;
+  font-size: 14px;
+  line-height: 1;
+  color: #7D7D7D;
 }
 
 @media(max-width:768px){
