@@ -1,10 +1,10 @@
 import React from "react";
-import Beginpage from "../../doctors/beginPage/Beginpage";
+import Dashboard from "../../dashboard/Dashboard";
 import Topbar from "../../topbar/Topbar";
 import AddDoctor from "../../supportTeam/addDocter/AddDoctor";
 import AddNurse from "../../supportTeam/addNurse/AddNurse";
 import SupportDash from "../../supportTeam/SupportDash";
-import NurseSched from "../../nurse/NurseSched";
+import NurseSched from "../../schedule/Schedule";
 import History from "../../../assets/history/History";
 import { Route, Switch } from "react-router-dom";
 import Login from "../../authentication/Login";

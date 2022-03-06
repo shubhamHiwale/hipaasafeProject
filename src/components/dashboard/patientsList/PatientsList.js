@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const DataTable = () => {
+const PatientsList = () => {
   return (
     <>
       <div className="card shadow mb-4">
@@ -171,4 +171,4 @@ const DataTable = () => {
   );
 };
 
-export default DataTable;
+export default PatientsList;

@@ -1,11 +1,11 @@
 import React from "react";
-import undrawPostingPhoto from "../../../assets/img/undraw_posting_photo.svg";
-import CardIcon1 from "../../../assets/img/cardIcon1.svg";
-import CardIcon2 from "../../../assets/img/cardIcon2.svg";
-import CardIcon3 from "../../../assets/img/cardIcon3.svg";
-import DataTable from "../dataTable/DataTable";
+import undrawPostingPhoto from "../../assets/img/undraw_posting_photo.svg";
+import CardIcon1 from "../../assets/img/cardIcon1.svg";
+import CardIcon2 from "../../assets/img/cardIcon2.svg";
+import CardIcon3 from "../../assets/img/cardIcon3.svg";
+import PatientsList from "./patientsList/PatientsList";
 
-const Beginpage = () => {
+const Dashboard = () => {
   return (
     <>
       {/* <!-- Begin Page Content --> */}
@@ -96,7 +96,7 @@ const Beginpage = () => {
 
         <div className="row">
           {/* <!-- Area Chart --> */}
-          <DataTable />
+          <PatientsList />
         </div>
 
         {/* <!-- Content Row --> */}
@@ -106,4 +106,4 @@ const Beginpage = () => {
   );
 };
 
-export default Beginpage;
+export default Dashboard;

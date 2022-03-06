@@ -6,7 +6,7 @@ import DoctorTable from "../supportTeam/DoctorTable";
 import NurseTable from "../supportTeam/NurseTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import PatientListTable from "../doctors/futureAppointment/PatientListTable";
+import FutureAppointmentTable from "./futureAppointment/FutureAppointmentTable";
 
 const FutureAppoint = () => {
   return (
@@ -159,7 +159,7 @@ const FutureAppoint = () => {
         {/* <!-- Content Row --> */}
 
         <div class="row">
-          <PatientListTable />
+          <FutureAppointmentTable />
           {/* <!-- Area Chart --> */}
         </div>
 

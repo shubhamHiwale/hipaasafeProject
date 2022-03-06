@@ -1,7 +1,6 @@
 import React from "react";
 import TotalDoctorIcon from "../../assets/img/total-doctors.svg";
 import TotalNursesIcon from "../../assets/img/total-nurse.svg";
-import DataTable from "../doctors/dataTable/DataTable";
 import DoctorTable from "./DoctorTable";
 import NurseTable from "./NurseTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";

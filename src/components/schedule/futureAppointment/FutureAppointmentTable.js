@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Table } from "react-bootstrap";
 import { Form, Row, Col } from "react-bootstrap";
 
-const PatientListTable = () => {
+const FutureAppointmentTable = () => {
   return (
     <>
       <div className="card shadow mb-4">
@@ -129,4 +129,4 @@ const PatientListTable = () => {
   );
 };
 
-export default PatientListTable;
+export default FutureAppointmentTable;
