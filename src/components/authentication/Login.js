@@ -19,7 +19,7 @@ const Login = () => {
 
         if (email) {
           console.log("am call");
-          const res = await loginAdmin(email);
+          const res = await login(email);
           console.log("RES : ", res.success);
           if (res.success) {
             setOtpVeri(true);
