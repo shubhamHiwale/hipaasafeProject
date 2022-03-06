@@ -1,7 +1,20 @@
 <<<<<<< Updated upstream
 import React from "react";
-import { Form, Row, Col, Button, InputGroup, FormControl, FloatingLabel } from "react-bootstrap";
+import { addDoctor } from "../../../services/apis/support/addDocteor";
+import {
+  Form,
+  Row,
+  Col,
+  Button,
+  InputGroup,
+  FormControl,
+  FloatingLabel,
+} from "react-bootstrap";
 
+const AddDoctor = async () => {
+  const res = addDoctor();
+
+<<<<<<< Updated upstream
 const AddDoctor = () => {
 =======
 import React, { useState } from "react";
@@ -76,10 +89,13 @@ const AddDoctor = () => {
     }
   };
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   return (
     <>
       <div className="container-fluid d-flex flex-column">
         <div classname="row">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             <div className="col-lg-10 col-sm-12">          
               <div className="page-title">Add Doctor</div>
@@ -297,12 +313,133 @@ const AddDoctor = () => {
                     className="w-100"
                     variant="primary"
                   >
+=======
+          <div className="col-lg-10 col-sm-12">
+            <div className="page-title">Add Doctor</div>
+            <Form className="mt-4">
+              <Row>
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <FloatingLabel label="Name">
+                      <Form.Control
+                        type="text"
+                        className="p-4"
+                        placeholder="Name"
+                      />
+                    </FloatingLabel>
+                  </InputGroup>
+                </Col>
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <FloatingLabel label="Email">
+                      <Form.Control
+                        type="email"
+                        className="p-4"
+                        placeholder="Email"
+                      />
+                    </FloatingLabel>
+                  </InputGroup>
+                </Col>
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <FloatingLabel label="Mobile Number">
+                      <Form.Control
+                        type="tel"
+                        className="p-4"
+                        placeholder="Mobile Number"
+                      />
+                    </FloatingLabel>
+                  </InputGroup>
+                </Col>
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <FloatingLabel label="City">
+                      <Form.Control
+                        type="text"
+                        className="p-4"
+                        placeholder="City"
+                      />
+                    </FloatingLabel>
+                  </InputGroup>
+                </Col>
+
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <Form.Select
+                      className="custom-selectbox"
+                      aria-label="Select Speciality"
+                    >
+                      <option>Speciality</option>
+                      <option value="1">Cardiologist</option>
+                      <option value="2">Radiologist</option>
+                      <option value="3">Neurologist</option>
+                      <option value="4">Dentist</option>
+                    </Form.Select>
+                  </InputGroup>
+                </Col>
+                <Col className="col-sm-4 mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <Form.Select
+                      className="custom-multiselectbox"
+                      aria-label="Select Tags"
+                    >
+                      <option>Tags</option>
+                      <option value="1">Cardiologist</option>
+                      <option value="2">Radiologist</option>
+                      <option value="3">Neurologist</option>
+                      <option value="4">Dentist</option>
+                    </Form.Select>
+                  </InputGroup>
+                </Col>
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <FloatingLabel label="Year of experience">
+                      <Form.Control
+                        type="text"
+                        className="p-4"
+                        placeholder="Year of experience"
+                      />
+                    </FloatingLabel>
+                  </InputGroup>
+                </Col>
+              </Row>
+            </Form>
+
+            <Form className="mt-4">
+              <Row>
+                <Col className="col-sm-4  mb-4 mb-4">
+                  <Button className="w-100" variant="primary">
+>>>>>>> Stashed changes
                     Add Doctor
                   </Button>
                 </Col>
               </Row>
             </Form>
           </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </div>
       </div>
