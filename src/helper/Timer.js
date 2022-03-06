@@ -45,7 +45,7 @@ const Timer = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   return (
     <>
       <div className="d-flex justify-content-center">
-        &#x278A;&nbsp;
+      <span className="clock-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
         <p>{`${s.toString().padStart(2, "0")}`}</p>
         {/* ${h.toString().padStart(2, "0")}: */}
         {/* {m.toString().padStart(2, "0")}: */}
