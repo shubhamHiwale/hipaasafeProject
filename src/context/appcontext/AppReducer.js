@@ -1,4 +1,4 @@
-import { SET_USER } from "./AppType";
+import { SET_USER, RESET_USER } from "./AppType";
 
 export default (state, action) => {
     const { payload, type } = action;
@@ -7,6 +7,12 @@ export default (state, action) => {
             return {
                 ...state,
                 user: payload
+            };
+
+        case RESET_USER:
+            return {
+                ...state,
+                user: null
             };
 
         default:

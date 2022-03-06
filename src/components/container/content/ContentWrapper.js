@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Dashboard from "../../dashboard/Dashboard";
 import Topbar from "../../topbar/Topbar";
 import AddDoctor from "../../supportTeam/addDocter/AddDoctor";
@@ -37,7 +37,7 @@ const ContentWrapper = () => {
               <History />
             </Route>
           </Switch>
-        </div>        
+        </div>
       </div>
       {/* <!-- Content Wrapper end --> */}
     </>

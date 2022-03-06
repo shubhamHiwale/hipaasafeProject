@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Timer from "../../helper/Timer";
 import logo from "../../assets/img/logo.svg";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { sideBarAuth } from "../../redux/actions/actions";
 import { validateOtp } from "../../services/apiservices";
+import appContext from "../../context/appcontext/AppContext";
 
 const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
   const dispatch = useDispatch();
+  const AppContext = useContext(appContext);
   const tm = useSelector((state) => state.timeUpReducer);
   console.log("tm : ", tm);
   const [otp, setOtp] = useState();
@@ -30,13 +32,13 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
       if (res) {
         if (res.success) {
           sessionStorage.setItem("access_token", res?.data?.access_token);
-
+          AppContext.setUser(res?.data);
           if (res.data.role_name === "SUPPORT") {
             dispatch(sideBarAuth(true));
-            histroy.push("/main/support-dashboard");
+            // histroy.push("/main/support-dashboard");
           }
         } else {
-          histroy.push("/main/dashboard");
+          // histroy.push("/main/dashboard");
         }
         console.log("res : ", res);
       }
@@ -44,6 +46,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
       console.log("somthing is missing");
     }
   };
+
   const style = {
     height: "100vh",
     display: "flex",

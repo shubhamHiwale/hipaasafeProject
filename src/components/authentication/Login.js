@@ -3,7 +3,6 @@ import OtpVerific from "./OtpVerific";
 import logo from "../../assets/img/logo.svg";
 import { login } from "../../services/apiservices";
 
-
 const Login = () => {
   const [otpVeri, setOtpVeri] = useState(false);
   const [email, setEmail] = useState("");
