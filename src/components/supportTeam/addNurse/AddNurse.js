@@ -44,7 +44,7 @@ const AddNurse = () => {
       name,
       email,
       number: mobile,
-      country_code,
+      country_code:"+91",
       doctor_ids: ["4"],
     });
     if (res) {
@@ -81,7 +81,7 @@ const AddNurse = () => {
                 <Col className="col-sm-4 ">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Email">
                       <Form.Control
@@ -97,9 +97,7 @@ const AddNurse = () => {
                 </Col>
                 <Col className="col-sm-4">
                   <InputGroup className="input-group-floting">
-                    <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
-                    </InputGroup.Text>
+                    <InputGroup.Text>+91</InputGroup.Text>
                     <FloatingLabel label="Mobile Number">
                       <Form.Control
                         type="tel"
@@ -112,7 +110,23 @@ const AddNurse = () => {
                     </FloatingLabel>
                   </InputGroup>
                 </Col>
-                <Col className="col-sm-4">
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <FloatingLabel label="City">
+                      <Form.Control
+                        type="text"
+                        className=""
+                        placeholder="City"
+                        name="city"
+                        value=""
+                      />
+                    </FloatingLabel>
+                  </InputGroup>
+                </Col>
+                {/* <Col className="col-sm-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
                       <i class="fa fa-user-o" aria-hidden="true"></i>
@@ -128,11 +142,11 @@ const AddNurse = () => {
                       />
                     </FloatingLabel>
                   </InputGroup>
-                </Col>
+                </Col> */}
                 <Col className="col-sm-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Year of experience">
                       <Form.Control
@@ -172,9 +186,7 @@ const AddNurse = () => {
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4 mb-4">
-                  <Button onClick={reqAddNurse} variant="primary">
-                    Add Nurses
-                  </Button>
+                  <Button onClick={reqAddNurse} className="w-100" variant="primary">Add Nurses</Button>
                 </Col>
               </Row>
             </Form>

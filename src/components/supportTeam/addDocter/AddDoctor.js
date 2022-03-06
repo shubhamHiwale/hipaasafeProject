@@ -83,7 +83,7 @@ const AddDoctor = () => {
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Email">
                       <Form.Control
@@ -100,7 +100,7 @@ const AddDoctor = () => {
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                      +91
                     </InputGroup.Text>
                     <FloatingLabel label="Mobile Number">
                       <Form.Control
@@ -117,7 +117,7 @@ const AddDoctor = () => {
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="City">
                       <Form.Control
@@ -169,7 +169,7 @@ const AddDoctor = () => {
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Year of experience">
                       <Form.Control
@@ -189,13 +189,7 @@ const AddDoctor = () => {
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4  mb-4 mb-4">
-                  <Button
-                    onClick={reqAddDoctor}
-                    className="w-100"
-                    variant="primary"
-                  >
-                    Add Doctor
-                  </Button>
+                  <Button onClick={reqAddDoctor} className="w-100" variant="primary">Add Doctor</Button>
                 </Col>
               </Row>
             </Form>
