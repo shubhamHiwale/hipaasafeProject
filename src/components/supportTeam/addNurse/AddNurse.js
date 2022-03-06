@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { addNurse } from "../../../services/apiservices";
 import { MultiSelect } from "react-multi-select-component";
 import {
   Form,
@@ -11,12 +12,45 @@ import {
 } from "react-bootstrap";
 
 const AddNurse = () => {
+  const [nurseData, setNurseData] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    country_code: "",
+  });
+
+  console.log("nurseData : ", nurseData);
+
+  let name;
+  let value;
+  const handleChanges = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setNurseData({ ...nurseData, [name]: value });
+  };
+
   const options = [
     { label: "Grapes 🍇", value: "grapes" },
     { label: "Mango 🥭", value: "mango" },
     { label: "Strawberry 🍓", value: "strawberry" },
   ];
+
   const [selected, setSelected] = useState([]);
+
+  const reqAddNurse = async () => {
+    const { name, email, mobile, country_code } = nurseData;
+    const res = await addNurse({
+      name,
+      email,
+      number: mobile,
+      country_code,
+      doctor_ids: ["4"],
+    });
+    if (res) {
+      console.log("res : ", res);
+    }
+  };
+
   return (
     <>
       <div className="container-fluid d-flex flex-column">
@@ -34,6 +68,9 @@ const AddNurse = () => {
                     type="text"
                     className="p-4"
                     placeholder="Name"
+                    name="name"
+                    value={nurseData.name}
+                    onChange={handleChanges}
                   />
                 </FloatingLabel>
               </InputGroup>
@@ -48,6 +85,9 @@ const AddNurse = () => {
                     type="email"
                     className="p-4"
                     placeholder="Email"
+                    name="email"
+                    value={nurseData.email}
+                    onChange={handleChanges}
                   />
                 </FloatingLabel>
               </InputGroup>
@@ -62,6 +102,9 @@ const AddNurse = () => {
                     type="tel"
                     className="p-4"
                     placeholder="Mobile Number"
+                    name="mobile"
+                    value={nurseData.mobile}
+                    onChange={handleChanges}
                   />
                 </FloatingLabel>
               </InputGroup>
@@ -71,16 +114,16 @@ const AddNurse = () => {
                 <InputGroup.Text>
                   <i class="fa fa-user-o" aria-hidden="true"></i>
                 </InputGroup.Text>
-                <Form.Select
-                  className="custom-selectbox"
-                  aria-label="Select Speciality"
-                >
-                  <option>City</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </Form.Select>
+                <FloatingLabel label="country code">
+                  <Form.Control
+                    type="text"
+                    className="p-4"
+                    placeholder="Enter country code"
+                    name="country_code"
+                    value={nurseData.country_code}
+                    onChange={handleChanges}
+                  />
+                </FloatingLabel>
               </InputGroup>
             </Col>
             <Col className="col-sm-4">
@@ -93,6 +136,9 @@ const AddNurse = () => {
                     type="text"
                     className="p-4"
                     placeholder="Year of experience"
+                    name="year_of_exp"
+                    value={nurseData.year_of_exp}
+                    onChange={handleChanges}
                   />
                 </FloatingLabel>
               </InputGroup>
@@ -118,7 +164,9 @@ const AddNurse = () => {
         <Form className="mt-4">
           <Row>
             <Col className="col-sm-4 mb-4">
-              <Button variant="primary">Add Nurses</Button>
+              <Button onClick={reqAddNurse} variant="primary">
+                Add Nurses
+              </Button>
             </Col>
           </Row>
         </Form>

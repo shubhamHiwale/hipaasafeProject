@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
+import { addDoctor } from "../../../services/apiservices";
 import {
   Form,
   Row,
@@ -35,6 +36,24 @@ const AddDoctor = () => {
     value = e.target.value;
     setDoctorData({ ...docterData, [name]: value });
   };
+
+  const reqAddDoctor = async () => {
+    const { name, email, city, mobile, speciality, year_of_exp } = docterData;
+    const res = await addDoctor({
+      name,
+      email,
+      country_code: "+91",
+      number: mobile,
+      location: city,
+      experience: year_of_exp,
+      speciality_id: speciality,
+      tags: [1, 2],
+    });
+    if (res) {
+      console.log("res : ", res);
+    }
+  };
+
   return (
     <>
       <div className="container-fluid d-flex flex-column">
@@ -169,7 +188,11 @@ const AddDoctor = () => {
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4  mb-4 mb-4">
-                  <Button className="w-100" variant="primary">
+                  <Button
+                    onClick={reqAddDoctor}
+                    className="w-100"
+                    variant="primary"
+                  >
                     Add Doctor
                   </Button>
                 </Col>
