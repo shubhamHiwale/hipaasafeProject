@@ -31,7 +31,7 @@ const Timer = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   useEffect(() => {
     const timerID = setInterval(() => tick(), 1000);
     console.log("timerID : ", timerID);
-    if (timerID > 38) {
+    if (timerID > 30) {
       dispatch(timeUp(true));
     }
     return () => clearInterval(timerID);
