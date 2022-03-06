@@ -198,6 +198,10 @@
 
 }
 
+.date-block {
+    margin-bottom: 1.2rem;
+}
+
 @media(max-width:768px){
     .bg-login-image {
         height: 30vh;

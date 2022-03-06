@@ -11,12 +11,9 @@ import FutureAppointmentTable from "./futureAppointment/FutureAppointmentTable";
 const FutureAppoint = () => {
   return (
     <>
-      {/* <!-- Begin Page Content --> */}
       <div class="container-fluid">
-        {/* <!-- Page Heading --> */}
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <span className="page-title">Future Appointments <span className="dash-date">Today, 03 Feb 2022</span>
-          </span>
+          <span className="page-title">Future Appointments <span className="dash-date">Today, 03 Feb 2022</span></span>
         </div>
 
         <div class="d-sm-flex align-items-center justify-content-between mb-1">
