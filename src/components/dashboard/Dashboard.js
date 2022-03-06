@@ -1,22 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import undrawPostingPhoto from "../../assets/img/undraw_posting_photo.svg";
 import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import PatientsList from "./patientsList/PatientsList";
+import { getDoctors } from '../../services/apiservices'
 
 const Dashboard = () => {
+
+  const [doctors, setDoctors] = useState(null);
+  useEffect(() => {
+    getDoctorsAPI()
+  }, [])
+
+  const getDoctorsAPI = async () => {
+    let res = await getDoctors();
+    if (res?.success) {
+      setDoctors(res?.data?.docs);
+    }
+  }
+
   return (
     <>
       {/* <!-- Begin Page Content --> */}
       <div className="container-fluid">
         {/* <!-- Page Heading --> */}
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <span className="page-title">Dashboard <span className="dash-date">Today, 03 Feb 2022</span>
-          </span>          
+          <span className="page-title">Dashboard <span className="dash-date">Today, 03 Feb 2022</span>
+          </span>
         </div>
 
-        
+
         <div className="row dashboard-counter-cards">
           <div className="col-xl-4 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
@@ -89,7 +103,7 @@ const Dashboard = () => {
         </div>
 
         <div className="row">
-              <PatientsList />            
+          <PatientsList />
         </div>
 
         {/* <!-- Content Row --> */}

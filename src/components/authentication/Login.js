@@ -3,7 +3,6 @@ import OtpVerific from "./OtpVerific";
 import logo from "../../assets/img/logo.svg";
 import { login } from "../../services/apiservices";
 import validator from "validator";
-import { Button } from "bootstrap";
 const Login = () => {
   const [otpVeri, setOtpVeri] = useState(false);
   const [email, setEmail] = useState("");
@@ -19,7 +18,7 @@ const Login = () => {
 
         if (email) {
           console.log("am call");
-          const res = await login(email);
+          const res = await login({ email });
           console.log("RES : ", res.success);
           if (res.success) {
             setOtpVeri(true);

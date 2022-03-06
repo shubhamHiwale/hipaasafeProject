@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { addDoctor } from "../../../services/apiservices";
+import { useHistory } from "react-router-dom";
+
 import {
   Form,
   Row,
@@ -22,13 +24,14 @@ const AddDoctor = () => {
   });
   console.log("doctor data : ", docterData);
   const options = [
-    { label: "Cardiologist", value: "Cardiologist" },
-    { label: "Radiologist", value: "Radiologist" },
-    { label: "Neurologist", value: "Neurologist" },
-    { label: "Dentist", value: "Dentist" },
+    { label: "Cardiologist", value: 1 },
+    { label: "Radiologist", value: 2 },
+    { label: "Neurologist", value: 3 },
+    { label: "Dentist", value: 4 },
   ];
 
   const [selected, setSelected] = useState([]);
+  const histroy = useHistory();
 
   let name;
   let value;
@@ -48,10 +51,10 @@ const AddDoctor = () => {
       location: city,
       experience: year_of_exp,
       speciality_id: speciality,
-      tags: [1, 2],
+      tags: selected.map(i => { return i.value }),
     });
     if (res) {
-      console.log("res : ", res);
+      histroy.push('main/support-dashboard');
     }
   };
 
@@ -83,7 +86,7 @@ const AddDoctor = () => {
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Email">
                       <Form.Control
@@ -117,7 +120,7 @@ const AddDoctor = () => {
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="City">
                       <Form.Control
@@ -162,14 +165,14 @@ const AddDoctor = () => {
                       options={options}
                       value={selected}
                       onChange={setSelected}
-                      labelledBy="Select"
+                      labelledBy="Tags"
                     />
                   </InputGroup>
                 </Col>
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                      <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Year of experience">
                       <Form.Control

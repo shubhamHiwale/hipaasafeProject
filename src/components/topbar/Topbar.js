@@ -21,8 +21,8 @@ const Topbar = ({ AppContext }) => {
                <li className="nav-item dropdown no-arrow">
                   <a className="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                      aria-expanded="false">
-                     <img className="mr-2 img-profile rounded-circle" src={UndrawProfile} />
-                     <span className="mr-5 d-none d-lg-inline text-gray-600 small">Shivam</span>
+                     <img className="mr-2 img-profile rounded-circle" src={AppContext?.user?.avatar ? AppContext?.user?.avatar : UndrawProfile} />
+                     <span className="mr-5 d-none d-lg-inline text-gray-600 small">{AppContext?.user?.name}</span>
                      <img onClick={() => { AppContext.resetUser() }} src={ExitIcon}></img>
                   </a>
                   <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

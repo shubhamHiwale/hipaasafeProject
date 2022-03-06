@@ -5,7 +5,7 @@ import { SET_USER, RESET_USER } from "./AppType";
 
 const AppState = (props) => {
     let initialState = {
-        user: sessionStorage.getItem("user") ? JSON.stringify(sessionStorage.getItem("user")) : null
+        user: sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState);

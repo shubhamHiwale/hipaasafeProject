@@ -20,12 +20,23 @@ function App() {
 
   const redirectUser = (role) => {
     switch (role) {
-      case 4:
+      //support
+      case 2:
         histroy.push("/main/support-dashboard");
         break;
 
-      default:
+      //doctor
+      case 3:
         histroy.push("/main/dashboard");
+        break;
+
+      //nurse
+      case 4:
+        histroy.push("/main/dashboard");
+        break;
+
+      default:
+        histroy.push("/");
         break;
     }
   }

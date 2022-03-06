@@ -40,10 +40,9 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
           if (res.data.role_name === "SUPPORT") {
             console.log("otp verification Data : ", res);
             dispatch(sideBarAuth(true));
-            // histroy.push("/main/support-dashboard");
           }
         } else {
-          // histroy.push("/main/dashboard");
+          histroy.push("/");
         }
         console.log("res : ", res);
       }
@@ -76,7 +75,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                       <h1 className="title">OTP VERIFICATION</h1>
                       <p>Enter 4 digit OTP sent to</p>
                     </div>
-                    <div className="text-center mb-2">                      
+                    <div className="text-center mb-2">
                       <button onClick={editEmail} className="btn btn-pencil">
                         <span className="small">{uEmail}</span>
                         <i class="fa fa-pencil" aria-hidden="true"></i>

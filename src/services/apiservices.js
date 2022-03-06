@@ -14,6 +14,12 @@ export function validateOtp(obj) {
   });
 }
 
+export function getDoctors() {
+  return RequestAPI(BASE_URL + "/query/doctors/my-team?page=1&limit=10", {
+    method: "GET"
+  });
+}
+
 export function addDoctor(obj) {
   return RequestAPI(BASE_URL + "/user/doctor/register", {
     method: "POST",
