@@ -101,16 +101,18 @@ const AddNurse = () => {
         </Form>
 
         <Form className="mt-4">
-          <span>Assign to Doctors</span>
-          <Row>
-            <MultiSelect
-              className="col-sm-10"
-              options={options}
-              value={selected}
-              onChange={setSelected}
-              labelledBy="Select"
-            />
-          </Row>
+          <Col className="col-sm-4">
+            <span>Assign to Doctors</span>
+            <Row>
+              <MultiSelect
+                className="col-sm-10"
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
+              />
+            </Row>
+          </Col>
         </Form>
 
         <Form className="mt-4">
