@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { MultiSelect } from "react-multi-select-component";
 import {
   Form,
   Row,
@@ -10,6 +11,12 @@ import {
 } from "react-bootstrap";
 
 const AddNurse = () => {
+  const options = [
+    { label: "Grapes 🍇", value: "grapes" },
+    { label: "Mango 🥭", value: "mango" },
+    { label: "Strawberry 🍓", value: "strawberry" },
+  ];
+  const [selected, setSelected] = useState([]);
   return (
     <>
       <div className="container-fluid d-flex flex-column">
@@ -96,23 +103,13 @@ const AddNurse = () => {
         <Form className="mt-4">
           <span>Assign to Doctors</span>
           <Row>
-            <Col className="col-sm-4 mb-4">
-              <InputGroup className="input-group-floting">
-                <InputGroup.Text>
-                  <i class="fa fa-user-o" aria-hidden="true"></i>
-                </InputGroup.Text>
-                <Form.Select
-                  className="custom-selectbox"
-                  aria-label="Select Speciality"
-                >
-                  <option>Select Doctor</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </Form.Select>
-              </InputGroup>
-            </Col>
+            <MultiSelect
+              className="col-sm-10"
+              options={options}
+              value={selected}
+              onChange={setSelected}
+              labelledBy="Select"
+            />
           </Row>
         </Form>
 

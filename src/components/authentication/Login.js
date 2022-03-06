@@ -76,6 +76,7 @@ const Login = () => {
                             id="exampleInputEmail"
                             aria-describedby="emailHelp"
                             placeholder="Enter Email Address..."
+                            value={email}
                             onChange={handleChange}
                           />
                           {show ? (
