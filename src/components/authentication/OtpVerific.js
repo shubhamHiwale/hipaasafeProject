@@ -34,6 +34,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
       if (res) {
         if (res.success) {
           if (res.data.role_name === "SUPPORT") {
+            console.log("otp verification Data : ", res);
             dispatch(sideBarAuth(true));
             histroy.push("/main/support-dashboard");
           }
