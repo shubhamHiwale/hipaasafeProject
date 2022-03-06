@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store/store";
 import { Provider } from "react-redux";
+import AppState from './context/appcontext/AppState';
+
 
 store.subscribe(() => console.log(store.getState()));
 
@@ -13,7 +15,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <AppState>
+          <App />
+        </AppState>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
