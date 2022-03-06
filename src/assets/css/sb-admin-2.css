@@ -2430,9 +2430,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-success {
-  color: #fff;
-  background-color: #1cc88a;
-  border-color: #1cc88a;
+  color: #3DC12E;
+    background-color: #3DC12E0F;
+    border-color: #3DC12E0F;
 }
 
 .btn-success:hover {
