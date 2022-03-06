@@ -5,6 +5,7 @@ import { Form, Row, Col } from "react-bootstrap";
 const FutureAppointmentTable = () => {
   return (
     <>
+    <div className="col-12">      
       <div className="card shadow mb-4">
         <div className="card-body">
           <div className="table-responsive">
@@ -125,6 +126,7 @@ const FutureAppointmentTable = () => {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 };

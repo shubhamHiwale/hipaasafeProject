@@ -15,9 +15,7 @@ const FutureAppoint = () => {
       <div class="container-fluid">
         {/* <!-- Page Heading --> */}
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
-          <span class="font-weight-bold mb-0 text-gray-800">
-            Future Appointments
-            <span className="dash-date">Today, 03 Feb 2022</span>
+        <span className="page-title">Future Appointments <span className="dash-date">Today, 03 Feb 2022</span>
           </span>
         </div>
 
@@ -34,27 +32,15 @@ const FutureAppoint = () => {
           <Button>Create an Appointment</Button>
         </div>
 
-        <div class="d-sm-flex bg-white p-2 align-items-center justify-content-between mb-4">
-          <span class="font-weight-bold mb-0 text-gray-800">
-            <button className="ml-1 btn bg-success text-white p-3 status__">
-              Tommorow (12)
-            </button>
-            <button className="ml-2 btn bg-success text-white p-3 status__">
-              3 Feb (08)
-            </button>
-            <button className="ml-2 btn bg-success text-white p-3 status__">
-              4 Feb (05)
-            </button>
-            <button className="ml-2 btn bg-success text-white p-3 status__">
-              5 Feb (00)
-            </button>
-            <button className="ml-2 btn bg-success text-white p-3 status__">
-              6 Feb (02)
-            </button>
-            <button className="ml-2 btn bg-success text-white p-3 status__">
-              7 Feb (04)
-            </button>
-          </span>
+        <div className="d-sm-flex bg-white pt-2 align-items-center justify-content-between mb-4">
+          <div className="tabs-header">
+            <button className="btn btn-dates"> Tommorow <span className="tab-count">(12)</span> </button>
+            <button className="btn btn-dates"> 3 Feb <span className="tab-count">(10)</span></button>
+            <button className="btn btn-dates"> 4 Feb <span className="tab-count">(10)</span></button>
+            <button className="btn btn-dates"> 5 Feb <span className="tab-count">(10)</span></button>
+            <button className="btn btn-dates"> 6 Feb <span className="tab-count">(10)</span></button>
+            <button className="btn btn-dates"> 7 Feb <span className="tab-count">(10)</span></button>
+          </div>
         </div>
 
         {/* <!-- Content Row --> */}
@@ -67,10 +53,10 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <div class="total-numbers">
                         12
                       </div>
-                      <div class="text-xs font-weight-bold text-success mb-1">
+                      <div class="total-label">
                         Total Appointments
                       </div>
                     </div>
@@ -91,10 +77,10 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <div class="total-numbers">
                         12
                       </div>
-                      <div class="text-xs font-weight-bold text-success mb-1">
+                      <div class="total-label">
                         Confirmaton Pending
                       </div>
                     </div>
@@ -115,10 +101,10 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <div class="total-numbers">
                         12
                       </div>
-                      <div class="text-xs font-weight-bold text-success mb-1">
+                      <div class="total-label">
                         Confirmed
                       </div>
                     </div>
@@ -139,10 +125,10 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon2} alt="card-icon-2"></img>
                     <div className="card-title">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <div class="total-numbers">
                         12
                       </div>
-                      <div class="text-xs font-weight-bold text-success mb-1">
+                      <div class="total-label">
                         Cancelled
                       </div>
                     </div>

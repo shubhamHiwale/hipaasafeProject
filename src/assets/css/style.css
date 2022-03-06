@@ -176,6 +176,28 @@
     padding: 0.5rem;
 }
 
+.btn.btn-dates {
+    font-size: 1rem;
+    color: #1C1C1C;
+    border-radius: 0px;
+}
+
+.btn.btn-dates .tab-count {
+    color: #5F5F5F;
+    font-size: 0.8rem;
+}
+
+.btn.btn-dates:focus, .btn.btn-dates.focus, .btn.btn-dates:hover{
+    box-shadow: none;
+    color: #0098FF;
+    border-bottom:3px solid #0098FF ;
+}
+.btn.btn-dates:hover .tab-count,
+.btn.btn-dates:focus .tab-count {
+    color: #0098FF;
+
+}
+
 @media(max-width:768px){
     .bg-login-image {
         height: 30vh;
