@@ -1,225 +1,229 @@
 .dash-date {
-    text-align: left;
-    font: normal normal medium 20px/24px Proxima Nova;
-    letter-spacing: 0px;
-    color: #5F5F5F;
-    opacity: 1;
-    margin-left: 20px;
-    opacity: 0.8;
-    font-size: 10px;
+  text-align: left;
+  font: normal normal medium 20px/24px Proxima Nova;
+  letter-spacing: 0px;
+  color: #5f5f5f;
+  opacity: 1;
+  margin-left: 20px;
+  opacity: 0.8;
+  font-size: 10px;
 }
 
 .card-title {
-    /* margin-top: 20px;
+  /* margin-top: 20px;
     margin-left: 10px; */
-    position: absolute;
-    left: 70px;
-    top: 10px
+  position: absolute;
+  left: 70px;
+  top: 10px;
 }
 
 .bg-th {
-    background-color: #F8F8F8;
-    color: #1C1C1C;
-    border: none;    
+  background-color: #f8f8f8;
+  color: #1c1c1c;
+  border: none;
 }
 
 .bg-th th {
-    border: none;
+  border: none;
 }
 
 #dataTable {
-    border: white;
-    font-size: 14px;
-    font: normal normal medium 16px/19px Proxima Nova;
+  border: white;
+  font-size: 14px;
+  font: normal normal medium 16px/19px Proxima Nova;
 }
 
 .status__ {
-    font-size: 12px;
+  font-size: 12px;
 }
 
-.loginblock{
-    height: "100vh";
-    display: "flex";
-    justify-content: center;
-    align-items: center;
+.loginblock {
+  height: "100vh";
+  display: "flex";
+  justify-content: center;
+  align-items: center;
 }
 
 .loginblock .logo {
-    width: 45%;
+  width: 45%;
 }
 
 .login-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-form-content {
-    width: 50%;
+  width: 50%;
 }
 
 .login-form-content .title {
-    color: #212121;
-    text-transform: uppercase;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+  color: #212121;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .login-form-content p {
-    color: #7D7D7D;
-    font-size: 1rem;
-    margin-bottom: 2rem;
+  color: #7d7d7d;
+  font-size: 1rem;
+  margin-bottom: 2rem;
 }
-.disable-otp{
- color: #d1d3e2;
- cursor: none;
+.disable-otp {
+  color: #d1d3e2;
+  cursor: none;
 }
-.enable-otp{
-    color: #0098FF;
-    cursor: pointer;
+.enable-otp {
+  color: #0098ff;
+  cursor: pointer;
 }
 
 .sidebar-light .nav-item .nav-link i.fa {
-    padding-right: 0.3rem;
-    font-size: 1rem;
+  padding-right: 0.3rem;
+  font-size: 1rem;
 }
 
-.sidebar-light .nav-item .nav-link:hover, .sidebar-light .nav-item .nav-link:active {
-    background:#F0F9FF;
-    border-radius: 8px;
-    cursor: pointer;    
+.sidebar-light .nav-item .nav-link:hover,
+.sidebar-light .nav-item .nav-link:active {
+  background: #f0f9ff;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.sidebar-light .nav-item .nav-link:hover span, .sidebar-light .nav-item .nav-link:active span{
-    opacity: 1;
-    color: #0098FF;
-    font-weight: 600;
+.sidebar-light .nav-item .nav-link:hover span,
+.sidebar-light .nav-item .nav-link:active span {
+  opacity: 1;
+  color: #0098ff;
+  font-weight: 600;
 }
 
-.sidebar-light .nav-item .nav-link:hover i.fa, .sidebar-light .nav-item .nav-link:active i.fa {
-    color: #0098FF;
+.sidebar-light .nav-item .nav-link:hover i.fa,
+.sidebar-light .nav-item .nav-link:active i.fa {
+  color: #0098ff;
 }
 
 .page-title {
-    color: #071B2A;
-    font-size: 1.4rem;
-    line-height: 1;
-    font-weight: 600;
+  color: #071b2a;
+  font-size: 1.4rem;
+  line-height: 1;
+  font-weight: 600;
 }
 
 .total-numbers {
-    color: #1D9BFF;
-    opacity: 1;
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 1;
+  color: #1d9bff;
+  opacity: 1;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 .total-label {
-    color: #808591;
-    font-size: 1rem;
+  color: #808591;
+  font-size: 1rem;
 }
 
 .tabs-header {
-    padding: 0px 10px;
-    margin-bottom: 0px;
-    background: #fff;
-    width: 100%;
-    border-bottom: 1px solid #e6e6e6;
+  padding: 0px 10px;
+  margin-bottom: 0px;
+  background: #fff;
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .tabs-header .list-group-item {
-    border: 0px;
-    margin-right: 20px;
-    cursor: pointer;
+  border: 0px;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .tabs-header .list-group-item.react-tabs__tab--selected {
-    color: #0098FF;
-    border-bottom: 3px solid #0098FF;
-    font-weight: 600;
+  color: #0098ff;
+  border-bottom: 3px solid #0098ff;
+  font-weight: 600;
 }
 
-.tabs-header .list-group-item:focus-visible{
-    outline: none;
+.tabs-header .list-group-item:focus-visible {
+  outline: none;
 }
 
 .custom-tab-panel .card.shadow {
-    box-shadow: none !important;
-    border: 0px;
+  box-shadow: none !important;
+  border: 0px;
 }
 
 .custom-tab-panel .card-body {
-    padding: 1.25rem 0px;
+  padding: 1.25rem 0px;
 }
 
 .btn.btn-edit {
-    border-radius: 17px;
-    padding: 0.55rem 0.95rem;
-    line-height: 1;
+  border-radius: 17px;
+  padding: 0.55rem 0.95rem;
+  line-height: 1;
 }
 
 .table > :not(:first-child) {
-    border-top: 0px solid currentColor;
+  border-top: 0px solid currentColor;
 }
 
 .table tbody td {
-    font-size: 14px;
-    color: #464E5F;
-    border: none;
+  font-size: 14px;
+  color: #464e5f;
+  border: none;
 }
 
 .input-group input.form-control {
-    border-left: 0px;
-    height: 50px;
-    padding: 0.5rem;
+  border-left: 0px;
+  height: 50px;
+  padding: 0.5rem;
 }
 
 .btn.btn-dates {
-    font-size: 1rem;
-    color: #1C1C1C;
-    border-radius: 0px;
+  font-size: 1rem;
+  color: #1c1c1c;
+  border-radius: 0px;
 }
 
 .btn.btn-dates .tab-count {
-    color: #5F5F5F;
-    font-size: 0.8rem;
+  color: #5f5f5f;
+  font-size: 0.8rem;
 }
 
-.btn.btn-dates:focus, .btn.btn-dates.focus, .btn.btn-dates:hover{
-    box-shadow: none;
-    color: #0098FF;
-    border-bottom:3px solid #0098FF ;
+.btn.btn-dates:focus,
+.btn.btn-dates.focus,
+.btn.btn-dates:hover {
+  box-shadow: none;
+  color: #0098ff;
+  border-bottom: 3px solid #0098ff;
 }
 .btn.btn-dates:hover .tab-count,
 .btn.btn-dates:focus .tab-count {
-    color: #0098FF;
-
+  color: #0098ff;
 }
 
 .date-block {
-    margin-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
-@media(max-width:768px){
-    .bg-login-image {
-        height: 30vh;
-    }
+@media (max-width: 768px) {
+  .bg-login-image {
+    height: 30vh;
+  }
 
-    .login-form {
-        padding: 3rem 0px;
-    }
+  .login-form {
+    padding: 3rem 0px;
+  }
 
-    .login-form-content {
-        width: 75%;
-    }
+  .login-form-content {
+    width: 75%;
+  }
 
-    .sidebar {
-        padding: 0 0rem;
-    }
+  .sidebar {
+    padding: 0 0rem;
+  }
 
-    .card-body {
-        padding: 0.5rem;
-    }
+  .card-body {
+    padding: 0.5rem;
+  }
 }

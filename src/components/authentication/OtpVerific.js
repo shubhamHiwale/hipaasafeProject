@@ -12,6 +12,8 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
   const tm = useSelector((state) => state.timeUpReducer);
   console.log("tm : ", tm);
   const [otp, setOtp] = useState();
+  const [otpAuth, setotpAuth] = useState(false);
+
   const histroy = useHistory();
   const editEmail = () => {
     demoFunc();
@@ -23,6 +25,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
 
   const handleChange = (e) => {
     setOtp(e.target.value);
+    setotpAuth(false);
   };
 
   const verifyOtp = async () => {
@@ -41,6 +44,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
       }
     } else {
       console.log("somthing is missing");
+      setotpAuth(true);
     }
   };
   const style = {
@@ -52,11 +56,10 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
 
   return (
     <>
-      <div className="loginblock">        
-        <div className="justify-content-center">            
+      <div className="loginblock">
+        <div className="justify-content-center">
           <div className="card o-hidden border-0 shadow-lg">
             <div className="card-body p-0">
-              
               <div className="row">
                 <div className="col-lg-6 bg-login-image">
                   <img src={logo} alt="logo" className="logo" />
@@ -76,7 +79,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                     <form className="user">
                       <div className="form-group">
                         <input
-                          type="email"
+                          type="number"
                           className="form-control form-control-user"
                           id="exampleInputEmail"
                           aria-describedby="emailHelp"
@@ -84,7 +87,18 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                           onChange={handleChange}
                         />
                       </div>
-
+                      {otpAuth ? (
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                            color: "red",
+                          }}
+                        >
+                          Please Enter a OTP
+                        </span>
+                      ) : (
+                        ""
+                      )}
                       <div className="text-center m-0">
                         <a className="small">
                           <b>
@@ -94,14 +108,23 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                         </a>
                       </div>
                       <div className="text-center mb-2">
-                      Didn't received the otp?                                  
-                          <b className="small">
-                            <span onClick={reSendOtp} className={ !tm ? "disable-otp" : "enable-otp"} style={{ cursor: "pointer" }}>
-                              Resend OTP
-                            </span>
-                          </b>
+                        Didn't received the otp?
+                        <b className="small">
+                          <span
+                            onClick={reSendOtp}
+                            className={!tm ? "disable-otp" : "enable-otp"}
+                            style={{ cursor: "pointer" }}
+                          >
+                            Resend OTP
+                          </span>
+                        </b>
                       </div>
-                      <a onClick={verifyOtp} className="btn btn-primary btn-user btn-block">Done</a>
+                      <a
+                        onClick={verifyOtp}
+                        className="btn btn-primary btn-user btn-block"
+                      >
+                        Done
+                      </a>
                     </form>
                   </div>
                 </div>
