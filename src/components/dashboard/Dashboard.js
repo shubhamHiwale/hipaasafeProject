@@ -12,9 +12,7 @@ const Dashboard = () => {
       <div className="container-fluid">
         {/* <!-- Page Heading --> */}
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <span className="font-weight-bold mb-0 text-gray-800">
-            Dashboard
-            <span className="dash-date">Today, 03 Feb 2022</span>
+        <span className="page-title">Dashboard <span className="dash-date">Today, 03 Feb 2022</span>
           </span>          
         </div>
 
@@ -27,10 +25,10 @@ const Dashboard = () => {
                   <div className="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
+                      <div className="total-numbers">
                         12
                       </div>
-                      <div className="text-xs font-weight-bold text-success mb-1">
+                      <div className="total-label">
                         Total Patients
                       </div>
                     </div>
@@ -51,10 +49,10 @@ const Dashboard = () => {
                   <div className="d-flex align-items-center col mr-2">
                     <img src={CardIcon2} alt="card-icon-2"></img>
                     <div className="card-title">
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
+                      <div className="total-numbers">
                         12
                       </div>
-                      <div className="text-xs font-weight-bold text-success mb-1">
+                      <div className="total-label">
                         Completed Patients
                       </div>
                     </div>
@@ -75,10 +73,10 @@ const Dashboard = () => {
                   <div className="d-flex align-items-center col mr-2">
                     <img src={CardIcon3} alt="card-icon-3"></img>
                     <div className="card-title">
-                      <div className="h5 mb-0 font-weight-bold text-gray-800">
+                      <div className="total-numbers">
                         3
                       </div>
-                      <div className="text-xs font-weight-bold text-success mb-1">
+                      <div className="total-label">
                         Waiting Patient
                       </div>
                     </div>
@@ -95,8 +93,9 @@ const Dashboard = () => {
         {/* <!-- Content Row --> */}
 
         <div className="row">
-          {/* <!-- Area Chart --> */}
-          <PatientsList />
+          
+              <PatientsList />
+            
         </div>
 
         {/* <!-- Content Row --> */}
