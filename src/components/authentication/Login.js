@@ -11,22 +11,27 @@ const Login = () => {
   const [show, setShow] = useState(false);
 
   const verificationOtp = async () => {
-    if (validator.isEmail(email)) {
-      setOtpVeri(true);
-
-      if (email) {
-        console.log("am call");
-        const res = await loginAdmin(email);
-        console.log("RES : ", res.success);
-        if (res.success) {
-          setOtpVeri(true);
-        } else {
-          console.log("otp send failed");
-        }
-      }
-    } else {
-      setEmail("Enter a valid email");
+    if (!email) {
+      setEmail("Enter your email");
       setShow(true);
+    } else {
+      if (validator.isEmail(email)) {
+        setOtpVeri(true);
+
+        if (email) {
+          console.log("am call");
+          const res = await loginAdmin(email);
+          console.log("RES : ", res.success);
+          if (res.success) {
+            setOtpVeri(true);
+          } else {
+            console.log("otp send failed");
+          }
+        }
+      } else {
+        setEmail("Enter a valid email");
+        setShow(true);
+      }
     }
   };
 
@@ -70,7 +75,6 @@ const Login = () => {
                             type="email"
                             className="form-control form-control-user"
                             id="exampleInputEmail"
-                            value={email}
                             aria-describedby="emailHelp"
                             placeholder="Enter Email Address..."
                             onChange={handleChange}
