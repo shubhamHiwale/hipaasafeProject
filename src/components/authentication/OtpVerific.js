@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Countdown from "react-countdown";
 import Timer from "../../helper/Timer";
 import logo from "../../assets/img/logo.svg";
 import { useHistory } from "react-router-dom";
-import { otpVerification } from "../../services/apis/loginAuth";
 import { useSelector, useDispatch } from "react-redux";
 import { sideBarAuth } from "../../redux/actions/actions";
+import { validateOtp } from "../../services/apiservices";
 
 const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
   const dispatch = useDispatch();
@@ -27,9 +26,11 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
 
   const verifyOtp = async () => {
     if (uEmail && otp) {
-      const res = await otpVerification(uEmail, otp);
+      const res = await validateOtp({ email: uEmail, otp });
       if (res) {
         if (res.success) {
+          sessionStorage.setItem("access_token", res?.data?.access_token);
+
           if (res.data.role_name === "SUPPORT") {
             dispatch(sideBarAuth(true));
             histroy.push("/main/support-dashboard");
@@ -52,11 +53,11 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
 
   return (
     <>
-      <div className="loginblock">        
-        <div className="justify-content-center">            
+      <div className="loginblock">
+        <div className="justify-content-center">
           <div className="card o-hidden border-0 shadow-lg">
             <div className="card-body p-0">
-              
+
               <div className="row">
                 <div className="col-lg-6 bg-login-image">
                   <img src={logo} alt="logo" className="logo" />
@@ -94,12 +95,12 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                         </a>
                       </div>
                       <div className="text-center mb-2">
-                      Didn't received the otp?                                  
-                          <b className="small">
-                            <span onClick={reSendOtp} className={ !tm ? "disable-otp" : "enable-otp"} style={{ cursor: "pointer" }}>
-                              Resend OTP
-                            </span>
-                          </b>
+                        Didn't received the otp?
+                        <b className="small">
+                          <span onClick={reSendOtp} className={!tm ? "disable-otp" : "enable-otp"} style={{ cursor: "pointer" }}>
+                            Resend OTP
+                          </span>
+                        </b>
                       </div>
                       <a onClick={verifyOtp} className="btn btn-primary btn-user btn-block">Done</a>
                     </form>
