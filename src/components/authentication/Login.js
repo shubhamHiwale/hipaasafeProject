@@ -2,20 +2,28 @@ import React, { useState } from "react";
 import OtpVerific from "./OtpVerific";
 import logo from "../../assets/img/logo.svg";
 import { login } from "../../services/apiservices";
-
+import validator from "validator";
+import { Button } from "bootstrap";
 const Login = () => {
   const [otpVeri, setOtpVeri] = useState(false);
   const [email, setEmail] = useState("");
+  const [show, setShow] = useState(false);
 
   const verificationOtp = async () => {
-    setOtpVeri(true);
-    if (email) {
-      const res = await login({ email });
-      if (res.success) {
-        setOtpVeri(true);
-      } else {
-        console.log("otp send failed");
+    if (validator.isEmail(email)) {
+      setOtpVeri(true);
+
+      if (email) {
+        const res = await login({ email });
+        if (res.success) {
+          setOtpVeri(true);
+        } else {
+          console.log("otp send failed");
+        }
       }
+    } else {
+      setEmail("Enter a valid email");
+      setShow(true);
     }
   };
 
@@ -24,6 +32,7 @@ const Login = () => {
   };
 
   const handleChange = (e) => {
+    setShow(false);
     setEmail(e.target.value);
   };
 
@@ -58,26 +67,39 @@ const Login = () => {
                             type="email"
                             className="form-control form-control-user"
                             id="exampleInputEmail"
+                            value={email}
                             aria-describedby="emailHelp"
                             placeholder="Enter Email Address..."
                             onChange={handleChange}
                           />
+                          {show ? (
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                color: "red",
+                              }}
+                            >
+                              {email}
+                            </span>
+                          ) : (
+                            ""
+                          )}
                         </div>
 
-                        <div
+                        <a
                           onClick={verificationOtp}
                           className="btn btn-primary btn-user btn-block"
                         >
                           Continue
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                        </a>
+                      </form >
+                    </div >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
       ) : (
         <OtpVerific
           uEmail={email}
