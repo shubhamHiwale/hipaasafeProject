@@ -89,14 +89,14 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                         <a className="small">
                           <b>
                             {/* <Countdown date={Date.now() + 100000} /> */}
-                            <Timer seconds={30} />
+                            <Timer seconds={10} />
                           </b>
                         </a>
                       </div>
                       <div className="text-center mb-2">
                       Didn't received the otp?                                  
                           <b className="small">
-                            <span onClick={reSendOtp} className={ !tm ? "text-gray-300" : "text-primary"} style={{ cursor: "pointer" }}>
+                            <span onClick={reSendOtp} className={ !tm ? "disable-otp" : "enable-otp"} style={{ cursor: "pointer" }}>
                               Resend OTP
                             </span>
                           </b>

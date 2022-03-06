@@ -20,7 +20,7 @@
 .bg-th {
     background-color: #F8F8F8;
     color: #1C1C1C;
-    border: white;    
+    border: none;    
 }
 
 .bg-th th {
@@ -71,7 +71,14 @@
     font-size: 1rem;
     margin-bottom: 2rem;
 }
-
+.disable-otp{
+ color: #d1d3e2;
+ cursor: none;
+}
+.enable-otp{
+    color: #0098FF;
+    cursor: pointer;
+}
 
 .sidebar-light .nav-item .nav-link i.fa {
     padding-right: 0.3rem;
@@ -92,6 +99,13 @@
 
 .sidebar-light .nav-item .nav-link:hover i.fa, .sidebar-light .nav-item .nav-link:active i.fa {
     color: #0098FF;
+}
+
+.page-title {
+    color: #071B2A;
+    font-size: 1.4rem;
+    line-height: 1;
+    font-weight: 600;
 }
 
 .total-numbers {
@@ -136,10 +150,30 @@
     border: 0px;
 }
 
+.custom-tab-panel .card-body {
+    padding: 1.25rem 0px;
+}
+
 .btn.btn-edit {
     border-radius: 17px;
-    padding: 0.6rem 1.1rem;
+    padding: 0.55rem 0.95rem;
     line-height: 1;
+}
+
+.table > :not(:first-child) {
+    border-top: 0px solid currentColor;
+}
+
+.table tbody td {
+    font-size: 14px;
+    color: #464E5F;
+    border: none;
+}
+
+.input-group input.form-control {
+    border-left: 0px;
+    height: 50px;
+    padding: 0.5rem;
 }
 
 @media(max-width:768px){
@@ -153,5 +187,13 @@
 
     .login-form-content {
         width: 75%;
+    }
+
+    .sidebar {
+        padding: 0 0rem;
+    }
+
+    .card-body {
+        padding: 0.5rem;
     }
 }
