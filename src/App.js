@@ -37,7 +37,7 @@ function App() {
           AppContext?.user
             ? <>
               <Route path="/main">
-                <Rootpage />
+                <Rootpage AppContext={AppContext} />
               </Route>
               <Redirect to="/" /></>
             :

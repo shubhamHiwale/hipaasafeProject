@@ -9,14 +9,14 @@ import History from "../../history/History";
 import { Route, Switch } from "react-router-dom";
 import Login from "../../authentication/Login";
 
-const ContentWrapper = () => {
+const ContentWrapper = ({ AppContext }) => {
   return (
     <>
       {/* <!-- Content Wrapper --> */}
       <div id="content-wrapper" className="d-flex flex-column">
         {/* <!-- Main Content --> */}
         <div id="content">
-          <Topbar />
+          <Topbar AppContext={AppContext} />
           <Switch>
             <Route path="/main/support-dashboard">
               <SupportDash />
