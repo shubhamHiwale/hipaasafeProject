@@ -270,3 +270,11 @@ span.clock-icon {
 .patient {
   cursor: pointer;
 }
+
+.schedule-drawer {
+  width: 400px !important
+}
+
+.dwer-container {
+  height: 100%;
+}
