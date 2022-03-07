@@ -1,72 +1,148 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 import { Form, Row, Col } from "react-bootstrap";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import Patient from "../../DrawerField/Patient";
 
 const FutureAppointmentTable = () => {
+  const [isOpen2, setIsOpen2] = React.useState(false);
+  const toggleDrawer2 = () => {
+    setIsOpen2((prevState) => !prevState);
+  };
+
   return (
     <>
-    <div className="col-12">      
-      <div className="card shadow mb-4">
-        <div className="card-body">
-          <div className="table-responsive">
-            <div className="mb-2">
-              <span className="font-weight-bold">
-                Dr. Sanjeev Arora Patient List
-              </span>
+      <Drawer
+        open={isOpen2}
+        onClose={toggleDrawer2}
+        direction="right"
+        className="bla bla bla"
+      >
+        <Patient />
+      </Drawer>
+      <div className="col-12">
+        <div className="card shadow mb-4">
+          <div className="card-body">
+            <div className="table-responsive">
+              <div className="mb-2">
+                <span className="font-weight-bold">
+                  Dr. Sanjeev Arora Patient List
+                </span>
+              </div>
+              <Table
+                className="table text-sm-start"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr className="bg-th">
+                    <th>Queue No.</th>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Time</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Tiger Nixon</td>
+                    <td onClick={toggleDrawer2}>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                    <td>2011/07/25</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ashton Cox</td>
+                    <td>Junior Technical Author</td>
+                    <td>San Francisco</td>
+                    <td>66</td>
+                    <td>2009/01/12</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                    <td>2011/07/25</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ashton Cox</td>
+                    <td>Junior Technical Author</td>
+                    <td>San Francisco</td>
+                    <td>66</td>
+                    <td>2009/01/12</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                    <td>2011/07/25</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ashton Cox</td>
+                    <td>Junior Technical Author</td>
+                    <td>San Francisco</td>
+                    <td>66</td>
+                    <td>2009/01/12</td>
+                    <td>
+                      <Button variant="outline-info">Edit</Button>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
             </div>
-            <Table
-              className="table text-sm-start"
-              id="dataTable"
-              width="100%"
-              cellspacing="0"
-            >
-              <thead>
-                <tr className="bg-th">
-                  <th>Queue No.</th>
-                  <th>Patient Name</th>
-                  <th>Age</th>
-                  <th>Time</th>
-                  <th>Phone</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Praveenkumar Motilal Maurya</td>
-                  <td>20</td>
-                  <td>04:22 PM</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                  <button type="button" className="btn btn-success px-4 rounded-pill">Completed</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Praveenkumar Motilal Maurya</td>
-                  <td>20</td>
-                  <td>04:22 PM</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                  <button type="button" className="btn btn-primary px-4 rounded-pill">Mark Complete</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Praveenkumar Motilal Maurya</td>
-                  <td>20</td>
-                  <td>04:22 PM</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                  <button type="button" className="btn btn-light px-4 rounded-pill">Waiting</button>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
