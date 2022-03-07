@@ -13,15 +13,20 @@ import CreateAppo from "../DrawerField/CreateAppo";
 import Patient from "../DrawerField/Patient";
 
 const FutureAppoint = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [auth, setAuth] = React.useState(false);
-  const toggleDrawer = () => {
-    if (auth) {
-      setAuth(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [auth, setAuth] = useState();
+  const toggleDrawer = (gt) => {
+    if (gt === "patient") {
+      setAuth(gt);
     } else {
-      setAuth(true);
+      setAuth("futureAppo");
     }
     setIsOpen((prevState) => !prevState);
+  };
+
+  const demoFunc = (pr) => {
+    setAuth(pr);
+    toggleDrawer(pr);
   };
   return (
     <>
@@ -31,12 +36,12 @@ const FutureAppoint = () => {
         direction="right"
         className="bla bla bla"
       >
-        <CreateAppo />
+        {auth === "futureAppo" ? <CreateAppo /> : <Patient />}
       </Drawer>
       <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
           <span className="page-title">
-            Future Appointments{" "}
+            Future Appointments
             <span className="dash-date">Today, 03 Feb 2022</span>
           </span>
         </div>
@@ -57,27 +62,21 @@ const FutureAppoint = () => {
         <div className="d-sm-flex bg-white pt-2 align-items-center justify-content-between mb-4">
           <div className="tabs-header">
             <button className="btn btn-dates">
-              {" "}
-              Tommorow <span className="tab-count">(12)</span>{" "}
+              Tommorow <span className="tab-count">(12)</span>
             </button>
             <button className="btn btn-dates">
-              {" "}
               3 Feb <span className="tab-count">(10)</span>
             </button>
             <button className="btn btn-dates">
-              {" "}
               4 Feb <span className="tab-count">(10)</span>
             </button>
             <button className="btn btn-dates">
-              {" "}
               5 Feb <span className="tab-count">(10)</span>
             </button>
             <button className="btn btn-dates">
-              {" "}
               6 Feb <span className="tab-count">(10)</span>
             </button>
             <button className="btn btn-dates">
-              {" "}
               7 Feb <span className="tab-count">(10)</span>
             </button>
           </div>
@@ -168,7 +167,7 @@ const FutureAppoint = () => {
         {/* <!-- Content Row --> */}
 
         <div class="row">
-          <FutureAppointmentTable />
+          <FutureAppointmentTable demoFunc={demoFunc} />
           {/* <!-- Area Chart --> */}
         </div>
 

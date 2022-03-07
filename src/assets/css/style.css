@@ -67,15 +67,17 @@
   font-size: 1rem;
   margin-bottom: 2rem;
 }
+
 .login-form-content.otp-form p {
   margin-bottom: 0rem;
 }
+
 .btn.btn-pencil {
   color: #0098ff;
   font-size: 1.2rem;
 }
 
-.btn.btn-pencil .fa{
+.btn.btn-pencil .fa {
   padding: 0px 5px;
 }
 
@@ -84,6 +86,7 @@
   padding: 0px 5px;
   cursor: none;
 }
+
 .enable-otp {
   color: #0098ff;
   cursor: pointer;
@@ -95,6 +98,7 @@
   padding-right: 0.3rem;
   font-size: 1rem;
 }
+
 .sidebar-light .nav-item.active .nav-link,
 .sidebar-light .nav-item .nav-link:hover,
 .sidebar-light .nav-item .nav-link:active {
@@ -176,7 +180,7 @@
   line-height: 1;
 }
 
-.table > :not(:first-child) {
+.table> :not(:first-child) {
   border-top: 0px solid currentColor;
 }
 
@@ -210,6 +214,7 @@
   color: #0098ff;
   border-bottom: 3px solid #0098ff;
 }
+
 .btn.btn-dates:hover .tab-count,
 .btn.btn-dates:focus .tab-count {
   color: #0098ff;
@@ -221,19 +226,19 @@
 }
 
 .input-group-floting.input-group .input-group-text {
-    width: 12%;
+  width: 12%;
 }
 
 .input-group-floting.input-group .form-floating {
-    width: 88%;    
+  width: 88%;
 }
 
-.input-group-floting.input-group .form-floating .form-control{
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+.input-group-floting.input-group .form-floating .form-control {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
-.input-group-floting.input-group .form-floating > label {
+.input-group-floting.input-group .form-floating>label {
   padding: 1rem 0.5rem;
 }
 
@@ -270,10 +275,10 @@ span.clock-icon {
   min-height: 115px;
 }
 
-@media(max-width:768px){
-    .bg-login-image {
-        height: 30vh;
-    }
+@media(max-width:768px) {
+  .bg-login-image {
+    height: 30vh;
+  }
 
   .login-form {
     padding: 3rem 0px;
@@ -290,4 +295,8 @@ span.clock-icon {
   .card-body {
     padding: 0.5rem;
   }
+}
+
+.patient {
+  cursor: pointer;
 }
