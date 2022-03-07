@@ -25,7 +25,6 @@ const FutureAppoint = () => {
   };
 
   const demoFunc = (pr) => {
-    setAuth(pr);
     toggleDrawer(pr);
   };
   return (
@@ -34,7 +33,7 @@ const FutureAppoint = () => {
         open={isOpen}
         onClose={toggleDrawer}
         direction="right"
-        className="bla bla bla"
+        className="schedule-drawer"
       >
         {auth === "futureAppo" ? <CreateAppo /> : <Patient />}
       </Drawer>

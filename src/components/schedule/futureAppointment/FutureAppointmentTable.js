@@ -9,7 +9,6 @@ const FutureAppointmentTable = ({ demoFunc }) => {
   const toggleDrawer2 = () => {
     demoFunc("patient");
   };
-
   return (
     <>
       <div className="col-12">
