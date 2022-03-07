@@ -5,22 +5,13 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Patient from "../../DrawerField/Patient";
 
-const FutureAppointmentTable = () => {
-  const [isOpen2, setIsOpen2] = React.useState(false);
+const FutureAppointmentTable = ({ demoFunc }) => {
   const toggleDrawer2 = () => {
-    setIsOpen2((prevState) => !prevState);
+    demoFunc("patient");
   };
 
   return (
     <>
-      <Drawer
-        open={isOpen2}
-        onClose={toggleDrawer2}
-        direction="right"
-        className="bla bla bla"
-      >
-        <Patient />
-      </Drawer>
       <div className="col-12">
         <div className="card shadow mb-4">
           <div className="card-body">
@@ -49,7 +40,9 @@ const FutureAppointmentTable = () => {
                 <tbody>
                   <tr>
                     <td>Tiger Nixon</td>
-                    <td onClick={toggleDrawer2}>System Architect</td>
+                    <td className="patient" onClick={toggleDrawer2}>
+                      System Architect
+                    </td>
                     <td>Edinburgh</td>
                     <td>61</td>
                     <td>2011/04/25</td>
