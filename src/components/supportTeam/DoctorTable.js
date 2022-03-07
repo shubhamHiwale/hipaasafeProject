@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { getDoctors } from '../../services/apiservices'
 
 const DoctorTable = () => {
+
+  const [doctors, setDoctors] = useState(null);
+  useEffect(() => {
+    getDoctorsAPI()
+  }, [])
+
+  const getDoctorsAPI = async () => {
+    let res = await getDoctors();
+    if (res?.success) {
+      setDoctors(res?.data?.docs);
+    }
+  }
+
   return (
     <>
       <div className="card shadow mb-4">

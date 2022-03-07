@@ -7,7 +7,7 @@ import { sideBarAuth, timeUp } from "../../redux/actions/actions";
 import { validateOtp } from "../../services/apiservices";
 import appContext from "../../context/appcontext/AppContext";
 
-const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
+const OtpVerific = ({ demoFunc, uEmail, verificationOtp, otpnew }) => {
   const dispatch = useDispatch();
   const AppContext = useContext(appContext);
   const tm = useSelector((state) => state.timeUpReducer);
@@ -32,7 +32,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
 
   const verifyOtp = async () => {
     if (uEmail && otp) {
-      const res = await validateOtp({ email: uEmail, otp });
+      const res = await validateOtp({ email: uEmail, otp, "player_id": "testplayerid", "device_platform": "WEB" });
       if (res) {
         if (res.success) {
           sessionStorage.setItem("access_token", res?.data?.access_token);
@@ -73,7 +73,7 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp }) => {
                   <div className="login-form-content otp-form">
                     <div className="text-center">
                       <h1 className="title">OTP VERIFICATION</h1>
-                      <p>Enter 4 digit OTP sent to</p>
+                      <p>Enter 4 digit OTP sent to {otpnew}</p>
                     </div>
                     <div className="text-center mb-2">
                       <button onClick={editEmail} className="btn btn-pencil">

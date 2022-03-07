@@ -7,6 +7,7 @@ const Login = () => {
   const [otpVeri, setOtpVeri] = useState(false);
   const [email, setEmail] = useState("");
   const [show, setShow] = useState(false);
+  const [otp, setOtp] = useState(null);
 
   const verificationOtp = async () => {
     if (!email) {
@@ -21,6 +22,7 @@ const Login = () => {
           const res = await login({ email });
           console.log("RES : ", res.success);
           if (res.success) {
+            setOtp(res?.data?.otp);
             setOtpVeri(true);
           } else {
             console.log("otp send failed");
@@ -108,6 +110,7 @@ const Login = () => {
         </div>
       ) : (
         <OtpVerific
+          otpnew={otp}
           uEmail={email}
           verificationOtp={verificationOtp}
           demoFunc={demoFunc}
