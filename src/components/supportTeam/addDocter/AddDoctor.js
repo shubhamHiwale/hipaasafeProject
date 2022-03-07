@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
-import { addDoctor } from "../../../services/apiservices";
+import { addDoctor, getSpecialityList } from "../../../services/apiservices";
 import { useHistory } from "react-router-dom";
 
 import {
@@ -22,15 +22,15 @@ const AddDoctor = () => {
     speciality: "",
     year_of_exp: "",
   });
-  console.log("doctor data : ", docterData);
+
   const options = [
-    { label: "Cardiologist", value: 1 },
-    { label: "Radiologist", value: 2 },
-    { label: "Neurologist", value: 3 },
-    { label: "Dentist", value: 4 },
+    spcList?.map((dt, ind) => {
+      return { label: dt.title, value: dt.speciality_id };
+    }),
   ];
 
   const [selected, setSelected] = useState([]);
+  const [spcList, setSpcList] = useState();
   const histroy = useHistory();
 
   let name;
@@ -51,12 +51,21 @@ const AddDoctor = () => {
       location: city,
       experience: year_of_exp,
       speciality_id: speciality,
-      tags: selected.map(i => { return i.value }),
+      tags: selected.map((i) => {
+        return i.value;
+      }),
     });
     if (res) {
-      histroy.push('main/support-dashboard');
+      histroy.push("main/support-dashboard");
     }
   };
+
+  useEffect(async () => {
+    const res = await getSpecialityList();
+    if (res.success) {
+      setSpcList(res.data);
+    }
+  }, []);
 
   return (
     <>
@@ -102,9 +111,7 @@ const AddDoctor = () => {
                 </Col>
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
-                    <InputGroup.Text>
-                      +91
-                    </InputGroup.Text>
+                    <InputGroup.Text>+91</InputGroup.Text>
                     <FloatingLabel label="Mobile Number">
                       <Form.Control
                         type="tel"
@@ -148,10 +155,15 @@ const AddDoctor = () => {
                       value={docterData.speciality}
                     >
                       <option>Speciality</option>
-                      <option value="1">Cardiologist</option>
-                      <option value="2">Radiologist</option>
-                      <option value="3">Neurologist</option>
-                      <option value="4">Dentist</option>
+                      {spcList
+                        ? spcList?.map((dt, ind) => (
+                            <>
+                              <option value={dt.speciality_id}>
+                                {dt.title}
+                              </option>
+                            </>
+                          ))
+                        : ""}
                     </Form.Select>
                   </InputGroup>
                 </Col>
@@ -192,7 +204,13 @@ const AddDoctor = () => {
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4  mb-4 mb-4">
-                  <Button onClick={reqAddDoctor} className="w-100" variant="primary">Add Doctor</Button>
+                  <Button
+                    onClick={reqAddDoctor}
+                    className="w-100"
+                    variant="primary"
+                  >
+                    Add Doctor
+                  </Button>
                 </Col>
               </Row>
             </Form>
