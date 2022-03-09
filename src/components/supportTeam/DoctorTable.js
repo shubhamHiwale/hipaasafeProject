@@ -12,7 +12,8 @@ const DoctorTable = () => {
   const getDoctorsAPI = async () => {
     let res = await getDoctors();
     if (res?.success) {
-      setDoctors(res?.data?.docs);
+      setDoctors(res?.data?.rows);
+      console.log(res?.data?.rows);
     }
   }
 
@@ -39,66 +40,18 @@ const DoctorTable = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Dr. Praveenkumar Motilal Maurya</td>
-                  <td>Cardiologist</td>
-                  <td>10</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Dr. Jessie Clarcson</td>
-                  <td>Orthopedic</td>
-                  <td>11</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Dr. Praveenkumar Motilal Maurya</td>
-                  <td>Cardiologist</td>
-                  <td>10</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Dr. Jessie Clarcson</td>
-                  <td>Orthopedic</td>
-                  <td>11</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Dr. Praveenkumar Motilal Maurya</td>
-                  <td>Cardiologist</td>
-                  <td>10</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Dr. Jessie Clarcson</td>
-                  <td>Orthopedic</td>
-                  <td>11</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
+                {doctors?.map((i, index) => (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{i?.name}</td>
+                    <td>{i?.doctor_details?.speciality?.title}</td>
+                    <td>{i?.doctor_details?.experience}</td>
+                    <td>{i?.country_code} {i?.number}</td>
+                    <td>
+                      <Button variant="outline-primary btn-edit">Edit</Button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </div>

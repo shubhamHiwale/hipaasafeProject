@@ -22,6 +22,12 @@ export function getDoctors() {
   });
 }
 
+export function getNurses() {
+  return RequestAPI(BASE_URL + "/query/nurse/my-team?page=1&limit=10", {
+    method: "GET",
+  });
+}
+
 export function addDoctor(obj) {
   return RequestAPI(BASE_URL + "/user/doctor/register", {
     method: "POST",
