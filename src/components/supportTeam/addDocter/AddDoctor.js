@@ -23,14 +23,9 @@ const AddDoctor = () => {
     year_of_exp: "",
   });
 
-  const options = [
-    spcList?.map((dt, ind) => {
-      return { label: dt.title, value: dt.speciality_id };
-    }),
-  ];
-
   const [selected, setSelected] = useState([]);
   const [spcList, setSpcList] = useState();
+  const [options, setOptions] = useState(null);
   const histroy = useHistory();
 
   let name;
@@ -56,7 +51,7 @@ const AddDoctor = () => {
       }),
     });
     if (res) {
-      histroy.push("main/support-dashboard");
+      histroy.push("/main/support-dashboard");
     }
   };
 
@@ -64,6 +59,7 @@ const AddDoctor = () => {
     const res = await getSpecialityList();
     if (res.success) {
       setSpcList(res.data);
+      setOptions(res.data?.map((dt) => { return { label: dt.title, value: dt.speciality_id }; }))
     }
   }, []);
 
@@ -72,7 +68,7 @@ const AddDoctor = () => {
       <div className="container-fluid d-flex flex-column">
         <div classname="row">
           <div className="col-lg-10 col-sm-12">
-            <div className="page-title">Add Doctor</div>
+            <div className="page-title">Add Doctors</div>
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4  mb-4">
@@ -157,17 +153,17 @@ const AddDoctor = () => {
                       <option>Speciality</option>
                       {spcList
                         ? spcList?.map((dt, ind) => (
-                            <>
-                              <option value={dt.speciality_id}>
-                                {dt.title}
-                              </option>
-                            </>
-                          ))
+                          <>
+                            <option value={dt.speciality_id}>
+                              {dt.title}
+                            </option>
+                          </>
+                        ))
                         : ""}
                     </Form.Select>
                   </InputGroup>
                 </Col>
-                <Col className="col-sm-4  mb-4">
+                {options && <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
                       <i class="fa fa-user-o" aria-hidden="true"></i>
@@ -181,6 +177,7 @@ const AddDoctor = () => {
                     />
                   </InputGroup>
                 </Col>
+                }
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>

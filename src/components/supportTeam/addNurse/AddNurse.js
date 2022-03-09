@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { addNurse } from "../../../services/apiservices";
 import { MultiSelect } from "react-multi-select-component";
+import { getDoctors } from '../../../services/apiservices'
+import { useHistory } from "react-router-dom";
 import {
   Form,
   Row,
   Col,
   Button,
   InputGroup,
-  FormControl,
   FloatingLabel,
 } from "react-bootstrap";
 
 const AddNurse = () => {
+  const [options, setOptions] = useState(null);
+  const histroy = useHistory();
+
+  useEffect(() => {
+    getDoctorsAPI()
+  }, [])
+
+  const getDoctorsAPI = async () => {
+    let res = await getDoctors();
+    if (res?.success) {
+      setOptions(res.data?.rows?.map((dt) => { return { label: dt.name, value: dt.uid }; }))
+    }
+  }
+
   const [nurseData, setNurseData] = useState({
     name: "",
     email: "",
@@ -29,13 +44,6 @@ const AddNurse = () => {
     setNurseData({ ...nurseData, [name]: value });
   };
 
-  const options = [
-    { label: "Cardiologist", value: "Cardiologist" },
-    { label: "Radiologist", value: "Radiologist" },
-    { label: "Neurologist", value: "Neurologist" },
-    { label: "Dentist", value: "Dentist" },
-  ];
-
   const [selected, setSelected] = useState([]);
 
   const reqAddNurse = async () => {
@@ -44,18 +52,18 @@ const AddNurse = () => {
       name,
       email,
       number: mobile,
-      country_code:"+91",
+      country_code: "+91",
       doctor_ids: ["4"],
     });
     if (res) {
-      console.log("res : ", res);
+      histroy.push("/main/support-dashboard");
     }
   };
 
   return (
     <>
       <div className="container-fluid d-flex flex-column">
-      <div classname="row">
+        <div classname="row">
           <div className="col-lg-10 col-sm-12">
             <div className="page-title">Add Nurses</div>
             <Form className="mt-4">
@@ -81,7 +89,7 @@ const AddNurse = () => {
                 <Col className="col-sm-4 ">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Email">
                       <Form.Control
@@ -113,7 +121,7 @@ const AddNurse = () => {
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="City">
                       <Form.Control
@@ -121,7 +129,8 @@ const AddNurse = () => {
                         className=""
                         placeholder="City"
                         name="city"
-                        value=""
+                        value={nurseData.city}
+                        onChange={handleChanges}
                       />
                     </FloatingLabel>
                   </InputGroup>
@@ -146,7 +155,7 @@ const AddNurse = () => {
                 <Col className="col-sm-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
-                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                      <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <FloatingLabel label="Year of experience">
                       <Form.Control
@@ -163,25 +172,25 @@ const AddNurse = () => {
               </Row>
             </Form>
 
-            <Form className="mt-4">
-            <span>Assign to Doctors</span>
-                <Row>
-                  <Col className="col-sm-4  mb-4">
-                    <InputGroup className="input-group-floting">
-                      <InputGroup.Text>
-                        <i class="fa fa-user-o" aria-hidden="true"></i>
-                      </InputGroup.Text>
-                      <MultiSelect
-                        className="custom-multiselectbox"
-                        options={options}
-                        value={selected}
-                        onChange={setSelected}
-                        labelledBy="Select"
-                      />
-                    </InputGroup>
-                  </Col>                  
-                </Row>              
-            </Form>
+            {options && <Form className="mt-4">
+              <span>Assign to Doctors</span>
+              <Row>
+                <Col className="col-sm-4  mb-4">
+                  <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <MultiSelect
+                      className="custom-multiselectbox"
+                      options={options}
+                      value={selected}
+                      onChange={setSelected}
+                      labelledBy="Select"
+                    />
+                  </InputGroup>
+                </Col>
+              </Row>
+            </Form>}
 
             <Form className="mt-4">
               <Row>
@@ -192,7 +201,7 @@ const AddNurse = () => {
             </Form>
           </div>
         </div>
-      </div>  
+      </div>
     </>
   );
 };

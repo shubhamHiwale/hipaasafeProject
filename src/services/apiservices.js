@@ -43,7 +43,7 @@ export function addNurse(obj) {
 }
 
 export function getSpecialityList() {
-  return RequestAPI(BASE_URL + "/speciality/list", {
+  return RequestAPI(BASE_URL + "/static/speciality/list", {
     method: "GET",
   });
 }

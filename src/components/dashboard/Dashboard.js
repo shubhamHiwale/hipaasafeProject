@@ -4,21 +4,10 @@ import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import PatientsList from "./patientsList/PatientsList";
-import { getDoctors } from '../../services/apiservices'
+import moment from "moment";
 
 const Dashboard = () => {
 
-  const [doctors, setDoctors] = useState(null);
-  useEffect(() => {
-    getDoctorsAPI()
-  }, [])
-
-  const getDoctorsAPI = async () => {
-    let res = await getDoctors();
-    if (res?.success) {
-      setDoctors(res?.data?.docs);
-    }
-  }
 
   return (
     <>
@@ -26,11 +15,9 @@ const Dashboard = () => {
       <div className="container-fluid">
         {/* <!-- Page Heading --> */}
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <span className="page-title">Dashboard <span className="dash-date">Today, 03 Feb 2022</span>
+          <span className="page-title">Dashboard <span className="dash-date">Today, {moment().format('DD MMM YYYY')}</span>
           </span>
         </div>
-
-
         <div className="row dashboard-counter-cards">
           <div className="col-xl-4 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
