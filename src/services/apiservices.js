@@ -47,3 +47,17 @@ export function getSpecialityList() {
     method: "GET",
   });
 }
+
+
+
+export function KPIDoctorDashboard(uid) {
+  return RequestAPI(BASE_URL + `/query/kpi-cards/fetch/dashboard?doctor_id=${uid}`, {
+    method: "GET",
+  });
+}
+
+export function GetPatients() {
+  return RequestAPI(BASE_URL + `/query/doctors/fetch/my-patients?page=1&limit=1`, {
+    method: "GET",
+  });
+}

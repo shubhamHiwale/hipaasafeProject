@@ -1,12 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import undrawPostingPhoto from "../../assets/img/undraw_posting_photo.svg";
 import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import PatientsList from "./patientsList/PatientsList";
 import moment from "moment";
+import { KPIDoctorDashboard } from '../../services/apiservices'
+import appContext from "../../context/appcontext/AppContext";
+
 
 const Dashboard = () => {
+  const AppContext = useContext(appContext);
+  console.log(AppContext);
+  const [kpi, setKpi] = useState(null);
+  useEffect(() => {
+    getKPIAPI()
+  }, [])
+
+  const getKPIAPI = async () => {
+    let res = await KPIDoctorDashboard(AppContext?.user?.uid);
+    if (res?.success) {
+      setKpi(res?.data);
+    }
+  }
 
 
   return (
@@ -18,7 +34,7 @@ const Dashboard = () => {
           <span className="page-title">Dashboard <span className="dash-date">Today, {moment().format('DD MMM YYYY')}</span>
           </span>
         </div>
-        <div className="row dashboard-counter-cards">
+        {<div className="row dashboard-counter-cards">
           <div className="col-xl-4 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
               <div className="card-body">
@@ -27,7 +43,7 @@ const Dashboard = () => {
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
                       <div className="total-numbers">
-                        12
+                        {kpi?.total_patients}
                       </div>
                       <div className="total-label">
                         Total Patients
@@ -50,7 +66,7 @@ const Dashboard = () => {
                     <img src={CardIcon2} alt="card-icon-2"></img>
                     <div className="card-title">
                       <div className="total-numbers">
-                        12
+                        {kpi?.completed_patients}
                       </div>
                       <div className="total-label">
                         Completed Patients
@@ -73,7 +89,7 @@ const Dashboard = () => {
                     <img src={CardIcon3} alt="card-icon-3"></img>
                     <div className="card-title">
                       <div className="total-numbers">
-                        3
+                        {kpi?.pending_patients}
                       </div>
                       <div className="total-label">
                         Waiting Patient
@@ -87,7 +103,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
 
         <div className="row">
           <PatientsList />
