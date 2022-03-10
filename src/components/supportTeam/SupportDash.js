@@ -5,29 +5,17 @@ import DoctorTable from "./DoctorTable";
 import NurseTable from "./NurseTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 
 const SupportDash = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  
   return (
     <>
       <div className="container-fluid">
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <span className="page-title">Dashboard</span>
-          <button onClick={toggleDrawer}>Show</button>
+          <span className="page-title">Dashboard</span>          
         </div>
-        <Drawer
-          open={isOpen}
-          onClose={toggleDrawer}
-          direction="right"
-          className="bla bla bla"
-        >
-          <div>Hello World</div>
-        </Drawer>
         <div className="row">
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card shadow h-100 py-2">
