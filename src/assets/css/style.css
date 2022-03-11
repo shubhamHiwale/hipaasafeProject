@@ -352,3 +352,23 @@ button.btn.btn-status {
   text-transform: capitalize !important;
   padding: 10px 20px;
 }
+
+.schedule-drawer .custom-input-box {
+  height: 56px;
+  width: 100%;
+}
+
+.schedule-drawer .custom-input-box .react-date-picker,
+.schedule-drawer .custom-input-box .react-time-picker {
+  width: 88%;
+}
+
+.schedule-drawer .custom-input-box .react-date-picker__wrapper,
+.schedule-drawer .custom-input-box .react-time-picker__wrapper {
+  border: 1px solid #d1d3e2;
+  border-radius: 5px;
+  border-left: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  
+}

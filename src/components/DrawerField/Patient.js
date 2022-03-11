@@ -39,24 +39,18 @@ const Patient = () => {
             <span className="font-weight-bold text-black">Patient Details</span>
           </Col>
 
-          <Col className="mt-4">
-            <Form.Label>Appointment Details</Form.Label>
-            <InputGroup className="input-group-floting">
-              <InputGroup.Text>
-                <i className="fa fa-user-o" aria-hidden="true"></i>
-              </InputGroup.Text>
-              <FloatingLabel label="Patient Name">
-                <Form.Control
-                  type="text"
-                  className="p-4"
-                  placeholder="Patient Name"
-                  name="patient_name"
-                  value={patientData.patient_name}
-                  onChange={handleChanges}
-                />
-              </FloatingLabel>
-            </InputGroup>
-          </Col>
+          
+            <div className="col-sm-12">
+              <div className="border rounded p-2 mb-2">
+                <div class="user-icon">
+                  <img src={userIcon} alt="user-icon"/>
+                </div>
+                <div className="user-detail">
+                  <p className="name">Praveenkumar Motilal Maurya</p>
+                  <p>Age -<span>26</span></p>
+                </div>
+              </div>
+            </div>
 
           <Col className="">
             <Tabs>
