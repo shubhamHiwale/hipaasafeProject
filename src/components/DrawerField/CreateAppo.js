@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { addAppo } from "../../services/apiservices";
+import TimePicker from "react-time-picker";
+import moment from "moment";
 import {
   Form,
   Row,
@@ -8,44 +11,84 @@ import {
   FormControl,
   FloatingLabel,
 } from "react-bootstrap";
+import DatePicker from "react-date-picker";
+import { useSelector } from "react-redux";
 
 const CreateAppo = () => {
-  const [appoData, setAppoData] = useState({
-    doctor_name: "",
+  const user_data = useSelector((state) => state.userDataReducer);
+  const obj = {
+    doctor_id: user_data ? user_data?.uid : "",
+    name: "",
     email: "",
-    patient_name: "",
-    email: "",
-    mobile: "",
-    date: "",
-  });
+    country_code: "+91",
+    number: "",
+    appointment_date: "",
+    appointment_time: "",
+  };
+
+  console.log("user_data", user_data);
+
+  const [appoData, setAppoData] = useState(obj);
+  const [date, setDate] = useState();
+  const [val, setVal] = useState("10:00");
+  console.log("date : ", date);
+  console.log("appoData : ", appoData);
+
+  let name;
+  let value;
+  const handleChanges = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setAppoData({ ...appoData, [name]: value });
+  };
+
+  const getSelDate = (e) => {
+    setDate(e);
+    setAppoData({
+      ...appoData,
+      appointment_date: moment(e).format("YYYY-MM-DD"),
+    });
+  };
+  const getSelTime = (e) => {
+    console.log(e);
+    setVal(e);
+    setAppoData({
+      ...appoData,
+      appointment_time: e,
+    });
+  };
+
+  const reqAddAppo = async () => {
+    const res = await addAppo(appoData);
+    if (res) {
+      console.log("res : ", res.userDataReducer.data);
+    }
+  };
+
+  useEffect(() => {
+    localStorage.getItem("user");
+    console.log(localStorage.getItem("user"));
+  }, []);
 
   return (
     <>
       <div className="position-relative dwer-container">
         <Form>
           <Col className="py-3">
-            <span className="font-weight-bold text-black">Create An Appointment</span>
-            <span className="btn-dwer-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span className="font-weight-bold text-black">
+              Create An Appointment
+            </span>
+            <span className="btn-dwer-close">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
           </Col>
           <Col className="">
-            <Form.Label>Choose doctor</Form.Label>
+            {/* <Form.Label>Choose doctor</Form.Label> */}
             <InputGroup className="input-group-floting">
-              <InputGroup.Text>
+              {/* <InputGroup.Text>
                 <i class="fa fa-user-o" aria-hidden="true"></i>
-              </InputGroup.Text>
-              <Form.Select
-                type="text"
-                className="p-3"
-                placeholder="Name"
-                name="name"
-                value={appoData.doctor_name}
-              >
-                <option>demo 1</option>
-                <option>demo 2</option>
-                <option>demo 3</option>
-                <option>demo 4</option>
-                <option>demo 5</option>
-              </Form.Select>
+              </InputGroup.Text> */}
+              {user_data ? user_data.name : ""}
             </InputGroup>
           </Col>
 
@@ -60,8 +103,9 @@ const CreateAppo = () => {
                   type="text"
                   className="p-4"
                   placeholder="Patient Name"
-                  name="patient_name"
-                  value={appoData.patient_name}
+                  name="name"
+                  value={appoData.name}
+                  onChange={handleChanges}
                 />
               </FloatingLabel>
             </InputGroup>
@@ -79,6 +123,7 @@ const CreateAppo = () => {
                   placeholder="Email"
                   name="email"
                   value={appoData.email}
+                  onChange={handleChanges}
                 />
               </FloatingLabel>
             </InputGroup>
@@ -92,49 +137,47 @@ const CreateAppo = () => {
                   type="text"
                   className="p-4"
                   placeholder="Mobile Number"
-                  name="mobile"
-                  value={appoData.mobile}
+                  name="number"
+                  value={appoData.number}
+                  onChange={handleChanges}
                 />
               </FloatingLabel>
             </InputGroup>
           </Col>
 
-          <Col className="mt-2">
+          <div className="row py-2 px-2 mt-1">
+            <TimePicker onChange={getSelTime} value={val} />
+            <DatePicker className="mt-3" onChange={getSelDate} value={date} />
+          </div>
+
+          {/* <Col className="mt-2">
             <InputGroup className="input-group-floting">
               <InputGroup.Text>
                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
               </InputGroup.Text>
-              <FloatingLabel label="Date">
-                <Form.Control
-                  type="text"
-                  className="p-4"
-                  placeholder="Date"
-                  name="date"
-                  value={appoData.date}
-                />
-              </FloatingLabel>
+              <DatePicker
+                style={{ width: "100%" }}
+                onChange={getSelDate}
+                value={date}
+              />
             </InputGroup>
-          </Col>
+          </Col> */}
 
-          <Col className="mt-2">
+          {/* <Col className="mt-2">
             <InputGroup className="input-group-floting">
               <InputGroup.Text>
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
               </InputGroup.Text>
-              <FloatingLabel label="Time">
-                <Form.Control
-                  type="text"
-                  className="p-4"
-                  placeholder="Time"
-                  name="time"
-                  value={appoData.time}
-                />
-              </FloatingLabel>
+              <TimePicker onChange={getSelTime} value={val} />
             </InputGroup>
-          </Col>
+          </Col> */}
 
           <Col className="position-absolute fixed-bottom pb-2">
-            <Button className="w-100 p-3" variant="primary">
+            <Button
+              onClick={reqAddAppo}
+              className="w-100 p-3"
+              variant="primary"
+            >
               Create an Appointment
             </Button>
           </Col>

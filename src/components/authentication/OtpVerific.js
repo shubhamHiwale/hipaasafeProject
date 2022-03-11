@@ -3,7 +3,7 @@ import Timer from "../../helper/Timer";
 import logo from "../../assets/img/logo.svg";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { sideBarAuth, timeUp } from "../../redux/actions/actions";
+import { sideBarAuth, timeUp, userData } from "../../redux/actions/actions";
 import { validateOtp } from "../../services/apiservices";
 import appContext from "../../context/appcontext/AppContext";
 
@@ -32,11 +32,18 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp, otpnew }) => {
 
   const verifyOtp = async () => {
     if (uEmail && otp) {
-      const res = await validateOtp({ email: uEmail, otp, "player_id": "testplayerid", "device_platform": "WEB" });
+      const res = await validateOtp({
+        email: uEmail,
+        otp,
+        player_id: "testplayerid",
+        device_platform: "WEB",
+      });
       if (res) {
         if (res.success) {
           sessionStorage.setItem("access_token", res?.data?.access_token);
           AppContext.setUser(res?.data);
+          localStorage.setItem("user", res?.data);
+          dispatch(userData(res?.data));
           if (res.data.role_name === "SUPPORT") {
             console.log("otp verification Data : ", res);
             dispatch(sideBarAuth(true));
@@ -123,21 +130,21 @@ const OtpVerific = ({ demoFunc, uEmail, verificationOtp, otpnew }) => {
                             Resend OTP
                           </span>
                         </b>
-                      </div >
+                      </div>
                       <a
                         onClick={verifyOtp}
                         className="btn btn-primary btn-user btn-block"
                       >
                         Verify
                       </a>
-                    </form >
-                  </div >
-                </div >
-              </div >
-            </div >
-          </div >
-        </div >
-      </div >
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
