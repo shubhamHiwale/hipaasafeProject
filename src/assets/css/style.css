@@ -315,7 +315,7 @@ span.clock-icon {
   border-left: 0px;
 }
 
-span.btn-dwer-close {
+.btn-dwer-close {
   background: #F2F4FE;
   width: 30px;
   height: 30px;
@@ -324,4 +324,17 @@ span.btn-dwer-close {
   border-radius: 30px;
   color: #0098FF;
   font-size: 21px;
+}
+
+.user-icon {
+  display: inline-block;
+  width: 15%;
+}
+
+.user-detail {
+  display: inline-block;
+}
+
+.user-detail p{
+  margin-bottom: 0px;
 }
