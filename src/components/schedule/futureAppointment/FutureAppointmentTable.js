@@ -5,7 +5,7 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Patient from "../../DrawerField/Patient";
 
-const FutureAppointmentTable = ({ demoFunc }) => {
+const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
   const toggleDrawer2 = () => {
     demoFunc("patient");
   };
@@ -17,7 +17,7 @@ const FutureAppointmentTable = ({ demoFunc }) => {
             <div className="table-responsive">
               <div className="mb-2">
                 <span className="font-weight-bold">
-                  Dr. Sanjeev Arora Patient List
+                  Patients List
                 </span>
               </div>
               <Table
@@ -33,102 +33,25 @@ const FutureAppointmentTable = ({ demoFunc }) => {
                     <th>Age</th>
                     <th>Time</th>
                     <th>Phone</th>
-                    <th>Action</th>
+                    <th>Appointment</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Tiger Nixon</td>
-                    <td className="patient" onClick={toggleDrawer2}>
-                      System Architect
-                    </td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>
-                      <Button variant="outline-info">Edit</Button>
-                    </td>
-                  </tr>
+                  {appointMentList && appointMentList.map((e, i) => {
+                    let { id, appointment_date, appointment_time, appointment_status, patient_details: { age, name, mobile } } = e;
+                    return (<tr>
+                      <td>{id}</td>
+                      <td className="patient" onClick={toggleDrawer2}>
+                        {name}
+                      </td>
+                      <td>{age}</td>
+                      <td>{appointment_date}</td>
+                      <td>{appointment_time}</td>
+                      <td>
+                        <Button variant="outline-info">{appointment_status}</Button>
+                      </td>
+                    </tr>)
+                  })}
                 </tbody>
               </Table>
             </div>
