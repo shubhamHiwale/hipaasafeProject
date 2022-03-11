@@ -7,8 +7,8 @@ import { getClassNamePrefix } from "rsuite/esm/utils";
 import Patient from "../../DrawerField/Patient";
 
 const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall }) => {
-  const toggleDrawer2 = () => {
-    demoFunc("patient");
+  const toggleDrawer2 = (e) => {
+    demoFunc("patient", e);
   };
 
 
@@ -68,7 +68,7 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall
                     let { id, appointment_date, appointment_id, appointment_time, appointment_status, patient_details: { age, name, mobile } } = e;
                     return (<tr>
                       <td>{id}</td>
-                      <td className="patient" onClick={toggleDrawer2}>
+                      <td className="patient" onClick={() => toggleDrawer2(e)}>
                         {name}
                       </td>
                       <td>{age}</td>

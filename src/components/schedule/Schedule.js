@@ -19,6 +19,7 @@ import appContext from "../../context/appcontext/AppContext";
 const FutureAppoint = () => {
   const AppContext = useContext(appContext);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [seletedPatient, setSeletedPatient] = useState(null);
   const [selectedData, setSelectedDate] = useState(moment().add(1, 'days').format('YYYY-MM-DD'));
 
   useEffect(() => {
@@ -126,7 +127,8 @@ const FutureAppoint = () => {
     }
   }
 
-  const demoFunc = (pr) => {
+  const demoFunc = (pr, e) => {
+    setSeletedPatient(e);
     toggleDrawer(pr);
   };
   return (
@@ -137,7 +139,7 @@ const FutureAppoint = () => {
         direction="right"
         className="schedule-drawer"
       >
-        {auth === "futureAppo" ? <CreateAppo /> : <Patient />}
+        {auth === "futureAppo" ? <CreateAppo /> : <Patient seletedPatient={seletedPatient} />}
       </Drawer>
       <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-2">

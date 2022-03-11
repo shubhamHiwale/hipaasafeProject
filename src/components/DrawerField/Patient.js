@@ -13,7 +13,8 @@ import {
   ListGroup,
 } from "react-bootstrap";
 
-const Patient = () => {
+const Patient = ({ seletedPatient }) => {
+  console.log("seletedPatient", seletedPatient);
   const [patientData, setPatientData] = useState({
     doctor_name: "",
     email: "",
@@ -39,18 +40,18 @@ const Patient = () => {
             <span className="font-weight-bold text-black">Patient Details</span>
           </Col>
 
-          
-            <div className="col-sm-12">
-              <div className="border rounded p-2 mb-2">
-                <div class="user-icon">
-                  <img src={userIcon} alt="user-icon"/>
-                </div>
-                <div className="user-detail">
-                  <p className="name">Praveenkumar Motilal Maurya</p>
-                  <p>Age -<span>26</span></p>
-                </div>
+
+          <div className="col-sm-12">
+            <div className="border rounded p-2 mb-2">
+              <div class="user-icon">
+                <img src={userIcon} alt="user-icon" />
+              </div>
+              <div className="user-detail">
+                <p className="name">{seletedPatient?.patient_details?.name}</p>
+                <p>Age -<span>{seletedPatient?.patient_details?.age}</span></p>
               </div>
             </div>
+          </div>
 
           <Col className="">
             <Tabs>
