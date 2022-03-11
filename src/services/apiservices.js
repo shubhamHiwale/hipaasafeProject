@@ -81,6 +81,12 @@ export function getAppointsByDateRange(date) {
   });
 }
 
+export function getAppointsByDateRangeNew(uid, date) {
+  return RequestAPI(BASE_URL + `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${uid}`, {
+    method: "GET",
+  });
+}
+
 
 export function getScheduleKpi(date, page = 1, limit = 10) {
   console.log(date, "date")
