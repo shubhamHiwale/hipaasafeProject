@@ -1,21 +1,58 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import CardIcon1 from "../../assets/img/cardIcon1.svg";
 import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import DoctorTable from "../supportTeam/DoctorTable";
 import NurseTable from "../supportTeam/NurseTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
 import FutureAppointmentTable from "./futureAppointment/FutureAppointmentTable";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import CreateAppo from "../DrawerField/CreateAppo";
 import Patient from "../DrawerField/Patient";
-import { getAppointsByDateRange, getScheduleKpi } from "../../services/apiservices";
+import { getAppointsByDateRange, getScheduleKpi, getDoctors } from "../../services/apiservices";
 import moment from 'moment';
+import appContext from "../../context/appcontext/AppContext";
+
 
 const FutureAppoint = () => {
- //Plot the times
+  const AppContext = useContext(appContext);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [selectedData, setSelectedDate] = useState(moment().add(1, 'days').format('YYYY-MM-DD'));
+
+  useEffect(() => {
+    if (AppContext?.user?.role_id === 4) {
+      getDoctorsAPI();
+    } else {
+      appointmentHandler(AppContext?.user?.uid, selectedData);
+      kpiHandler(AppContext?.user?.uid, selectedData);
+    }
+  }, [])
+
+  const handleDoctorChanges = (e) => {
+    setSelectedDoctor(e.target.value);
+    appointmentHandler(e.target.value, selectedData);
+    kpiHandler(e.target.value, selectedData);
+  };
+
+  const getDoctorsAPI = async () => {
+    let res = await getDoctors();
+    if (res?.success) {
+      setDoctors(res?.data?.rows);
+      appointmentHandler(res?.data?.rows[0].uid, selectedData);
+      kpiHandler(res?.data?.rows[0].uid, selectedData);
+      setSelectedDoctor(res?.data?.rows[0].uid);
+    }
+  }
+
+  const onChangeDateHanlder = (data) => {
+    setSelectedDate(data.dateForm);
+    appointmentHandler(selectedDoctor, data.dateForm);
+    kpiHandler(selectedDoctor, data.dateForm);
+  }
+
+  //Plot the times
   const getFutureDatesArr = (noOfDays) => {
     let timeArr = [];
     let timeObj = {};
@@ -32,12 +69,11 @@ const FutureAppoint = () => {
 
     return timeArr;
   }
-
   const getDates = getFutureDatesArr(6);
-  const [selectedData, setSelectedDate] = useState(moment().add(1, 'days').format('YYYY-MM-DD'));
   const [dates, setDates] = useState(getDates);
   const [isOpen, setIsOpen] = useState(false);
   const [auth, setAuth] = useState();
+  const [doctors, setDoctors] = useState(null);
   const toggleDrawer = (gt) => {
     if (gt === "patient") {
       setAuth(gt);
@@ -47,38 +83,28 @@ const FutureAppoint = () => {
     setIsOpen((prevState) => !prevState);
   };
 
-
-
-
   const [appointMentList, setAppointmentList] = useState([]);
 
   const [kpiDetails, setKpidetails] = useState(null);
 
-  const appointmentHandler = useCallback(async () => {
+  const appointmentHandler = async (uid, selectedData) => {
     try {
-      let response = await getAppointsByDateRange(selectedData);
+      let response = await getAppointsByDateRange(uid, selectedData);
       setAppointmentList(response?.data?.rows || []);
     } catch (e) {
       console.log(e, "error")
     }
-  }, [selectedData])
-  const kpiHandler = useCallback(async () => {
-    try {
+  }
 
-      let response = await getScheduleKpi(selectedData);
+  const kpiHandler = async (uid, selectedData) => {
+    try {
+      let response = await getScheduleKpi(uid, selectedData);
       setKpidetails(response?.data || null);
     } catch (e) {
       console.log(e, "error")
     }
-  }, [selectedData])
-
-  const onChangeDateHanlder = (data) => {
-    setSelectedDate(data.dateForm)
   }
-  useEffect(() => {
-    appointmentHandler(selectedData);
-    kpiHandler(selectedData);
-  }, [selectedData])
+
 
 
   const demoFunc = (pr) => {
@@ -101,15 +127,36 @@ const FutureAppoint = () => {
               Future Appointments
               {/* <span className="dash-date">Today, {moment().format("DD MMM YYYY")}</span> */}
             </span>
-          </div>  
+          </div>
           <div>
+            {doctors && <InputGroup className="input-group-floting">
+              <InputGroup.Text>
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+              </InputGroup.Text>
+              <Form.Select
+                className="custom-selectbox"
+                aria-label="Select Speciality"
+                onChange={handleDoctorChanges}
+                name="speciality"
+                value={selectedDoctor}
+              >
+                {doctors?.map((dt, ind) => (
+                  <>
+                    <option value={dt.uid}>
+                      {dt.name}
+                    </option>
+                  </>
+                ))
+                }
+              </Form.Select>
+            </InputGroup>}
             <Button onClick={toggleDrawer}>Create an Appointment</Button>
-          </div>        
+          </div>
         </div>
 
         <div className="d-sm-flex bg-white pt-2 align-items-center justify-content-between mb-4">
           <div className="tabs-header">
-              {dates.map((e, i) => (<button className={selectedData == e.dateForm ? "btn btn-dates-focus" : "btn btn-dates"} onClick={() => onChangeDateHanlder(e)} >
+            {dates.map((e, i) => (<button className={selectedData == e.dateForm ? "btn btn-dates-focus" : "btn btn-dates"} onClick={() => onChangeDateHanlder(e)} >
               {e.name}  <span className="tab-count">(0)</span>
             </button>))}
           </div>

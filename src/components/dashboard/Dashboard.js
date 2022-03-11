@@ -5,7 +5,7 @@ import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import PatientsList from "./patientsList/PatientsList";
 import moment from "moment";
-import { KPIDoctorDashboard, getDoctors, getAppointsByDateRangeNew } from '../../services/apiservices'
+import { KPIDoctorDashboard, getDoctors, getAppointsByDateRange } from '../../services/apiservices'
 import appContext from "../../context/appcontext/AppContext";
 import { Form, InputGroup, } from "react-bootstrap";
 
@@ -46,7 +46,7 @@ const Dashboard = () => {
   }
 
   const GetPatientAPI = async (uid) => {
-    let res1 = await getAppointsByDateRangeNew(uid, moment().format('YYYY-MM-DD'));
+    let res1 = await getAppointsByDateRange(uid, moment().format('YYYY-MM-DD'));
     if (res1?.success) {
       setPatients(res1?.data?.rows);
     }

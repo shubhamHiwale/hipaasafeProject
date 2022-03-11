@@ -78,32 +78,21 @@ export function getAppointmentHistory(uid, from, to) {
   });
 }
 
-let user = sessionStorage.getItem("user")
-  ? JSON.parse(sessionStorage.getItem("user"))
-  : null;
-
-export function getAppointsByDateRange(date) {
+export function getAppointsByDateRange(uid, date) {
   return RequestAPI(
     BASE_URL +
-      `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${user.uid}`,
+    `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${uid}`,
     {
       method: "GET",
     }
   );
 }
 
-export function getAppointsByDateRangeNew(uid, date) {
-  return RequestAPI(BASE_URL + `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${uid}`, {
-    method: "GET",
-  });
-}
-
-
-export function getScheduleKpi(date, page = 1, limit = 10) {
+export function getScheduleKpi(uid, date, page = 1, limit = 10) {
   console.log(date, "date");
   return RequestAPI(
     BASE_URL +
-      `/query/kpi-cards/fetch/schedule?doctor_id=${user.uid}&date=${date}`,
+    `/query/kpi-cards/fetch/schedule?doctor_id=${uid}&date=${date}`,
     {
       method: "GET",
     }
