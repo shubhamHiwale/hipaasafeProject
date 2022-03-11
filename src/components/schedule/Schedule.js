@@ -11,7 +11,7 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import CreateAppo from "../DrawerField/CreateAppo";
 import Patient from "../DrawerField/Patient";
-import { getAppointsByDateRange, getScheduleKpi, getDoctors } from "../../services/apiservices";
+import { getAppointsByDateRange, getScheduleKpi, getDoctors, modifyPatientStatus } from "../../services/apiservices";
 import moment from 'moment';
 import appContext from "../../context/appcontext/AppContext";
 
@@ -29,6 +29,27 @@ const FutureAppoint = () => {
       kpiHandler(AppContext?.user?.uid, selectedData);
     }
   }, [])
+
+  const chnageStatusAPICall = async (appointment_id, appointment_status) => {
+    switch (appointment_status) {
+
+      case 'CONFIRMED':
+        // await modifyPatientStatus({ appointment_id, appointment_status });
+        break;
+
+      case 'RESCHEDULED':
+        break;
+
+      case 'PENDING':
+        break;
+
+      case 'CANCELLED':
+        break;
+
+      case 'SCHEDULED':
+        break;
+    }
+  }
 
   const handleDoctorChanges = (e) => {
     setSelectedDoctor(e.target.value);
@@ -104,8 +125,6 @@ const FutureAppoint = () => {
       console.log(e, "error")
     }
   }
-
-
 
   const demoFunc = (pr) => {
     toggleDrawer(pr);
@@ -247,7 +266,7 @@ const FutureAppoint = () => {
         {/* <!-- Content Row --> */}
 
         <div class="row">
-          <FutureAppointmentTable demoFunc={demoFunc} appointMentList={appointMentList} />
+          <FutureAppointmentTable demoFunc={demoFunc} appointMentList={appointMentList} chnageStatusAPICall={chnageStatusAPICall} />
           {/* <!-- Area Chart --> */}
         </div>
 

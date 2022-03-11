@@ -111,3 +111,10 @@ export function getProfileById(uid) {
     method: "GET",
   });
 }
+
+export function modifyPatientStatus(obj) {
+  return RequestAPI(BASE_URL + `appointment/patient/modify`, {
+    method: "POST",
+    body: JSON.stringify(obj)
+  });
+}

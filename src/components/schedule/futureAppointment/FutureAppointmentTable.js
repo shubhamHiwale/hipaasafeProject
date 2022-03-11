@@ -6,7 +6,7 @@ import "react-modern-drawer/dist/index.css";
 import { getClassNamePrefix } from "rsuite/esm/utils";
 import Patient from "../../DrawerField/Patient";
 
-const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
+const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall }) => {
   const toggleDrawer2 = () => {
     demoFunc("patient");
   };
@@ -65,7 +65,7 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
                 </thead>
                 <tbody>
                   {appointMentList && appointMentList.map((e, i) => {
-                    let { id, appointment_date, appointment_time, appointment_status, patient_details: { age, name, mobile } } = e;
+                    let { id, appointment_date, appointment_id, appointment_time, appointment_status, patient_details: { age, name, mobile } } = e;
                     return (<tr>
                       <td>{id}</td>
                       <td className="patient" onClick={toggleDrawer2}>
@@ -76,7 +76,7 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
                       <td>{appointment_time}</td>
                       <td>{mobile}</td>
                       <td>
-                        <Button className="btn-status rounded-pill" variant={getClassName(appointment_status)} >{appointment_status}</Button>
+                        <Button className="btn-status rounded-pill" variant={getClassName(appointment_status)} onClick={() => { chnageStatusAPICall(appointment_id, appointment_status) }} >{appointment_status}</Button>
                       </td>
                     </tr>)
                   })}
