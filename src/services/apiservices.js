@@ -66,7 +66,7 @@ export function GetPatients(uid) {
   });
 }
 
-export function getAppointmentHistory(uid,from, to) {
+export function getAppointmentHistory(uid, from, to) {
   return RequestAPI(BASE_URL + `/query/appointments/fetch/by-date-range?from_date=${from}&to_date=${to}&doctor_id=${uid}`, {
     method: "GET",
   });
@@ -85,6 +85,12 @@ export function getAppointsByDateRange(date) {
 export function getScheduleKpi(date, page = 1, limit = 10) {
   console.log(date, "date")
   return RequestAPI(BASE_URL + `/query/kpi-cards/fetch/schedule?doctor_id=${user.uid}&date=${date}`, {
+    method: "GET",
+  });
+}
+
+export function getProfileById(uid) {
+  return RequestAPI(BASE_URL + `/user/profile/by-id?user_id=${uid}`, {
     method: "GET",
   });
 }
