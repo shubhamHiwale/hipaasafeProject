@@ -52,10 +52,10 @@ const Patient = () => {
               </TabList>
 
               <TabPanel className="custom-tab-panel">
-                <h5>Hello</h5>
+                <h5>Documents Section</h5>
               </TabPanel>
               <TabPanel className="custom-tab-panel">
-                <h5>World</h5>
+                <h5>Request Documents Section</h5>
               </TabPanel>
             </Tabs>
           </Col>
