@@ -24,9 +24,8 @@ const CreateAppo = () => {
       <div className="position-relative dwer-container">
         <Form>
           <Col className="py-3">
-            <span className="font-weight-bold text-black">
-              Create An Appointment
-            </span>
+            <span className="font-weight-bold text-black">Create An Appointment</span>
+            <span className="btn-dwer-close"><i class="fa fa-times" aria-hidden="true"></i></span>
           </Col>
           <Col className="">
             <Form.Label>Choose doctor</Form.Label>
@@ -34,7 +33,6 @@ const CreateAppo = () => {
               <InputGroup.Text>
                 <i class="fa fa-user-o" aria-hidden="true"></i>
               </InputGroup.Text>
-              {/* <FloatingLabel label="Name"> */}
               <Form.Select
                 type="text"
                 className="p-3"
@@ -48,7 +46,6 @@ const CreateAppo = () => {
                 <option>demo 4</option>
                 <option>demo 5</option>
               </Form.Select>
-              {/* </FloatingLabel> */}
             </InputGroup>
           </Col>
 
@@ -70,10 +67,10 @@ const CreateAppo = () => {
             </InputGroup>
           </Col>
 
-          <Col className="mt-4">
+          <Col className="mt-2">
             <InputGroup className="input-group-floting">
               <InputGroup.Text>
-                <i className="fa fa-user-o" aria-hidden="true"></i>
+                <i className="fa fa-envelope-o" aria-hidden="true"></i>
               </InputGroup.Text>
               <FloatingLabel label="Email">
                 <Form.Control
@@ -87,11 +84,9 @@ const CreateAppo = () => {
             </InputGroup>
           </Col>
 
-          <Col className="mt-4">
+          <Col className="mt-2">
             <InputGroup className="input-group-floting">
-              <InputGroup.Text>
-                <i class="fa fa-user-o" aria-hidden="true"></i>
-              </InputGroup.Text>
+              <InputGroup.Text>+91</InputGroup.Text>
               <FloatingLabel label="Mobile Number">
                 <Form.Control
                   type="text"
@@ -104,10 +99,10 @@ const CreateAppo = () => {
             </InputGroup>
           </Col>
 
-          <Col className="mt-4">
+          <Col className="mt-2">
             <InputGroup className="input-group-floting">
               <InputGroup.Text>
-                <i class="fa fa-user-o" aria-hidden="true"></i>
+                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
               </InputGroup.Text>
               <FloatingLabel label="Date">
                 <Form.Control
@@ -121,10 +116,10 @@ const CreateAppo = () => {
             </InputGroup>
           </Col>
 
-          <Col className="mt-4">
+          <Col className="mt-2">
             <InputGroup className="input-group-floting">
               <InputGroup.Text>
-                <i class="fa fa-user-o" aria-hidden="true"></i>
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
               </InputGroup.Text>
               <FloatingLabel label="Time">
                 <Form.Control
