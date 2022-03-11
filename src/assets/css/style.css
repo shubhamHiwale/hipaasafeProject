@@ -358,13 +358,13 @@ button.btn.btn-status {
   width: 100%;
 }
 
-.react-date-picker,
-.react-time-picker {
+.schedule-drawer .custom-input-box .react-date-picker,
+.schedule-drawer .custom-input-box .react-time-picker {
   width: 88%;
 }
 
-.react-date-picker__wrapper,
-.react-time-picker__wrapper {
+.schedule-drawer .custom-input-box .react-date-picker__wrapper,
+.schedule-drawer .custom-input-box .react-time-picker__wrapper {
   border: 1px solid #d1d3e2;
   border-radius: 5px;
   border-left: 0px;
