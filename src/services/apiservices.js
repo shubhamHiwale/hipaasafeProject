@@ -71,3 +71,8 @@ export function getAppointmentHistory(uid,from, to) {
     method: "GET",
   });
 }
+
+
+
+
+
