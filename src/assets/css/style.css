@@ -209,14 +209,17 @@
 
 .btn.btn-dates:focus,
 .btn.btn-dates.focus,
-.btn.btn-dates:hover {
+.btn.btn-dates:hover,
+.btn.btn-dates-focus {
   box-shadow: none;
   color: #0098ff;
   border-bottom: 3px solid #0098ff;
+  border-radius: 0px;
 }
 
 .btn.btn-dates:hover .tab-count,
-.btn.btn-dates:focus .tab-count {
+.btn.btn-dates:focus .tab-count,
+.btn.btn-dates-focus .tab-count{
   color: #0098ff;
 }
 .btn.btn-dates:hover .tab-count {
@@ -225,6 +228,12 @@
 
 .date-block {
   margin-bottom: 1.2rem;
+}
+
+.history-card .patient-details {
+  color: #1C1C1C;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .input-group-floting.input-group .input-group-text {
@@ -309,4 +318,37 @@ span.clock-icon {
 
 .dwer-container {
   height: 100%;
+}
+
+.dwer-container .input-group-floting select.form-select {
+  border-left: 0px;
+}
+
+.btn-dwer-close {
+  background: #F2F4FE;
+  width: 30px;
+  height: 30px;
+  float: right;
+  text-align: center;
+  border-radius: 30px;
+  color: #0098FF;
+  font-size: 21px;
+}
+
+.user-icon {
+  display: inline-block;
+  width: 15%;
+}
+
+.user-detail {
+  display: inline-block;
+}
+
+.user-detail p{
+  margin-bottom: 0px;
+}
+
+button.btn.btn-status {
+  text-transform: capitalize !important;
+  padding: 10px 20px;
 }

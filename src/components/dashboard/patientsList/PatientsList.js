@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { GetPatients } from '../../../services/apiservices'
 import appContext from "../../../context/appcontext/AppContext";
 
-const PatientsList = ({patients}) => {
+const PatientsList = ({ patients }) => {
   return (
     <>
       <div className="col-12">
@@ -34,17 +34,17 @@ const PatientsList = ({patients}) => {
 
                     {patients?.map((i, index) => (
                       <tr>
-                        <td>{index+1}</td>
-                        <td>{i?.list_patient_details?.name}</td>
-                        <td></td>
-                        <td></td>
-                        <td>{i?.list_patient_details?.number}</td>
+                        <td>{index + 1}</td>
+                        <td>{i?.patient_details?.name}</td>
+                        <td>{i?.patient_details?.age}</td>
+                        <td>{i?.appointment_time}</td>
+                        <td>{i?.patient_details?.mobile}</td>
                         <td>
                           <button
                             style={{ backgroundColor: "#0098FF" }}
                             className="btn btn-primary px-4 rounded-pill"
                           >
-                            Mark Complete
+                            {i?.appointment_status}
                           </button>
                         </td>
                       </tr>

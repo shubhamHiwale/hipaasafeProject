@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import userIcon from "../../assets/img/user-icon.svg";
 import {
   Form,
   Row,
@@ -29,36 +30,32 @@ const Patient = () => {
             <span className="font-weight-bold text-black">Patient Details</span>
           </Col>
 
-          <Col className="mt-4">
-            <Form.Label>Appointment Details</Form.Label>
-            <InputGroup className="input-group-floting">
-              <InputGroup.Text>
-                <i className="fa fa-user-o" aria-hidden="true"></i>
-              </InputGroup.Text>
-              <FloatingLabel label="Patient Name">
-                <Form.Control
-                  type="text"
-                  className="p-4"
-                  placeholder="Patient Name"
-                  name="patient_name"
-                  value={appoData.patient_name}
-                />
-              </FloatingLabel>
-            </InputGroup>
-          </Col>
+          <div className="col-sm-12">
+                  <div className="border rounded p-2 mb-2">
+                    <div class="user-icon">
+                      <img src={userIcon} alt="user-icon"/>
+                    </div>
+                    <div className="user-detail">
+                      <p className="name">Praveenkumar Motilal Maurya</p>
+                      <p>Age -<span>26</span></p>
+                    </div>
+                  </div>
+                </div>
+
+          
 
           <Col className="">
             <Tabs>
               <TabList className="d-flex tabs-header">
-                <Tab className="list-group-item">Doctors List</Tab>
-                <Tab className="list-group-item">Nurses List</Tab>
+                <Tab className="list-group-item">Documents</Tab>
+                <Tab className="list-group-item">Request Documents</Tab>
               </TabList>
 
               <TabPanel className="custom-tab-panel">
-                <h5>Hello</h5>
+                <h5>Documents Section</h5>
               </TabPanel>
               <TabPanel className="custom-tab-panel">
-                <h5>World</h5>
+                <h5>Request Documents Section</h5>
               </TabPanel>
             </Tabs>
           </Col>

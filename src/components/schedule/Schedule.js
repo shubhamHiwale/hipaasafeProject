@@ -96,23 +96,15 @@ const FutureAppoint = () => {
       </Drawer>
       <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
-          <span className="page-title">
-            Future Appointments
-            <span className="dash-date">Today, {moment().format("DD MMM YYYY")}</span>
-          </span>
-        </div>
-
-        <div class="d-sm-flex align-items-center justify-content-between mb-1">
-          <span class="font-weight-bold mb-0 text-gray-800">
-            <Form className="mt-4">
-              <Row>
-                <Col className="col-sm-16 mb-4">
-                  {/* <Form.Control className="p-4" placeholder="First name" /> */}
-                </Col>
-              </Row>
-            </Form>
-          </span>
-          <Button onClick={toggleDrawer}>Create an Appointment</Button>
+          <div>
+            <span className="page-title">
+              Future Appointments
+              {/* <span className="dash-date">Today, {moment().format("DD MMM YYYY")}</span> */}
+            </span>
+          </div>  
+          <div>
+            <Button onClick={toggleDrawer}>Create an Appointment</Button>
+          </div>        
         </div>
 
         <div className="d-sm-flex bg-white pt-2 align-items-center justify-content-between mb-4">

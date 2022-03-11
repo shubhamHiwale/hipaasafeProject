@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { addNurse } from "../../../services/apiservices";
 import { MultiSelect } from "react-multi-select-component";
-import { getDoctors } from '../../../services/apiservices'
+import { getDoctors, getProfileById } from '../../../services/apiservices'
 import { useHistory, useLocation } from "react-router-dom";
 import {
   Form,
@@ -21,19 +21,29 @@ const AddNurse = () => {
     email: "",
     mobile: "",
     country_code: "",
+    city: "",
+    year_of_exp: ""
   });
 
   useEffect(() => {
     getDoctorsAPI()
     if (location?.state?.nurse) {
-      setNurseData({
-        name: "",
-        email: "",
-        mobile: "",
-        country_code: "",
-      });
+      getProfileByIdAPI(location?.state?.nurse?.uid)
     }
   }, [])
+
+  const getProfileByIdAPI = async (uid) => {
+    let profile = await getProfileById(uid);
+    console.log("profile", profile.data);
+    setNurseData({
+      name: profile?.data?.name,
+      email: profile?.data?.email,
+      mobile: profile?.data?.number,
+      country_code: profile?.data?.country_code,
+      city: profile?.data?.metadata?.location,
+      year_of_exp: profile?.data?.metadata?.experience
+    });
+  }
 
   const getDoctorsAPI = async () => {
     let res = await getDoctors();
@@ -71,7 +81,7 @@ const AddNurse = () => {
       <div className="container-fluid d-flex flex-column">
         <div classname="row">
           <div className="col-lg-10 col-sm-12">
-            <div className="page-title">Add Nurses</div>
+            <div className="page-title">{nurseData?.uid ? "Edit" : "Add"} Nurses</div>
             <Form className="mt-4">
               <span>Personal Details</span>
               <Row>
