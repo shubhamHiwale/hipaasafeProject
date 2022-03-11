@@ -101,7 +101,7 @@ const CreateAppo = () => {
               <FloatingLabel label="Patient Name">
                 <Form.Control
                   type="text"
-                  className="p-4"
+                  className=""
                   placeholder="Patient Name"
                   name="name"
                   value={appoData.name}
@@ -119,7 +119,7 @@ const CreateAppo = () => {
               <FloatingLabel label="Email">
                 <Form.Control
                   type="text"
-                  className="p-4"
+                  className=""
                   placeholder="Email"
                   name="email"
                   value={appoData.email}
@@ -135,7 +135,7 @@ const CreateAppo = () => {
               <FloatingLabel label="Mobile Number">
                 <Form.Control
                   type="text"
-                  className="p-4"
+                  className=""
                   placeholder="Mobile Number"
                   name="number"
                   value={appoData.number}
@@ -145,32 +145,23 @@ const CreateAppo = () => {
             </InputGroup>
           </Col>
 
-          <div className="row py-2 px-2 mt-1">
-            <TimePicker onChange={getSelTime} value={val} />
-            <DatePicker className="mt-3" onChange={getSelDate} value={date} />
-          </div>
-
-          {/* <Col className="mt-2">
-            <InputGroup className="input-group-floting">
+          <Col className="mt-2">
+            <InputGroup className="input-group-floting custom-input-box">
               <InputGroup.Text>
-                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+              <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
               </InputGroup.Text>
-              <DatePicker
-                style={{ width: "100%" }}
-                onChange={getSelDate}
-                value={date}
-              />
+              <DatePicker className="" onChange={getSelDate} value={date} />
             </InputGroup>
-          </Col> */}
+          </Col>
 
-          {/* <Col className="mt-2">
-            <InputGroup className="input-group-floting">
+          <Col className="mt-2">
+            <InputGroup className="input-group-floting custom-input-box">
               <InputGroup.Text>
-                <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
               </InputGroup.Text>
               <TimePicker onChange={getSelTime} value={val} />
             </InputGroup>
-          </Col> */}
+          </Col>
 
           <Col className="position-absolute fixed-bottom pb-2">
             <Button
