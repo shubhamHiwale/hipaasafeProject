@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { addDoctor, getSpecialityList } from "../../../services/apiservices";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import {
   Form,
@@ -9,11 +9,11 @@ import {
   Col,
   Button,
   InputGroup,
-  FormControl,
   FloatingLabel,
 } from "react-bootstrap";
 
 const AddDoctor = () => {
+
   const [docterData, setDoctorData] = useState({
     name: "",
     email: "",
@@ -23,15 +23,12 @@ const AddDoctor = () => {
     year_of_exp: "",
   });
 
-  const options = [
-    spcList?.map((dt, ind) => {
-      return { label: dt.title, value: dt.speciality_id };
-    }),
-  ];
-
   const [selected, setSelected] = useState([]);
   const [spcList, setSpcList] = useState();
+  const [options, setOptions] = useState(null);
   const histroy = useHistory();
+  const location = useLocation();
+
 
   let name;
   let value;
@@ -56,23 +53,39 @@ const AddDoctor = () => {
       }),
     });
     if (res) {
-      histroy.push("main/support-dashboard");
+      histroy.push("/main/support-dashboard");
     }
   };
 
-  useEffect(async () => {
+  useEffect( () => {
+    getSpeciality();
+  }, []);
+
+  const getSpeciality = async()=>{
     const res = await getSpecialityList();
     if (res.success) {
       setSpcList(res.data);
+      setOptions(res.data?.map((dt) => { return { label: dt.title, value: dt.speciality_id }; }));
+      if (location?.state?.doctor) {
+        setDoctorData({
+          uid: location?.state?.doctor?.uid,
+          name: location?.state?.doctor?.name,
+          email: "",
+          city: location?.state?.doctor?.doctor_details?.location,
+          mobile: location?.state?.doctor?.number,
+          speciality: location?.state?.doctor?.doctor_details?.speciality?.speciality_id,
+          year_of_exp: location?.state?.doctor?.doctor_details?.experience,
+        });
+      }
     }
-  }, []);
+  }
 
   return (
     <>
       <div className="container-fluid d-flex flex-column">
         <div classname="row">
           <div className="col-lg-10 col-sm-12">
-            <div className="page-title">Add Doctor</div>
+            <div className="page-title">Add Doctors</div>
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4  mb-4">
@@ -157,17 +170,17 @@ const AddDoctor = () => {
                       <option>Speciality</option>
                       {spcList
                         ? spcList?.map((dt, ind) => (
-                            <>
-                              <option value={dt.speciality_id}>
-                                {dt.title}
-                              </option>
-                            </>
-                          ))
+                          <>
+                            <option value={dt.speciality_id}>
+                              {dt.title}
+                            </option>
+                          </>
+                        ))
                         : ""}
                     </Form.Select>
                   </InputGroup>
                 </Col>
-                <Col className="col-sm-4  mb-4">
+                {options && <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>
                       <i class="fa fa-user-o" aria-hidden="true"></i>
@@ -181,6 +194,7 @@ const AddDoctor = () => {
                     />
                   </InputGroup>
                 </Col>
+                }
                 <Col className="col-sm-4  mb-4">
                   <InputGroup className="input-group-floting">
                     <InputGroup.Text>

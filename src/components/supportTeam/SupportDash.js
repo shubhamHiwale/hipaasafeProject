@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TotalDoctorIcon from "../../assets/img/total-doctors.svg";
 import TotalNursesIcon from "../../assets/img/total-nurse.svg";
 import DoctorTable from "./DoctorTable";
@@ -6,15 +6,27 @@ import NurseTable from "./NurseTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "react-modern-drawer/dist/index.css";
+import { KPISupportDashboard } from '../../services/apiservices'
 
 const SupportDash = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  
+  const [supportKPI, setsupportKPI] = useState(null);
+  useEffect(() => {
+    setsupportKPIAPI()
+  }, [])
+
+  const setsupportKPIAPI = async () => {
+    let res = await KPISupportDashboard();
+    if (res?.success) {
+      setsupportKPI(res?.data);
+    }
+  }
+
   return (
     <>
       <div className="container-fluid">
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <span className="page-title">Dashboard</span>          
+          <span className="page-title">Dashboard</span>
         </div>
         <div className="row">
           <div className="col-xl-6 col-md-6 mb-4">
@@ -24,7 +36,7 @@ const SupportDash = () => {
                   <div className="d-flex align-items-center col mr-2">
                     <img src={TotalDoctorIcon} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div className="total-numbers">12</div>
+                      <div className="total-numbers">{supportKPI?.total_doctors}</div>
                       <div className="total-label">Total Doctors</div>
                     </div>
                   </div>
@@ -44,7 +56,7 @@ const SupportDash = () => {
                   <div className="d-flex align-items-center col mr-2">
                     <img src={TotalNursesIcon} alt="card-icon-2"></img>
                     <div className="card-title">
-                      <div className="total-numbers">21</div>
+                      <div className="total-numbers">{supportKPI?.total_nurses}</div>
                       <div className="total-label">Total Nurses</div>
                     </div>
                   </div>

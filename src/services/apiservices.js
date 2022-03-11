@@ -22,6 +22,12 @@ export function getDoctors() {
   });
 }
 
+export function getNurses() {
+  return RequestAPI(BASE_URL + "/query/nurse/my-team?page=1&limit=10", {
+    method: "GET",
+  });
+}
+
 export function addDoctor(obj) {
   return RequestAPI(BASE_URL + "/user/doctor/register", {
     method: "POST",
@@ -37,7 +43,31 @@ export function addNurse(obj) {
 }
 
 export function getSpecialityList() {
-  return RequestAPI(BASE_URL + "/speciality/list", {
+  return RequestAPI(BASE_URL + "/static/speciality/list", {
+    method: "GET",
+  });
+}
+
+export function KPISupportDashboard() {
+  return RequestAPI(BASE_URL + `/query/kpi-cards/fetch/organization`, {
+    method: "GET",
+  });
+}
+
+export function KPIDoctorDashboard(uid) {
+  return RequestAPI(BASE_URL + `/query/kpi-cards/fetch/dashboard?doctor_id=${uid}`, {
+    method: "GET",
+  });
+}
+
+export function GetPatients(uid) {
+  return RequestAPI(BASE_URL + `/query/doctors/fetch/my-patients?page=1&limit=1`, {
+    method: "GET",
+  });
+}
+
+export function getAppointmentHistory(uid,from, to) {
+  return RequestAPI(BASE_URL + `/query/appointments/fetch/by-date-range?from_date=${from}&to_date=${to}&doctor_id=${uid}`, {
     method: "GET",
   });
 }

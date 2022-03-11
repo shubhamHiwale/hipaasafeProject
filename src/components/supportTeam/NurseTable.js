@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { getNurses } from '../../services/apiservices'
+import { useHistory } from "react-router-dom";
 
 const NurseTable = () => {
+  const histroy = useHistory();
+  const [nurses, setNurses] = useState(null);
+  useEffect(() => {
+    getNurseAPI()
+  }, [])
+
+  const getNurseAPI = async () => {
+    let res = await getNurses();
+    if (res?.success) {
+      setNurses(res?.data?.rows);
+    }
+  }
+
   return (
     <>
       <div className="card shadow mb-4">
@@ -18,65 +33,22 @@ const NurseTable = () => {
                   <th>Sr. No.</th>
                   <th>Nurse Name</th>
                   <th>Yrs Of Erp.</th>
-                  <th>Phone</th>                  
+                  <th>Phone</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Praveenkumar Motilal Maurya</td>
-                  <td>26</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jessie Clarcson</td>
-                  <td>12</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Praveenkumar Motilal Maurya</td>
-                  <td>26</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Jessie Clarcson</td>
-                  <td>12</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Praveenkumar Motilal Maurya</td>
-                  <td>26</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Jessie Clarcson</td>
-                  <td>12</td>
-                  <td>+91 9876543210</td>
-                  <td>
-                    <Button variant="outline-primary btn-edit">Edit</Button>
-                  </td>
-                </tr>
+                {nurses?.map((i, index) => (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{i?.name}</td>
+                    <td>{i?.exp}</td>
+                    <td>{i?.country_code} {i?.number}</td>
+                    <td>
+                    <Button variant="outline-primary btn-edit" onClick={() => { histroy.push('/main/add-nurse', { nurse: i }) }}>Edit</Button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </div>
