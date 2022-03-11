@@ -310,3 +310,18 @@ span.clock-icon {
 .dwer-container {
   height: 100%;
 }
+
+.dwer-container .input-group-floting select.form-select {
+  border-left: 0px;
+}
+
+span.btn-dwer-close {
+  background: #F2F4FE;
+  width: 30px;
+  height: 30px;
+  float: right;
+  text-align: center;
+  border-radius: 30px;
+  color: #0098FF;
+  font-size: 21px;
+}
