@@ -38,15 +38,16 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
                 </thead>
                 <tbody>
                   {appointMentList && appointMentList.map((e, i) => {
-                    let { id, appointment_date, appointment_time, appointment_status, patient_details: { age, name, mobile } } = e;
+                    let { id, appointment_date, appointment_time, appointment_status, patient_details : { age, name, mobile } } = e;
                     return (<tr>
                       <td>{id}</td>
                       <td className="patient" onClick={toggleDrawer2}>
                         {name}
                       </td>
                       <td>{age}</td>
-                      <td>{appointment_date}</td>
+                      
                       <td>{appointment_time}</td>
+                      <td>{mobile}</td>
                       <td>
                         <Button variant="outline-info">{appointment_status}</Button>
                       </td>

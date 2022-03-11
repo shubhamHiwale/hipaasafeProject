@@ -95,7 +95,7 @@ const History = () => {
           </div>
         </div>
         
-        <div className="card">
+        <div className="card history-card">
           <div className="card-body">
             {/* date block */}
            {appointments &&Object.keys(appointments)?.map((ap)=>{
@@ -105,9 +105,9 @@ const History = () => {
               <div className="row">                                  
                {appointments[ap].map(u=>(
                 <div className="col-sm-6">
-                  <div className="border rounded p-2 mb-2">
+                  <div className="border rounded p-2 px-4 mb-2">
                     <span>{u?.appointment_time}</span>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between patient-details">
                       <span>{u?.patient_details?.name}</span>
                       <span>{u?.patient_details?.age} Yrs</span>
                     </div>
