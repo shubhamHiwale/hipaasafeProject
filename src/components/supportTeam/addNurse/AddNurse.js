@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { addNurse } from "../../../services/apiservices";
 import { MultiSelect } from "react-multi-select-component";
-import { getDoctors } from '../../../services/apiservices'
+import { getDoctors } from "../../../services/apiservices";
 import { useHistory, useLocation } from "react-router-dom";
 import {
   Form,
@@ -13,34 +13,43 @@ import {
 } from "react-bootstrap";
 
 const AddNurse = () => {
+  const obj = {
+    name: "",
+    email: "",
+    number: "",
+    country_code: "+91",
+    doctor_ids: ["4"],
+    experience: "",
+    location: "Mumbai",
+  };
+
   const [options, setOptions] = useState(null);
   const histroy = useHistory();
   const location = useLocation();
-  const [nurseData, setNurseData] = useState({
-    name: "",
-    email: "",
-    mobile: "",
-    country_code: "",
-  });
-
+  const [nurseData, setNurseData] = useState(obj);
+  console.log("nurseData : ", nurseData);
   useEffect(() => {
-    getDoctorsAPI()
+    getDoctorsAPI();
     if (location?.state?.nurse) {
       setNurseData({
         name: "",
         email: "",
-        mobile: "",
+        number: "",
         country_code: "",
       });
     }
-  }, [])
+  }, []);
 
   const getDoctorsAPI = async () => {
     let res = await getDoctors();
     if (res?.success) {
-      setOptions(res.data?.rows?.map((dt) => { return { label: dt.name, value: dt.uid }; }))
+      setOptions(
+        res.data?.rows?.map((dt) => {
+          return { label: dt.name, value: dt.uid };
+        })
+      );
     }
-  }
+  };
 
   let name;
   let value;
@@ -53,14 +62,7 @@ const AddNurse = () => {
   const [selected, setSelected] = useState([]);
 
   const reqAddNurse = async () => {
-    const { name, email, mobile, country_code } = nurseData;
-    const res = await addNurse({
-      name,
-      email,
-      number: mobile,
-      country_code: "+91",
-      doctor_ids: ["4"],
-    });
+    const res = await addNurse(nurseData);
     if (res) {
       histroy.push("/main/support-dashboard");
     }
@@ -117,8 +119,8 @@ const AddNurse = () => {
                         type="tel"
                         className=""
                         placeholder="Mobile Number"
-                        name="mobile"
-                        value={nurseData.mobile}
+                        name="number"
+                        value={nurseData.number}
                         onChange={handleChanges}
                       />
                     </FloatingLabel>
@@ -168,8 +170,8 @@ const AddNurse = () => {
                         type="text"
                         className=""
                         placeholder="Year of experience"
-                        name="year_of_exp"
-                        value={nurseData.year_of_exp}
+                        name="experience"
+                        value={nurseData.experience}
                         onChange={handleChanges}
                       />
                     </FloatingLabel>
@@ -178,30 +180,38 @@ const AddNurse = () => {
               </Row>
             </Form>
 
-            {options && <Form className="mt-4">
-              <span>Assign to Doctors</span>
-              <Row>
-                <Col className="col-sm-4  mb-4">
-                  <InputGroup className="input-group-floting">
-                    <InputGroup.Text>
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
-                    </InputGroup.Text>
-                    <MultiSelect
-                      className="custom-multiselectbox"
-                      options={options}
-                      value={selected}
-                      onChange={setSelected}
-                      labelledBy="Select"
-                    />
-                  </InputGroup>
-                </Col>
-              </Row>
-            </Form>}
+            {options && (
+              <Form className="mt-4">
+                <span>Assign to Doctors</span>
+                <Row>
+                  <Col className="col-sm-4  mb-4">
+                    <InputGroup className="input-group-floting">
+                      <InputGroup.Text>
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                      </InputGroup.Text>
+                      <MultiSelect
+                        className="custom-multiselectbox"
+                        options={options}
+                        value={selected}
+                        onChange={setSelected}
+                        labelledBy="Select"
+                      />
+                    </InputGroup>
+                  </Col>
+                </Row>
+              </Form>
+            )}
 
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4 mb-4">
-                  <Button onClick={reqAddNurse} className="w-100" variant="primary">Add Nurses</Button>
+                  <Button
+                    onClick={reqAddNurse}
+                    className="w-100"
+                    variant="primary"
+                  >
+                    Add Nurses
+                  </Button>
                 </Col>
               </Row>
             </Form>
