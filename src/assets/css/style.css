@@ -347,3 +347,8 @@ span.clock-icon {
 .user-detail p{
   margin-bottom: 0px;
 }
+
+button.btn.btn-status {
+  text-transform: capitalize !important;
+  padding: 10px 20px;
+}

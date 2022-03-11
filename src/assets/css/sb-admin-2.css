@@ -2541,28 +2541,31 @@ fieldset:disabled a.btn {
 }
 
 .btn-danger {
-  color: #fff;
-  background-color: #e74a3b;
-  border-color: #e74a3b;
+  color: #D42B2B;
+  background-color: #FCF3F3;
+  border-color: #FCF3F3;
+  cursor: none;
 }
 
 .btn-danger:hover {
-  color: #fff;
-  background-color: #e02d1b;
-  border-color: #d52a1a;
+  color: #D42B2B;
+  background-color: #FCF3F3;
+  border-color: #FCF3F3;
+  cursor: none;
 }
 
 .btn-danger:focus, .btn-danger.focus {
-  color: #fff;
-  background-color: #e02d1b;
-  border-color: #d52a1a;
+  color: #D42B2B;
+  background-color: #FCF3F3;
+  border-color: #FCF3F3;
+  cursor: none;
   box-shadow: 0 0 0 0.2rem rgba(235, 101, 88, 0.5);
 }
 
 .btn-danger.disabled, .btn-danger:disabled {
-  color: #fff;
-  background-color: #e74a3b;
-  border-color: #e74a3b;
+  color: #D42B2B;
+  background-color: #FCF3F3;
+  border-color: #FCF3F3;
 }
 
 .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active,

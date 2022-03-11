@@ -15,24 +15,23 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
   const getClassName = (appointment_status) => {
 
     switch (appointment_status) {
-      case 'Pending':
-        return "outline-info"
+      case 'CONFIRMED':
+        return "success"
 
-      case 'Pending':
-        return "outline-info"
+      case 'RESCHEDULED':
+        return "primary"
 
+      case 'PENDING':
+        return "light"
 
-      case 'Pending':
-        return "outline-info"
+      case 'CANCELLED':
+        return "danger disabled"
 
-      case 'Pending':
-        return "outline-info"
-
-      case 'Pending':
+      case 'SCHEDULED':
         return "outline-info"
 
       default:
-        return "outline-info"
+        return "outline-primary"
     }
 
 
@@ -77,7 +76,7 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
                       <td>{appointment_time}</td>
                       <td>{mobile}</td>
                       <td>
-                        <Button variant={getClassName(appointment_status)} >{appointment_status}</Button>
+                        <Button className="btn-status rounded-pill" variant={getClassName(appointment_status)} >{appointment_status}</Button>
                       </td>
                     </tr>)
                   })}
