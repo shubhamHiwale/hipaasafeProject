@@ -55,36 +55,61 @@ export function KPISupportDashboard() {
 }
 
 export function KPIDoctorDashboard(uid) {
-  return RequestAPI(BASE_URL + `/query/kpi-cards/fetch/dashboard?doctor_id=${uid}`, {
-    method: "GET",
-  });
+  return RequestAPI(
+    BASE_URL + `/query/kpi-cards/fetch/dashboard?doctor_id=${uid}`,
+    {
+      method: "GET",
+    }
+  );
 }
 
 export function GetPatients(uid) {
-  return RequestAPI(BASE_URL + `/query/doctors/fetch/my-patients?page=1&limit=1`, {
-    method: "GET",
-  });
+  return RequestAPI(
+    BASE_URL + `/query/doctors/fetch/my-patients?page=1&limit=1`,
+    {
+      method: "GET",
+    }
+  );
 }
 
-export function getAppointmentHistory(uid,from, to) {
-  return RequestAPI(BASE_URL + `/query/appointments/fetch/by-date-range?from_date=${from}&to_date=${to}&doctor_id=${uid}`, {
-    method: "GET",
-  });
+export function getAppointmentHistory(uid, from, to) {
+  return RequestAPI(
+    BASE_URL +
+      `/query/appointments/fetch/by-date-range?from_date=${from}&to_date=${to}&doctor_id=${uid}`,
+    {
+      method: "GET",
+    }
+  );
 }
 
-
-let user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null
+let user = sessionStorage.getItem("user")
+  ? JSON.parse(sessionStorage.getItem("user"))
+  : null;
 
 export function getAppointsByDateRange(date) {
-  return RequestAPI(BASE_URL + `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${user.uid}`, {
-    method: "GET",
-  });
+  return RequestAPI(
+    BASE_URL +
+      `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${user.uid}`,
+    {
+      method: "GET",
+    }
+  );
 }
 
-
 export function getScheduleKpi(date, page = 1, limit = 10) {
-  console.log(date, "date")
-  return RequestAPI(BASE_URL + `/query/kpi-cards/fetch/schedule?doctor_id=${user.uid}&date=${date}`, {
-    method: "GET",
+  console.log(date, "date");
+  return RequestAPI(
+    BASE_URL +
+      `/query/kpi-cards/fetch/schedule?doctor_id=${user.uid}&date=${date}`,
+    {
+      method: "GET",
+    }
+  );
+}
+
+export function addAppo(obj) {
+  return RequestAPI(BASE_URL + "/appointment/doctor-nurse/book", {
+    method: "POST",
+    body: JSON.stringify(obj),
   });
 }

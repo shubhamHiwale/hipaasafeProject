@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 
 const Patient = () => {
-  const [appoData, setAppoData] = useState({
+  const [patientData, setPatientData] = useState({
     doctor_name: "",
     email: "",
     patient_name: "",
@@ -21,6 +21,15 @@ const Patient = () => {
     mobile: "",
     date: "",
   });
+
+  let name;
+  let value;
+  const handleChanges = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setPatientData({ ...patientData, [name]: value });
+  };
+
   return (
     <>
       <div className="position-relative dwer-container">
@@ -41,7 +50,8 @@ const Patient = () => {
                   className="p-4"
                   placeholder="Patient Name"
                   name="patient_name"
-                  value={appoData.patient_name}
+                  value={patientData.patient_name}
+                  onChange={handleChanges}
                 />
               </FloatingLabel>
             </InputGroup>

@@ -11,3 +11,10 @@ export const sideBarAuth = (sdr) => {
     payload: sdr,
   };
 };
+
+export const userData = (sdr) => {
+  return {
+    type: "USERDATA",
+    payload: sdr,
+  };
+};
