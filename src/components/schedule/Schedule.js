@@ -11,11 +11,14 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import CreateAppo from "../DrawerField/CreateAppo";
 import Patient from "../DrawerField/Patient";
-import { getAppointsByDateRange, getScheduleKpi } from "../../services/apiservices";
-import moment from 'moment';
+import {
+  getAppointsByDateRange,
+  getScheduleKpi,
+} from "../../services/apiservices";
+import moment from "moment";
 
 const FutureAppoint = () => {
- //Plot the times
+  //Plot the times
   const getFutureDatesArr = (noOfDays) => {
     let timeArr = [];
     let timeObj = {};
@@ -23,20 +26,27 @@ const FutureAppoint = () => {
       if (i == 0) {
         timeObj.name = "Tommorrow";
       } else {
-        timeObj.name = moment().add(i + 1, 'days').format("D MMM");
+        timeObj.name = moment()
+          .add(i + 1, "days")
+          .format("D MMM");
       }
-      timeObj.dateForm = moment().add(i + 1, 'days').format('YYYY-MM-DD');
+      timeObj.dateForm = moment()
+        .add(i + 1, "days")
+        .format("YYYY-MM-DD");
       timeArr.push(timeObj);
       timeObj = {};
     }
 
     return timeArr;
-  }
+  };
 
   const getDates = getFutureDatesArr(6);
-  const [selectedData, setSelectedDate] = useState(moment().add(1, 'days').format('YYYY-MM-DD'));
+  const [selectedData, setSelectedDate] = useState(
+    moment().add(1, "days").format("YYYY-MM-DD")
+  );
   const [dates, setDates] = useState(getDates);
   const [isOpen, setIsOpen] = useState(false);
+  console.log("isOpen : ", isOpen);
   const [auth, setAuth] = useState();
   const toggleDrawer = (gt) => {
     if (gt === "patient") {
@@ -47,9 +57,6 @@ const FutureAppoint = () => {
     setIsOpen((prevState) => !prevState);
   };
 
-
-
-
   const [appointMentList, setAppointmentList] = useState([]);
 
   const [kpiDetails, setKpidetails] = useState(null);
@@ -59,31 +66,34 @@ const FutureAppoint = () => {
       let response = await getAppointsByDateRange(selectedData);
       setAppointmentList(response?.data?.rows || []);
     } catch (e) {
-      console.log(e, "error")
+      console.log(e, "error");
     }
-  }, [selectedData])
+  }, [selectedData]);
   const kpiHandler = useCallback(async () => {
     try {
-
       let response = await getScheduleKpi(selectedData);
       setKpidetails(response?.data || null);
     } catch (e) {
-      console.log(e, "error")
+      console.log(e, "error");
     }
-  }, [selectedData])
+  }, [selectedData]);
 
   const onChangeDateHanlder = (data) => {
-    setSelectedDate(data.dateForm)
-  }
+    setSelectedDate(data.dateForm);
+  };
   useEffect(() => {
     appointmentHandler(selectedData);
     kpiHandler(selectedData);
-  }, [selectedData])
-
+  }, [selectedData]);
 
   const demoFunc = (pr) => {
     toggleDrawer(pr);
   };
+
+  const closeDrawer = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <Drawer
@@ -92,7 +102,11 @@ const FutureAppoint = () => {
         direction="right"
         className="schedule-drawer"
       >
-        {auth === "futureAppo" ? <CreateAppo /> : <Patient />}
+        {auth === "futureAppo" ? (
+          <CreateAppo closeDrawer={closeDrawer} />
+        ) : (
+          <Patient closeDrawer={closeDrawer} />
+        )}
       </Drawer>
       <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
@@ -101,17 +115,26 @@ const FutureAppoint = () => {
               Future Appointments
               {/* <span className="dash-date">Today, {moment().format("DD MMM YYYY")}</span> */}
             </span>
-          </div>  
+          </div>
           <div>
             <Button onClick={toggleDrawer}>Create an Appointment</Button>
-          </div>        
+          </div>
         </div>
 
         <div className="d-sm-flex bg-white pt-2 align-items-center justify-content-between mb-4">
           <div className="tabs-header">
-              {dates.map((e, i) => (<button className={selectedData == e.dateForm ? "btn btn-dates-focus" : "btn btn-dates"} onClick={() => onChangeDateHanlder(e)} >
-              {e.name}  <span className="tab-count">(0)</span>
-            </button>))}
+            {dates.map((e, i) => (
+              <button
+                className={
+                  selectedData == e.dateForm
+                    ? "btn btn-dates-focus"
+                    : "btn btn-dates"
+                }
+                onClick={() => onChangeDateHanlder(e)}
+              >
+                {e.name} <span className="tab-count">(0)</span>
+              </button>
+            ))}
           </div>
         </div>
 
@@ -124,7 +147,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.total_appointments || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.total_appointments || "0"}
+                      </div>
                       <div class="total-label">Total Appointments</div>
                     </div>
                   </div>
@@ -144,7 +169,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.confirmation_pending || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.confirmation_pending || "0"}
+                      </div>
                       <div class="total-label">Confirmaton Pending</div>
                     </div>
                   </div>
@@ -164,7 +191,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.confirmed || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.confirmed || "0"}
+                      </div>
                       <div class="total-label">Confirmed</div>
                     </div>
                   </div>
@@ -184,7 +213,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon2} alt="card-icon-2"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.cancelled || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.cancelled || "0"}
+                      </div>
                       <div class="total-label">Cancelled</div>
                     </div>
                   </div>
@@ -200,7 +231,10 @@ const FutureAppoint = () => {
         {/* <!-- Content Row --> */}
 
         <div class="row">
-          <FutureAppointmentTable demoFunc={demoFunc} appointMentList={appointMentList} />
+          <FutureAppointmentTable
+            demoFunc={demoFunc}
+            appointMentList={appointMentList}
+          />
           {/* <!-- Area Chart --> */}
         </div>
 

@@ -12,7 +12,7 @@ import {
   ListGroup,
 } from "react-bootstrap";
 
-const Patient = () => {
+const Patient = ({ closeDrawer }) => {
   const [patientData, setPatientData] = useState({
     doctor_name: "",
     email: "",
@@ -36,6 +36,9 @@ const Patient = () => {
         <Form>
           <Col className="py-3">
             <span className="font-weight-bold text-black">Patient Details</span>
+            <span onClick={closeDrawer} className="btn-dwer-close">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
           </Col>
 
           <Col className="mt-4">
