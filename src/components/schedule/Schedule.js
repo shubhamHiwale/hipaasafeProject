@@ -16,6 +16,7 @@ import {
   getScheduleKpi,
 } from "../../services/apiservices";
 import moment from "moment";
+import { getTestReport } from "../../services/apiservices";
 
 const FutureAppoint = () => {
   //Plot the times
@@ -61,6 +62,8 @@ const FutureAppoint = () => {
 
   const [kpiDetails, setKpidetails] = useState(null);
 
+  const [ptnDataById, setPtnDataById] = useState();
+
   const appointmentHandler = useCallback(async () => {
     try {
       let response = await getAppointsByDateRange(selectedData);
@@ -86,8 +89,12 @@ const FutureAppoint = () => {
     kpiHandler(selectedData);
   }, [selectedData]);
 
-  const demoFunc = (pr) => {
-    toggleDrawer(pr);
+  const demoFunc = async (pr, u_id) => {
+    const res = await getTestReport(u_id);
+    if (res) {
+      toggleDrawer(pr);
+      setPtnDataById(res.data);
+    }
   };
 
   const closeDrawer = () => {
@@ -105,7 +112,7 @@ const FutureAppoint = () => {
         {auth === "futureAppo" ? (
           <CreateAppo closeDrawer={closeDrawer} />
         ) : (
-          <Patient closeDrawer={closeDrawer} />
+          <Patient ptnData={ptnDataById} closeDrawer={closeDrawer} />
         )}
       </Drawer>
       <div class="container-fluid">
