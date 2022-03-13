@@ -14,7 +14,7 @@ import {
 import DatePicker from "react-date-picker";
 import { useSelector } from "react-redux";
 
-const CreateAppo = () => {
+const CreateAppo = ({ closeDrawer }) => {
   const user_data = useSelector((state) => state.userDataReducer);
   const obj = {
     doctor_id: user_data ? user_data?.uid : "",
@@ -78,7 +78,7 @@ const CreateAppo = () => {
             <span className="font-weight-bold text-black">
               Create An Appointment
             </span>
-            <span className="btn-dwer-close">
+            <span onClick={closeDrawer} className="btn-dwer-close">
               <i class="fa fa-times" aria-hidden="true"></i>
             </span>
           </Col>

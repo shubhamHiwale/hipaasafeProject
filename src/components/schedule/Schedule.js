@@ -14,7 +14,7 @@ import Patient from "../DrawerField/Patient";
 import { getAppointsByDateRange, getScheduleKpi, getDoctors, modifyPatientStatus } from "../../services/apiservices";
 import moment from 'moment';
 import appContext from "../../context/appcontext/AppContext";
-
+import { getTestReport } from "../../services/apiservices";
 
 const FutureAppoint = () => {
   const AppContext = useContext(appContext);
@@ -74,7 +74,6 @@ const FutureAppoint = () => {
     kpiHandler(selectedDoctor, data.dateForm);
   }
 
-  //Plot the times
   const getFutureDatesArr = (noOfDays) => {
     let timeArr = [];
     let timeObj = {};
@@ -82,20 +81,27 @@ const FutureAppoint = () => {
       if (i == 0) {
         timeObj.name = "Tommorrow";
       } else {
-        timeObj.name = moment().add(i + 1, 'days').format("D MMM");
+        timeObj.name = moment()
+          .add(i + 1, "days")
+          .format("D MMM");
       }
-      timeObj.dateForm = moment().add(i + 1, 'days').format('YYYY-MM-DD');
+      timeObj.dateForm = moment()
+        .add(i + 1, "days")
+        .format("YYYY-MM-DD");
       timeArr.push(timeObj);
       timeObj = {};
     }
 
     return timeArr;
-  }
-  const getDates = getFutureDatesArr(6);
+  };
+
+  const getDates = getFutureDatesArr(6); 
   const [dates, setDates] = useState(getDates);
   const [isOpen, setIsOpen] = useState(false);
+  console.log("isOpen : ", isOpen);
   const [auth, setAuth] = useState();
   const [doctors, setDoctors] = useState(null);
+ 
   const toggleDrawer = (gt) => {
     if (gt === "patient") {
       setAuth(gt);
@@ -106,31 +112,54 @@ const FutureAppoint = () => {
   };
 
   const [appointMentList, setAppointmentList] = useState([]);
-
   const [kpiDetails, setKpidetails] = useState(null);
 
-  const appointmentHandler = async (uid, selectedData) => {
+  // const appointmentHandler = async (uid, selectedData) => {
+  const [ptnDataById, setPtnDataById] = useState();
+
+  const appointmentHandler = useCallback(async () => {
     try {
       let response = await getAppointsByDateRange(uid, selectedData);
       setAppointmentList(response?.data?.rows || []);
     } catch (e) {
-      console.log(e, "error")
+      console.log(e, "error");
     }
-  }
+  };
 
-  const kpiHandler = async (uid, selectedData) => {
+  // const kpiHandler = async (uid, selectedData) => {
+  //   try {
+  //     let response = await getScheduleKpi(uid, selectedData);
+  // }, [selectedData]);
+  
+  const kpiHandler = useCallback(async () => {
     try {
-      let response = await getScheduleKpi(uid, selectedData);
+      let response = await getScheduleKpi(selectedData);
       setKpidetails(response?.data || null);
     } catch (e) {
-      console.log(e, "error")
+      console.log(e, "error");
     }
-  }
+  }, [selectedData]);
 
-  const demoFunc = (pr, e) => {
-    setSeletedPatient(e);
-    toggleDrawer(pr);
+  const onChangeDateHanlder = (data) => {
+    setSelectedDate(data.dateForm);
   };
+  useEffect(() => {
+    appointmentHandler(selectedData);
+    kpiHandler(selectedData);
+  }, [selectedData]);
+
+  const demoFunc = async (pr, u_id) => {
+    const res = await getTestReport(u_id);
+    if (res) {
+      toggleDrawer(pr);
+      setPtnDataById(res.data);
+    }
+  };
+
+  const closeDrawer = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <Drawer
@@ -139,7 +168,11 @@ const FutureAppoint = () => {
         direction="right"
         className="schedule-drawer"
       >
-        {auth === "futureAppo" ? <CreateAppo /> : <Patient seletedPatient={seletedPatient} />}
+        {auth === "futureAppo" ? (
+          <CreateAppo closeDrawer={closeDrawer} />
+        ) : (
+          <Patient ptnData={ptnDataById} closeDrawer={closeDrawer} />
+        )}
       </Drawer>
       <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
@@ -192,7 +225,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.total_appointments || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.total_appointments || "0"}
+                      </div>
                       <div class="total-label">Total Appointments</div>
                     </div>
                   </div>
@@ -212,7 +247,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.confirmation_pending || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.confirmation_pending || "0"}
+                      </div>
                       <div class="total-label">Confirmaton Pending</div>
                     </div>
                   </div>
@@ -232,7 +269,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon1} alt="card-icon-1"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.confirmed || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.confirmed || "0"}
+                      </div>
                       <div class="total-label">Confirmed</div>
                     </div>
                   </div>
@@ -252,7 +291,9 @@ const FutureAppoint = () => {
                   <div class="d-flex align-items-center col mr-2">
                     <img src={CardIcon2} alt="card-icon-2"></img>
                     <div className="card-title">
-                      <div class="total-numbers">{kpiDetails?.cancelled || "0"}</div>
+                      <div class="total-numbers">
+                        {kpiDetails?.cancelled || "0"}
+                      </div>
                       <div class="total-label">Cancelled</div>
                     </div>
                   </div>

@@ -108,6 +108,13 @@ export function addAppo(obj) {
 
 export function getProfileById(uid) {
   return RequestAPI(BASE_URL + `/user/profile/by-id?user_id=${uid}`, {
+      method: "GET",
+    }
+  );
+}
+
+export function hospitalRepoList() {
+  return RequestAPI(BASE_URL + `/static/hospital-reports/list`, {
     method: "GET",
   });
 }
@@ -116,5 +123,34 @@ export function modifyPatientStatus(obj) {
   return RequestAPI(BASE_URL + `appointment/patient/modify`, {
     method: "POST",
     body: JSON.stringify(obj)
+  });
+}
+export function modifyAppo(obj) {
+  return RequestAPI(BASE_URL + "/appointment/doctor-nurse/update", {
+    method: "PUT",
+    body: JSON.stringify(obj),
+  });
+}
+
+export function getTestReport(u_id) {
+  return RequestAPI(
+    BASE_URL + `/documents/user/test-reports/fetch/by-id?patient_id=${u_id}`,
+    {
+      method: "GET",
+    }
+  );
+}
+
+export function sendTestRequest(obj) {
+  return RequestAPI(BASE_URL + "/documents/request-from-patient", {
+    method: "POST",
+    body: JSON.stringify(obj),
+  });
+}
+
+export function removeReq(obj) {
+  return RequestAPI(BASE_URL + "/documents/remove-request-from-patient", {
+    method: "DELETE",
+    body: JSON.stringify(obj),
   });
 }

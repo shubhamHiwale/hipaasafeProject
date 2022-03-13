@@ -153,6 +153,7 @@
   border: 0px;
   margin-right: 20px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .tabs-header .list-group-item.react-tabs__tab--selected {
@@ -180,7 +181,7 @@
   line-height: 1;
 }
 
-.table > :not(:first-child) {
+.table> :not(:first-child) {
   border-top: 0px solid currentColor;
 }
 
@@ -222,6 +223,7 @@
 .btn.btn-dates-focus .tab-count{
   color: #0098ff;
 }
+
 .btn.btn-dates:hover .tab-count {
   color: #0098ff;
 }
@@ -249,7 +251,7 @@
   border-bottom-left-radius: 0px;
 }
 
-.input-group-floting.input-group .form-floating > label {
+.input-group-floting.input-group .form-floating>label {
   padding: 1rem 0.5rem;
 }
 
@@ -370,5 +372,60 @@ button.btn.btn-status {
   border-left: 0px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  
+}
+
+.file-icon {
+  width: 50px;
+  border-radius: 100px;
+}
+
+/* .patient-document {
+  overflow: auto;
+  height: 200px;
+  height: 52vh
+} */
+
+.dwer-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dwer-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.req-doc {
+  background-color: rgba(0, 152, 255, 0.1);
+  color: #0098ff;
+  font-weight: bold;
+}
+
+.req-doc-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  height: 60px;
+  background-color: rgba(0, 152, 255, 0.1);
+  color: #0098ff;
+  font-weight: bold;
+}
+
+.req-doc-des {
+  height: 99%;
+  width: 40px;
+  background-color: rgba(0, 152, 255, 0.1);
+  border: none;
+  color: #0098ff;
+  font-weight: bold;
+}
+
+.req-doc-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-icon {
+  width: 30px
 }
