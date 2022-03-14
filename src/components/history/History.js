@@ -43,7 +43,8 @@ const History = () => {
   const getAppointmentHistoryAPI = async (uid, from, to) => {
     let res = await getAppointmentHistory(uid, moment(from).format('YYYY-MM-DD'), moment(to).format('YYYY-MM-DD'));
     if (res?.success) {
-      let data = groupBy(res?.data, 'appointment_date');
+      let data = groupBy(res?.data, 'date');
+      console.log(data);
       setAppointments(data);
     }
   }
@@ -103,7 +104,7 @@ const History = () => {
                 <div className="date-block">
                   <p className="font-weight-bold text-primary mb-1">{ap}</p>
                   <div className="row">
-                    {appointments[ap].map(u => (
+                    {appointments[ap][0]?.data?.map(u => (
                       <div className="col-sm-6">
                         <div className="border rounded p-2 px-4 mb-2">
                           <span>{u?.appointment_time}</span>

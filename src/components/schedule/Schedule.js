@@ -148,19 +148,14 @@ const FutureAppoint = () => {
   //     let response = await getScheduleKpi(uid, selectedData);
   // }, [selectedData]);
 
-  const kpiHandler = useCallback(async () => {
+  const kpiHandler =async (uid,selectedData) => {
     try {
-      let response = await getScheduleKpi(selectedData);
+      let response = await getScheduleKpi(uid,selectedData);
       setKpidetails(response?.data || null);
     } catch (e) {
       console.log(e, "error");
     }
-  }, [selectedData]);
-
-  useEffect(() => {
-    appointmentHandler(selectedData);
-    kpiHandler(selectedData);
-  }, [selectedData]);
+  };
 
   const demoFunc = async (pr, u_id) => {
     const res = await getTestReport(u_id);
