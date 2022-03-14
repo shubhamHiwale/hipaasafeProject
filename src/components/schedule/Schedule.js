@@ -11,8 +11,13 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import CreateAppo from "../DrawerField/CreateAppo";
 import Patient from "../DrawerField/Patient";
-import { getAppointsByDateRange, getScheduleKpi, getDoctors, modifyPatientStatus } from "../../services/apiservices";
-import moment from 'moment';
+import {
+  getAppointsByDateRange,
+  getScheduleKpi,
+  getDoctors,
+  modifyPatientStatus,
+} from "../../services/apiservices";
+import moment from "moment";
 import appContext from "../../context/appcontext/AppContext";
 import { getTestReport } from "../../services/apiservices";
 
@@ -20,7 +25,9 @@ const FutureAppoint = () => {
   const AppContext = useContext(appContext);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [seletedPatient, setSeletedPatient] = useState(null);
-  const [selectedData, setSelectedDate] = useState(moment().add(1, 'days').format('YYYY-MM-DD'));
+  const [selectedData, setSelectedDate] = useState(
+    moment().add(1, "days").format("YYYY-MM-DD")
+  );
 
   useEffect(() => {
     if (AppContext?.user?.role_id === 4) {
@@ -29,28 +36,39 @@ const FutureAppoint = () => {
       appointmentHandler(AppContext?.user?.uid, selectedData);
       kpiHandler(AppContext?.user?.uid, selectedData);
     }
-  }, [])
+  }, []);
 
   const chnageStatusAPICall = async (appointment_id, appointment_status) => {
-    switch (appointment_status) {
-
-      case 'CONFIRMED':
-        // await modifyPatientStatus({ appointment_id, appointment_status });
-        break;
-
-      case 'RESCHEDULED':
-        break;
-
-      case 'PENDING':
-        break;
-
-      case 'CANCELLED':
-        break;
-
-      case 'SCHEDULED':
-        break;
+    // window.alert(appointment_status);
+    if (appointment_status === "PENDING") {
+      const res = await modifyPatientStatus({
+        appointment_id,
+        type: "Notify confirmation",
+      });
+      if (res) {
+        console.log("modifyPatientStatus :", res);
+      }
     }
-  }
+    // switch (appointment_status) {
+    //   case "CONFIRMED":
+    //     console.log("case 1");
+    //     break;
+
+    //   case "RESCHEDULED":
+    //     break;
+
+    //   case "PENDING":
+    //     window.alert("am pending");
+
+    //     break;
+
+    //   case "CANCELLED":
+    //     break;
+
+    //   case "SCHEDULED":
+    //     break;
+    // }
+  };
 
   const handleDoctorChanges = (e) => {
     setSelectedDoctor(e.target.value);
@@ -66,13 +84,13 @@ const FutureAppoint = () => {
       kpiHandler(res?.data?.rows[0].uid, selectedData);
       setSelectedDoctor(res?.data?.rows[0].uid);
     }
-  }
+  };
 
   const onChangeDateHanlder = (data) => {
     setSelectedDate(data.dateForm);
     appointmentHandler(selectedDoctor, data.dateForm);
     kpiHandler(selectedDoctor, data.dateForm);
-  }
+  };
 
   const getFutureDatesArr = (noOfDays) => {
     let timeArr = [];
@@ -95,12 +113,12 @@ const FutureAppoint = () => {
     return timeArr;
   };
 
-  const getDates = getFutureDatesArr(6); 
+  const getDates = getFutureDatesArr(6);
   const [dates, setDates] = useState(getDates);
   const [isOpen, setIsOpen] = useState(false);
   const [auth, setAuth] = useState();
   const [doctors, setDoctors] = useState(null);
- 
+
   const toggleDrawer = (gt) => {
     if (gt === "patient") {
       setAuth(gt);
@@ -115,7 +133,6 @@ const FutureAppoint = () => {
   const [ptnDataById, setPtnDataById] = useState();
 
   // const appointmentHandler = async (uid, selectedData) => {
-  
 
   const appointmentHandler = useCallback(async (uid) => {
     try {
@@ -130,7 +147,7 @@ const FutureAppoint = () => {
   //   try {
   //     let response = await getScheduleKpi(uid, selectedData);
   // }, [selectedData]);
-  
+
   const kpiHandler = useCallback(async () => {
     try {
       let response = await getScheduleKpi(selectedData);
@@ -139,7 +156,7 @@ const FutureAppoint = () => {
       console.log(e, "error");
     }
   }, [selectedData]);
-  
+
   useEffect(() => {
     appointmentHandler(selectedData);
     kpiHandler(selectedData);
@@ -180,36 +197,44 @@ const FutureAppoint = () => {
             </span>
           </div>
           <div>
-            {doctors && <InputGroup className="input-group-floting">
-              <InputGroup.Text>
-                <i class="fa fa-user-o" aria-hidden="true"></i>
-              </InputGroup.Text>
-              <Form.Select
-                className="custom-selectbox"
-                aria-label="Select Speciality"
-                onChange={handleDoctorChanges}
-                name="speciality"
-                value={selectedDoctor}
-              >
-                {doctors?.map((dt, ind) => (
-                  <>
-                    <option value={dt.uid}>
-                      {dt.name}
-                    </option>
-                  </>
-                ))
-                }
-              </Form.Select>
-            </InputGroup>}
+            {doctors && (
+              <InputGroup className="input-group-floting">
+                <InputGroup.Text>
+                  <i class="fa fa-user-o" aria-hidden="true"></i>
+                </InputGroup.Text>
+                <Form.Select
+                  className="custom-selectbox"
+                  aria-label="Select Speciality"
+                  onChange={handleDoctorChanges}
+                  name="speciality"
+                  value={selectedDoctor}
+                >
+                  {doctors?.map((dt, ind) => (
+                    <>
+                      <option value={dt.uid}>{dt.name}</option>
+                    </>
+                  ))}
+                </Form.Select>
+              </InputGroup>
+            )}
             <Button onClick={toggleDrawer}>Create an Appointment</Button>
           </div>
         </div>
 
         <div className="d-sm-flex bg-white pt-2 align-items-center justify-content-between mb-4">
           <div className="tabs-header">
-            {dates.map((e, i) => (<button className={selectedData == e.dateForm ? "btn btn-dates-focus" : "btn btn-dates"} onClick={() => onChangeDateHanlder(e)} >
-              {e.name}  <span className="tab-count">(0)</span>
-            </button>))}
+            {dates.map((e, i) => (
+              <button
+                className={
+                  selectedData == e.dateForm
+                    ? "btn btn-dates-focus"
+                    : "btn btn-dates"
+                }
+                onClick={() => onChangeDateHanlder(e)}
+              >
+                {e.name} <span className="tab-count">(0)</span>
+              </button>
+            ))}
           </div>
         </div>
 
@@ -306,7 +331,11 @@ const FutureAppoint = () => {
         {/* <!-- Content Row --> */}
 
         <div class="row">
-          <FutureAppointmentTable demoFunc={demoFunc} appointMentList={appointMentList} chnageStatusAPICall={chnageStatusAPICall} />
+          <FutureAppointmentTable
+            demoFunc={demoFunc}
+            appointMentList={appointMentList}
+            chnageStatusAPICall={chnageStatusAPICall}
+          />
           {/* <!-- Area Chart --> */}
         </div>
 

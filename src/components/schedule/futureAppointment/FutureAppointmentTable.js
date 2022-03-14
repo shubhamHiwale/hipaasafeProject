@@ -8,7 +8,11 @@ import Patient from "../../DrawerField/Patient";
 import { modifyAppo } from "../../../services/apiservices";
 import moment from "moment";
 
-const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall }) => {
+const FutureAppointmentTable = ({
+  demoFunc,
+  appointMentList,
+  chnageStatusAPICall,
+}) => {
   console.log("appointMentList : ", appointMentList);
   const toggleDrawer2 = (e) => {
     demoFunc("patient", e.target.id);
@@ -32,31 +36,27 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall
     }
   };
 
-
   const getClassName = (appointment_status) => {
-
     switch (appointment_status) {
-      case 'CONFIRMED':
-        return "success"
+      case "CONFIRMED":
+        return "success";
 
-      case 'RESCHEDULED':
-        return "primary"
+      case "RESCHEDULED":
+        return "primary";
 
-      case 'PENDING':
-        return "light"
+      case "PENDING":
+        return "light";
 
-      case 'CANCELLED':
-        return "danger disabled"
+      case "CANCELLED":
+        return "danger disabled";
 
-      case 'SCHEDULED':
-        return "outline-info"
+      case "SCHEDULED":
+        return "outline-info";
 
       default:
-        return "outline-primary"
+        return "outline-primary";
     }
-
-
-  }
+  };
 
   return (
     <>
@@ -84,28 +84,59 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall
                   </tr>
                 </thead>
                 <tbody>
-                  {appointMentList && appointMentList.map((e, i) => {
-                    let { id, appointment_date, appointment_id, appointment_time, appointment_status, patient_details: {uid, age, name, mobile } } = e;
-                    return (
-                    <tr>
-                      <td>{id}</td>
-                      <td id={uid} className="patient" onClick={() => toggleDrawer2(e)}>
-                        {name}
-                      </td>
-                      {/* <td
+                  {appointMentList &&
+                    appointMentList.map((e, i) => {
+                      let {
+                        id,
+                        appointment_date,
+                        appointment_id,
+                        appointment_time,
+                        appointment_status,
+                        patient_details: { uid, age, name, mobile },
+                      } = e;
+                      return (
+                        <tr>
+                          <td>{id}</td>
+                          <td
+                            id={uid}
+                            className="patient"
+                            onClick={() => toggleDrawer2(e)}
+                          >
+                            {name}
+                          </td>
+                          {/* <td
                             id={uid}
                             className="patient"
                             onClick={toggleDrawer2}
                           >
                             {name}
                           </td> */}
-                      <td>{age}</td>
+                          <td>{age}</td>
 
-                      <td>{appointment_time}</td>
-                      <td>{mobile}</td>
-                      <td>
-                        <Button className="btn-status rounded-pill" variant={getClassName(appointment_status)} onClick={() => { chnageStatusAPICall(appointment_id, appointment_status) }} >{appointment_status}</Button>
-                        {/* <Button
+                          <td>{appointment_time}</td>
+                          <td>{mobile}</td>
+                          <td>
+                            <Button
+                              className="btn-status rounded-pill"
+                              variant={getClassName(appointment_status)}
+                              onClick={() => {
+                                chnageStatusAPICall(
+                                  appointment_id,
+                                  appointment_status
+                                );
+                              }}
+                            >
+                              {appointment_status === "PENDING"
+                                ? "Take confirmation"
+                                : appointment_status === "NEXT_IN_Q"
+                                ? "Mark as a complete"
+                                : appointment_status === "REMINDER"
+                                ? "Confirmation Send"
+                                : appointment_status === "CONFIRMED"
+                                ? "Waiting"
+                                : ""}
+                            </Button>
+                            {/* <Button
                               onClick={reqModifyAppo}
                               variant="outline-info"
                               id={appointment_id}
@@ -122,10 +153,10 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall
                                 ? "Mark as a complete"
                                 : "Rescheduled"}
                             </Button> */}
-                      </td>
-                    </tr>)
-                  })}
-                  
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </Table>
             </div>
