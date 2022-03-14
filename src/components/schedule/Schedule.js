@@ -98,7 +98,6 @@ const FutureAppoint = () => {
   const getDates = getFutureDatesArr(6); 
   const [dates, setDates] = useState(getDates);
   const [isOpen, setIsOpen] = useState(false);
-  console.log("isOpen : ", isOpen);
   const [auth, setAuth] = useState();
   const [doctors, setDoctors] = useState(null);
  
@@ -113,18 +112,19 @@ const FutureAppoint = () => {
 
   const [appointMentList, setAppointmentList] = useState([]);
   const [kpiDetails, setKpidetails] = useState(null);
-
-  // const appointmentHandler = async (uid, selectedData) => {
   const [ptnDataById, setPtnDataById] = useState();
 
-  const appointmentHandler = useCallback(async () => {
+  // const appointmentHandler = async (uid, selectedData) => {
+  
+
+  const appointmentHandler = useCallback(async (uid) => {
     try {
       let response = await getAppointsByDateRange(uid, selectedData);
       setAppointmentList(response?.data?.rows || []);
     } catch (e) {
       console.log(e, "error");
     }
-  };
+  });
 
   // const kpiHandler = async (uid, selectedData) => {
   //   try {
@@ -139,10 +139,7 @@ const FutureAppoint = () => {
       console.log(e, "error");
     }
   }, [selectedData]);
-
-  const onChangeDateHanlder = (data) => {
-    setSelectedDate(data.dateForm);
-  };
+  
   useEffect(() => {
     appointmentHandler(selectedData);
     kpiHandler(selectedData);

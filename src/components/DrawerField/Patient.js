@@ -25,7 +25,7 @@ import {
 } from "react-bootstrap";
 import ReqFile from "../../assets/img/reqFile.svg";
 
-const Patient = ({ closeDrawer, ptnData }) => {
+const Patient = ({seletedPatient, closeDrawer, ptnData }) => {
   // console.log("ptnData : ", ptnData[0].patient_id);
   const [date, setDate] = useState();
   const [cbVal, setCbVal] = useState([]);
@@ -39,11 +39,6 @@ const Patient = ({ closeDrawer, ptnData }) => {
 
   const [reqDocData, setReqDocData] = useState(reqDocObj);
 
-  // console.log("reqDocData : ", reqDocData);
-  console.log("cbVal : ", cbVal);
-
-const Patient = ({ seletedPatient }) => {
-  console.log("seletedPatient", seletedPatient);
   const [patientData, setPatientData] = useState({
     doctor_name: "",
     email: "",
@@ -54,6 +49,7 @@ const Patient = ({ seletedPatient }) => {
   });
   let name;
   let value;
+
   const handleChanges = (e) => {
     name = e.target.name;
     value = e.target.value;
@@ -258,28 +254,6 @@ const Patient = ({ seletedPatient }) => {
                 x
               </Button>
             </InputGroup>
-          </Col>
-
-          <Col className="position-absolute fixed-bottom pb-2">
-            {/* <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up
-                    the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
-                  <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                  <ListGroupItem>Vestibulum at eros</ListGroupItem>
-                </ListGroup>
-                <Card.Body>
-                  <Card.Link href="#">Card Link</Card.Link>
-                  <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body>
-              </Card> */}
           </Col>
         </Form>
       </div>
