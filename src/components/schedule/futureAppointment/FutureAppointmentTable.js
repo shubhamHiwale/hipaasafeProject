@@ -88,6 +88,7 @@ const FutureAppointmentTable = ({
                     appointMentList.map((e, i) => {
                       let {
                         id,
+                        queue_no,
                         appointment_date,
                         appointment_id,
                         appointment_time,
@@ -96,7 +97,7 @@ const FutureAppointmentTable = ({
                       } = e;
                       return (
                         <tr>
-                          <td>{id}</td>
+                          <td>{queue_no}</td>
                           <td
                             id={uid}
                             className="patient"

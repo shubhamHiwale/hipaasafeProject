@@ -34,7 +34,7 @@ const PatientsList = ({ patients }) => {
 
                     {patients?.map((i, index) => (
                       <tr>
-                        <td>{index + 1}</td>
+                        <td>{i?.queue_no}</td>
                         <td>{i?.patient_details?.name}</td>
                         <td>{i?.patient_details?.age}</td>
                         <td>{i?.appointment_time}</td>
