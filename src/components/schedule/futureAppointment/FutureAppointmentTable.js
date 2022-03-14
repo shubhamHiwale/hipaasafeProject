@@ -123,7 +123,9 @@ const FutureAppointmentTable = ({
                               onClick={() => {
                                 chnageStatusAPICall(
                                   appointment_id,
-                                  appointment_status
+                                  appointment_status,
+                                  appointment_time,
+                                  appointment_date
                                 );
                               }}
                             >
