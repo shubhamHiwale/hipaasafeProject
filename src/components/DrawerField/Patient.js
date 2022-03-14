@@ -140,7 +140,7 @@ const Patient = ({seletedPatient, closeDrawer, ptnData }) => {
 
               <TabPanel className="custom-tab-panel">
                 {ptnData
-                  ? ptnData.map((dt, ind) => (
+                  ? ptnData?.map((dt, ind) => (
                       <div className="patient-document">
                         <div className="px-2 py-2">
                           <div>

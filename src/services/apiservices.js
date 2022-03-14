@@ -135,9 +135,10 @@ export function modifyAppo(obj) {
   });
 }
 
-export function getTestReport(u_id) {
+export function getTestReport(u_id, p_id) {
   return RequestAPI(
-    BASE_URL + `/documents/user/test-reports/fetch/by-id?patient_id=${u_id}`,
+    BASE_URL + `/documents/user/test-reports/fetch?doctor_id=${u_id}&patient_id=${p_id}`,
+   
     {
       method: "GET",
     }

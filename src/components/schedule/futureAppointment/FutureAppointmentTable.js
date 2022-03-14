@@ -15,7 +15,7 @@ const FutureAppointmentTable = ({
 }) => {
   console.log("appointMentList : ", appointMentList);
   const toggleDrawer2 = (e) => {
-    demoFunc("patient", e.target.id);
+    demoFunc("patient", e);
   };
 
   const reqModifyAppo = async (e) => {

@@ -140,7 +140,7 @@ const FutureAppoint = () => {
 
   const [appointMentList, setAppointmentList] = useState([]);
   const [kpiDetails, setKpidetails] = useState(null);
-  const [ptnDataById, setPtnDataById] = useState();
+  const [ptnDataById, setPtnDataById] = useState(null);
 
   const appointmentHandler = async (uid, selectedData) => {
     try {
@@ -165,11 +165,12 @@ const FutureAppoint = () => {
     }
   };
 
-  const demoFunc = async (pr, u_id) => {
-    const res = await getTestReport(u_id);
+  const demoFunc = async (pr, p_id) => {
+    setSeletedPatient(p_id)
+    const res = await getTestReport(selectedDoctor ,p_id.patient_details.uid);
     if (res) {
       toggleDrawer(pr);
-      setPtnDataById(res.data);
+      // setPtnDataById(res.data);
     }
   };
 
@@ -188,7 +189,7 @@ const FutureAppoint = () => {
         {auth === "futureAppo" ? (
           <CreateAppo closeDrawer={closeDrawer} />
         ) : (
-          <Patient ptnData={ptnDataById} closeDrawer={closeDrawer} />
+          <Patient seletedPatient={seletedPatient} ptnData={ptnDataById} closeDrawer={closeDrawer} />
         )}
       </Drawer>
       <div class="container-fluid">
