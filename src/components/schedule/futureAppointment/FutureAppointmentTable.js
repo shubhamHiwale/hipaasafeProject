@@ -3,11 +3,12 @@ import { Button, Table } from "react-bootstrap";
 import { Form, Row, Col } from "react-bootstrap";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import { getClassNamePrefix } from "rsuite/esm/utils";
 import Patient from "../../DrawerField/Patient";
 import { modifyAppo } from "../../../services/apiservices";
 import moment from "moment";
 
-const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
+const FutureAppointmentTable = ({ demoFunc, appointMentList, chnageStatusAPICall }) => {
   console.log("appointMentList : ", appointMentList);
   const toggleDrawer2 = (e) => {
     demoFunc("patient", e.target.id);
@@ -30,6 +31,32 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
       console.log(res);
     }
   };
+
+
+  const getClassName = (appointment_status) => {
+
+    switch (appointment_status) {
+      case 'CONFIRMED':
+        return "success"
+
+      case 'RESCHEDULED':
+        return "primary"
+
+      case 'PENDING':
+        return "light"
+
+      case 'CANCELLED':
+        return "danger disabled"
+
+      case 'SCHEDULED':
+        return "outline-info"
+
+      default:
+        return "outline-primary"
+    }
+
+
+  }
 
   return (
     <>
@@ -57,31 +84,28 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {appointMentList &&
-                    appointMentList.map((e, i) => {
-                      let {
-                        id,
-                        appointment_date,
-                        appointment_time,
-                        appointment_status,
-                        appointment_id,
-                        patient_details: { uid, age, name, mobile },
-                      } = e;
-                      return (
-                        <tr>
-                          <td>{id}</td>
-                          <td
+                  {appointMentList && appointMentList.map((e, i) => {
+                    let { id, appointment_date, appointment_id, appointment_time, appointment_status, patient_details: {uid, age, name, mobile } } = e;
+                    return (
+                    <tr>
+                      <td>{id}</td>
+                      <td id={uid} className="patient" onClick={() => toggleDrawer2(e)}>
+                        {name}
+                      </td>
+                      {/* <td
                             id={uid}
                             className="patient"
                             onClick={toggleDrawer2}
                           >
                             {name}
-                          </td>
-                          <td>{age}</td>
-                          <td>{appointment_date}</td>
-                          <td>{appointment_time}</td>
-                          <td>
-                            <Button
+                          </td> */}
+                      <td>{age}</td>
+
+                      <td>{appointment_time}</td>
+                      <td>{mobile}</td>
+                      <td>
+                        <Button className="btn-status rounded-pill" variant={getClassName(appointment_status)} onClick={() => { chnageStatusAPICall(appointment_id, appointment_status) }} >{appointment_status}</Button>
+                        {/* <Button
                               onClick={reqModifyAppo}
                               variant="outline-info"
                               id={appointment_id}
@@ -97,11 +121,11 @@ const FutureAppointmentTable = ({ demoFunc, appointMentList }) => {
                                 : appointment_status === "CONFIRMED"
                                 ? "Mark as a complete"
                                 : "Rescheduled"}
-                            </Button>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                            </Button> */}
+                      </td>
+                    </tr>)
+                  })}
+                  
                 </tbody>
               </Table>
             </div>

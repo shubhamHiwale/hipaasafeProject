@@ -73,34 +73,26 @@ export function GetPatients(uid) {
 }
 
 export function getAppointmentHistory(uid, from, to) {
+  return RequestAPI(BASE_URL + `/query/appointments/fetch/by-date-range?from_date=${from}&to_date=${to}&doctor_id=${uid}`, {
+    method: "GET",
+  });
+}
+
+export function getAppointsByDateRange(uid, date) {
   return RequestAPI(
     BASE_URL +
-      `/query/appointments/fetch/by-date-range?from_date=${from}&to_date=${to}&doctor_id=${uid}`,
+    `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${uid}`,
     {
       method: "GET",
     }
   );
 }
 
-let user = sessionStorage.getItem("user")
-  ? JSON.parse(sessionStorage.getItem("user"))
-  : null;
-
-export function getAppointsByDateRange(date) {
-  return RequestAPI(
-    BASE_URL +
-      `/query/appointments/fetch/by-date?page=1&limit=10&date=${date}&doctor_id=${user.uid}`,
-    {
-      method: "GET",
-    }
-  );
-}
-
-export function getScheduleKpi(date, page = 1, limit = 10) {
+export function getScheduleKpi(uid, date, page = 1, limit = 10) {
   console.log(date, "date");
   return RequestAPI(
     BASE_URL +
-      `/query/kpi-cards/fetch/schedule?doctor_id=${user.uid}&date=${date}`,
+    `/query/kpi-cards/fetch/schedule?doctor_id=${uid}&date=${date}`,
     {
       method: "GET",
     }
@@ -114,12 +106,25 @@ export function addAppo(obj) {
   });
 }
 
+export function getProfileById(uid) {
+  return RequestAPI(BASE_URL + `/user/profile/by-id?user_id=${uid}`, {
+      method: "GET",
+    }
+  );
+}
+
 export function hospitalRepoList() {
   return RequestAPI(BASE_URL + `/static/hospital-reports/list`, {
     method: "GET",
   });
 }
 
+export function modifyPatientStatus(obj) {
+  return RequestAPI(BASE_URL + `appointment/patient/modify`, {
+    method: "POST",
+    body: JSON.stringify(obj)
+  });
+}
 export function modifyAppo(obj) {
   return RequestAPI(BASE_URL + "/appointment/doctor-nurse/update", {
     method: "PUT",

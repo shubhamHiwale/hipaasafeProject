@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Form, Row, Button ,InputGroup} from "react-bootstrap";
+import { Form, Row, Button, InputGroup } from "react-bootstrap";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import DatePicker from "react-date-picker";
 import appContext from "../../context/appcontext/AppContext";
-import { getDoctors,getAppointmentHistory} from '../../services/apiservices'
+import { getDoctors, getAppointmentHistory } from '../../services/apiservices'
 import moment from "moment";
 
 const History = () => {
@@ -14,12 +14,12 @@ const History = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [doctors, setDoctors] = useState(null);
   const AppContext = useContext(appContext);
-  
+
   useEffect(() => {
-    if(AppContext?.user?.role_id===4){
+    if (AppContext?.user?.role_id === 4) {
       getDoctorsAPI();
-    }else{
-      getAppointmentHistoryAPI(AppContext?.user?.uid, startValue,endValue);
+    } else {
+      getAppointmentHistoryAPI(AppContext?.user?.uid, startValue, endValue);
       setSelectedDoctor(AppContext?.user?.uid);
     }
   }, [])
@@ -28,29 +28,29 @@ const History = () => {
     let res = await getDoctors();
     if (res?.success) {
       setDoctors(res?.data?.rows);
-      getAppointmentHistoryAPI(res?.data?.rows[0].uid, startValue,endValue);
+      getAppointmentHistoryAPI(res?.data?.rows[0].uid, startValue, endValue);
       setSelectedDoctor(res?.data?.rows[0].uid);
     }
   }
 
-  var groupBy = function(xs, key) {
-    return xs.reduce(function(rv, x) {
+  var groupBy = function (xs, key) {
+    return xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
   };
 
-  const getAppointmentHistoryAPI = async (uid, from,to) => {
+  const getAppointmentHistoryAPI = async (uid, from, to) => {
     let res = await getAppointmentHistory(uid, moment(from).format('YYYY-MM-DD'), moment(to).format('YYYY-MM-DD'));
     if (res?.success) {
-      let data = groupBy(res?.data,'appointment_date');
+      let data = groupBy(res?.data, 'appointment_date');
       setAppointments(data);
     }
   }
 
   const handleDoctorChanges = (e) => {
     setSelectedDoctor(e.target.value);
-    getAppointmentHistoryAPI(e.target.value, startValue,endValue)
+    getAppointmentHistoryAPI(e.target.value, startValue, endValue)
   };
 
 
@@ -63,62 +63,62 @@ const History = () => {
             <Form className="">
               <Row>
                 <div className="col-sm-12">
-                    {doctors&& <InputGroup className="input-group-floting">
-                      <InputGroup.Text>
-                        <i class="fa fa-user-o" aria-hidden="true"></i>
-                      </InputGroup.Text>
-                      <Form.Select
-                        className="custom-selectbox"
-                        aria-label="Select Speciality"
-                        onChange={handleDoctorChanges}
-                        name="speciality"
-                        value={selectedDoctor}
-                      >
-                        { doctors?.map((dt, ind) => (
-                            <>
-                              <option value={dt.uid}>
-                                {dt.name}
-                              </option>
-                            </>
-                          ))
-                          }
-                      </Form.Select>
-                    </InputGroup>}
+                  {doctors && <InputGroup className="input-group-floting">
+                    <InputGroup.Text>
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </InputGroup.Text>
+                    <Form.Select
+                      className="custom-selectbox"
+                      aria-label="Select Speciality"
+                      onChange={handleDoctorChanges}
+                      name="speciality"
+                      value={selectedDoctor}
+                    >
+                      {doctors?.map((dt, ind) => (
+                        <>
+                          <option value={dt.uid}>
+                            {dt.name}
+                          </option>
+                        </>
+                      ))
+                      }
+                    </Form.Select>
+                  </InputGroup>}
                 </div>
               </Row>
             </Form>
             <div className="d-flex ml-4">
-              <DatePicker onChange={(e)=>{startDate(e); getAppointmentHistoryAPI(selectedDoctor,e,endValue )}} value={startValue} />
+              <DatePicker onChange={(e) => { startDate(e); getAppointmentHistoryAPI(selectedDoctor, e, endValue) }} value={startValue} />
               <div className="p-2">TO</div>
-              <DatePicker onChange={(e)=>{endDate(e); getAppointmentHistoryAPI(selectedDoctor,startValue,e )}}  value={endValue} />
+              <DatePicker onChange={(e) => { endDate(e); getAppointmentHistoryAPI(selectedDoctor, startValue, e) }} value={endValue} />
             </div>
           </div>
         </div>
-        
-        <div className="card">
+
+        <div className="card history-card">
           <div className="card-body">
             {/* date block */}
-           {appointments &&Object.keys(appointments)?.map((ap)=>{
-             return(
-              <div className="date-block">            
-              <p className="font-weight-bold text-primary mb-1">{ap}</p>              
-              <div className="row">                                  
-               {appointments[ap].map(u=>(
-                <div className="col-sm-6">
-                  <div className="border rounded p-2 mb-2">
-                    <span>{u?.appointment_time}</span>
-                    <div className="d-flex justify-content-between">
-                      <span>{u?.patient_details?.name}</span>
-                      <span>{u?.patient_details?.age} Yrs</span>
-                    </div>
+            {appointments && Object.keys(appointments)?.map((ap) => {
+              return (
+                <div className="date-block">
+                  <p className="font-weight-bold text-primary mb-1">{ap}</p>
+                  <div className="row">
+                    {appointments[ap].map(u => (
+                      <div className="col-sm-6">
+                        <div className="border rounded p-2 px-4 mb-2">
+                          <span>{u?.appointment_time}</span>
+                          <div className="d-flex justify-content-between patient-details">
+                            <span>{u?.patient_details?.name}</span>
+                            <span>{u?.patient_details?.age} Yrs</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-               )) }
-              </div>                
-             </div>
-             )
+              )
 
-           })  }          
+            })}
           </div>
         </div>
       </div>
