@@ -33,6 +33,11 @@ const FutureAppoint = () => {
   );
 
   useEffect(() => {
+    callDefaultAPI()
+  }, []);
+
+
+  const callDefaultAPI = ()=>{
     if (AppContext?.user?.role_id === 4) {
       getDoctorsAPI();
     } else {
@@ -41,7 +46,7 @@ const FutureAppoint = () => {
       kpiHandler(AppContext?.user?.uid, selectedData);
       GetWeekCountKPI(AppContext?.user?.uid);
     }
-  }, []);
+  }
 
   const GetWeekCountKPI = async (uid) => {
     let res = await weekCountAPI(uid);
@@ -54,42 +59,22 @@ const FutureAppoint = () => {
     appointment_time,
     appointment_date
   ) => {
-    // window.alert(appointment_status);
+    let obj={appointment_id, appointment_date,type:"",appointment_time }
+    switch (appointment_status) {
+      case "PENDING":
+        obj.type = "NOTIFY_CONFIRMATION";
+        await modifyAppo(obj);
+        callDefaultAPI()
+      break;
 
-    const res = await modifyAppo({
-      appointment_id,
-      appointment_date: appointment_date,
-      type:
-        appointment_status === "PENDING"
-          ? "NOTIFY_CONFIRMATION"
-          : appointment_status === "Next_in_Q"
-          ? "COMPLETED"
-          : "",
-      appointment_time: appointment_time,
-    });
-    if (res) {
-      console.log("modifyPatientStatus :", res);
+      case "NEXT_IN_Q":
+        obj.type = "COMPLETED";
+        await modifyAppo(obj);
+        callDefaultAPI()
+        break;
+
+      default:
     }
-
-    // switch (appointment_status) {
-    //   case "CONFIRMED":
-    //     console.log("case 1");
-    //     break;
-
-    //   case "RESCHEDULED":
-    //     break;
-
-    //   case "PENDING":
-    //     window.alert("am pending");
-
-    //     break;
-
-    //   case "CANCELLED":
-    //     break;
-
-    //   case "SCHEDULED":
-    //     break;
-    // }
   };
 
   const handleDoctorChanges = (e) => {

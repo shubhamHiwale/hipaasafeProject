@@ -120,14 +120,7 @@ const FutureAppointmentTable = ({
                             <Button
                               className="btn-status rounded-pill"
                               variant={getClassName(appointment_status)}
-                              onClick={() => {
-                                chnageStatusAPICall(
-                                  appointment_id,
-                                  appointment_status,
-                                  appointment_time,
-                                  appointment_date
-                                );
-                              }}
+                              onClick={() => { chnageStatusAPICall( appointment_id, appointment_status, appointment_time,appointment_date);}}
                             >
                               {appointment_status === "PENDING"
                                 ? "Take confirmation"
