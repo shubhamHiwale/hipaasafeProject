@@ -81,6 +81,7 @@ const FutureAppoint = () => {
     setSelectedDoctor(e.target.value);
     appointmentHandler(e.target.value, selectedData);
     kpiHandler(e.target.value, selectedData);
+    GetWeekCountKPI(e.target.value);
   };
 
   const getDoctorsAPI = async () => {
@@ -89,6 +90,7 @@ const FutureAppoint = () => {
       setDoctors(res?.data?.rows);
       appointmentHandler(res?.data?.rows[0].uid, selectedData);
       kpiHandler(res?.data?.rows[0].uid, selectedData);
+      GetWeekCountKPI(res?.data?.rows[0].uid);
       setSelectedDoctor(res?.data?.rows[0].uid);
     }
   };
@@ -97,6 +99,7 @@ const FutureAppoint = () => {
     setSelectedDate(data.date);
     appointmentHandler(selectedDoctor, data.date);
     kpiHandler(selectedDoctor, data.date);
+    GetWeekCountKPI(selectedDoctor);
   };
 
   const getFutureDatesArr = (noOfDays) => {
