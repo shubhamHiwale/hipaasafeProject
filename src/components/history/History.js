@@ -64,15 +64,15 @@ const History = () => {
             <Form className="">
               <Row>
                 <div className="col-sm-12">
-                  {doctors && <InputGroup className="input-group-floting">
+                  {doctors && <InputGroup className="input-group-floting dr-custom-selectbox">
                     <InputGroup.Text>
                       <i class="fa fa-user-o" aria-hidden="true"></i>
                     </InputGroup.Text>
                     <Form.Select
                       className="custom-selectbox"
-                      aria-label="Select Speciality"
+                      aria-label="Select Doctor"
                       onChange={handleDoctorChanges}
-                      name="speciality"
+                      name="Doctor"
                       value={selectedDoctor}
                     >
                       {doctors?.map((dt, ind) => (
@@ -88,9 +88,10 @@ const History = () => {
                 </div>
               </Row>
             </Form>
-            <div className="d-flex ml-4">
+            <div className="d-flex ml-4 custom-daterange">
+              <div className="p-1 px-3"><i class="fa fa-calendar" aria-hidden="true"></i></div>              
               <DatePicker onChange={(e) => { startDate(e); getAppointmentHistoryAPI(selectedDoctor, e, endValue) }} value={startValue} />
-              <div className="p-2">TO</div>
+              <div className="p-1">TO</div>
               <DatePicker onChange={(e) => { endDate(e); getAppointmentHistoryAPI(selectedDoctor, startValue, e) }} value={endValue} />
             </div>
           </div>

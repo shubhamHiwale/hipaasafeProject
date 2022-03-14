@@ -37,7 +37,7 @@ const PatientsList = ({ patients,chnageStatusAPICall ,AppContext, selectedDoctor
               <div className="py-2">
                 <h6 className="mb-2 font-weight-bold">
                   {AppContext?.user?.role_id === 4
-                     ? selectedDoctor?.name :    "Patients List"
+                     ? selectedDoctor?.name + " Patient List" :    "Patients List"
                   }
                   </h6>
               </div>

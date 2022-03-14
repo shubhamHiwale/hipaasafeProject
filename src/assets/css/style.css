@@ -429,3 +429,66 @@ button.btn.btn-status {
 .file-icon {
   width: 30px
 }
+
+
+.dr-custom-dropdown {
+  min-width: 300px;  
+}
+
+.dr-custom-dropdown.select-dr{
+  float: right;
+  position: absolute;
+  z-index: 99999;
+  right: 3rem;
+}
+
+.dr-custom-dropdown select.custom-selectbox.form-select {
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px;
+}
+
+.dr-custom-dropdown .input-group-floting.input-group .input-group-text {
+  height: 50px;
+  margin: 10px 0px;
+  border-radius: 10px;
+}
+
+
+.dr-custom-dropdown .form-select:focus,
+.dr-custom-selectbox .custom-selectbox:focus{
+  box-shadow: none;
+  border: 1px solid #ced4da;;
+}
+
+.dr-custom-selectbox .custom-selectbox{
+  height: 50px;
+  border-radius: 10px;
+  min-width: 250px !important;
+}
+
+.dr-custom-selectbox .input-group-text {
+  border-radius: 10px;
+}
+
+.custom-daterange {
+  background: #fff;
+  padding: 10px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+}
+
+.custom-daterange .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.custom-daterange button.react-date-picker__calendar-button {
+  display: none;
+}
+
+.btn-create-box button.btn.btn-primary {
+  height: 50px;
+  padding: 0px 20px !important;
+  border-radius: 10px;
+}

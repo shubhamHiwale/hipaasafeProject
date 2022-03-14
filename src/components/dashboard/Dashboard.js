@@ -231,20 +231,22 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-          </div>}
+          </div>
+        }
+
         {doctors &&
           <>
            
-            <div style={{ width: 300 }}>
+            <div className="dr-custom-dropdown select-dr">
               <InputGroup className="input-group-floting">
                 <InputGroup.Text>
                   <i class="fa fa-user-o" aria-hidden="true"></i>
                 </InputGroup.Text>
                 <Form.Select
                   className="custom-selectbox"
-                  aria-label="Select Speciality"
+                  aria-label="Select Doctor"
                   onChange={handleDoctorChanges}
-                  name="speciality"
+                  name="Doctor"
                   value={selectedDoctor?.uid}
                 >
                   {doctors?.map((dt, ind) => (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
-import { addDoctor, getSpecialityList, getProfileById } from "../../../services/apiservices";
+import { addDoctor, getSpecialityList } from "../../../services/apiservices";
 import { useHistory, useLocation } from "react-router-dom";
 
 import {
@@ -57,32 +57,27 @@ const AddDoctor = () => {
     }
   };
 
-  useEffect(() => {
+  useEffect( () => {
     getSpeciality();
   }, []);
 
-  const getSpeciality = async () => {
+  const getSpeciality = async()=>{
     const res = await getSpecialityList();
     if (res.success) {
       setSpcList(res.data);
       setOptions(res.data?.map((dt) => { return { label: dt.title, value: dt.speciality_id }; }));
       if (location?.state?.doctor) {
-        getProfileByIdAPI(location?.state?.doctor?.uid);
+        setDoctorData({
+          uid: location?.state?.doctor?.uid,
+          name: location?.state?.doctor?.name,
+          email: "",
+          city: location?.state?.doctor?.doctor_details?.location,
+          mobile: location?.state?.doctor?.number,
+          speciality: location?.state?.doctor?.doctor_details?.speciality?.speciality_id,
+          year_of_exp: location?.state?.doctor?.doctor_details?.experience,
+        });
       }
     }
-  }
-
-  const getProfileByIdAPI = async (uid) => {
-    let profile = await getProfileById(uid);
-    setDoctorData({
-      uid: profile?.data?.uid,
-      name: profile?.data?.name,
-      email: profile?.data?.email,
-      city: profile?.data?.doctor_details?.location,
-      mobile: profile?.data?.number,
-      speciality: profile?.data?.doctor_details?.speciality?.speciality_id,
-      year_of_exp: profile?.data?.doctor_details?.experience
-    });
   }
 
   return (
@@ -90,7 +85,7 @@ const AddDoctor = () => {
       <div className="container-fluid d-flex flex-column">
         <div classname="row">
           <div className="col-lg-10 col-sm-12">
-            <div className="page-title">{docterData?.uid ? "Edit" : "Add"} Doctors</div>
+            <div className="page-title">Add Doctors</div>
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4  mb-4">

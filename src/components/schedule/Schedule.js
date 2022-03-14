@@ -200,28 +200,32 @@ const FutureAppoint = () => {
               {/* <span className="dash-date">Today, {moment().format("DD MMM YYYY")}</span> */}
             </span>
           </div>
-          <div>
-            {doctors && (
-              <InputGroup className="input-group-floting">
-                <InputGroup.Text>
-                  <i class="fa fa-user-o" aria-hidden="true"></i>
-                </InputGroup.Text>
-                <Form.Select
-                  className="custom-selectbox"
-                  aria-label="Select Speciality"
-                  onChange={handleDoctorChanges}
-                  name="speciality"
-                  value={selectedDoctor}
-                >
-                  {doctors?.map((dt, ind) => (
-                    <>
-                      <option value={dt.uid}>{dt.name}</option>
-                    </>
-                  ))}
-                </Form.Select>
-              </InputGroup>
-            )}
-            <Button onClick={toggleDrawer}>Create an Appointment</Button>
+          <div className="d-sm-flex align-items-center justify-content-between mb-4">
+            <div class="dr-custom-selectbox mx-2">
+              {doctors && (
+                <InputGroup className="input-group-floting">
+                  <InputGroup.Text>
+                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                  </InputGroup.Text>
+                  <Form.Select
+                    className="custom-selectbox"
+                    aria-label="Select Doctor"
+                    onChange={handleDoctorChanges}
+                    name="Doctor"
+                    value={selectedDoctor}
+                  >
+                    {doctors?.map((dt, ind) => (
+                      <>
+                        <option value={dt.uid}>{dt.name}</option>
+                      </>
+                    ))}
+                  </Form.Select>
+                </InputGroup>
+              )}
+            </div>
+            <div className="btn-create-box">
+              <Button onClick={toggleDrawer}>Create an Appointment</Button>
+            </div>
           </div>
         </div>
 
