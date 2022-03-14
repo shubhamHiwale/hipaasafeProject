@@ -334,6 +334,7 @@ span.clock-icon {
   text-align: center;
   border-radius: 30px;
   color: #0098FF;
+  cursor: pointer;
   font-size: 21px;
 }
 

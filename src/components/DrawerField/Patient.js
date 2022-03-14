@@ -242,19 +242,6 @@ const Patient = ({seletedPatient, closeDrawer, ptnData }) => {
               </TabPanel>
             </Tabs>
           </Col>
-
-          <Col className="position-absolute fixed-bottom pb-2">
-            <InputGroup className="mb-2">
-              <FormControl
-                placeholder="Recipient's username"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2"
-              />
-              <Button variant="outline-secondary px-3" id="button-addon2">
-                x
-              </Button>
-            </InputGroup>
-          </Col>
         </Form>
       </div>
     </>
