@@ -5,7 +5,7 @@ import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import PatientsList from "./patientsList/PatientsList";
 import moment from "moment";
-import { KPIDoctorDashboard, getDoctors, getAppointsByDateRange } from '../../services/apiservices'
+import { KPIDoctorDashboard, getDoctors, getAppointsByDateRange,modifyAppo } from '../../services/apiservices'
 import appContext from "../../context/appcontext/AppContext";
 import { Form, InputGroup, } from "react-bootstrap";
 
@@ -18,14 +18,17 @@ const Dashboard = () => {
   const [patients, setPatients] = useState(null);
 
   useEffect(() => {
+    callDefaultAPI()
+  }, [])
 
+  const callDefaultAPI = ()=>{
     if (AppContext?.user?.role_id === 4) {
       getDoctorsAPI();
     } else {
       getKPIAPI(AppContext?.user?.uid);
       GetPatientAPI(AppContext?.user?.uid);
     }
-  }, [])
+  }
 
   const getDoctorsAPI = async () => {
     let res = await getDoctors();
@@ -57,6 +60,25 @@ const Dashboard = () => {
     setSelectedDoctor({ name: e.name, value: e.uid });
     getKPIAPI(e.uid);
     GetPatientAPI(e.uid, moment().format('YYYY-MM-DD'))
+  };
+
+
+  const chnageStatusAPICall = async ( appointment_id, appointment_status, appointment_time, appointment_date) => {
+    let obj={appointment_id, appointment_date,type:"",appointment_time }
+    switch (appointment_status) {
+      case "PENDING":
+        obj.type = "NOTIFY_CONFIRMATION";
+        await modifyAppo(obj);
+        callDefaultAPI()
+      break;
+
+      case "NEXT_IN_Q":
+        obj.type = "COMPLETED";
+        await modifyAppo(obj);
+        callDefaultAPI()
+        break;
+      default:
+    }
   };
 
 
@@ -240,7 +262,7 @@ const Dashboard = () => {
         }
 
         <div className="row">
-          <PatientsList patients={patients} />
+          <PatientsList chnageStatusAPICall={chnageStatusAPICall} patients={patients} />
         </div>
 
         {/* <!-- Content Row --> */}

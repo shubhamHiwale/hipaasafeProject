@@ -130,7 +130,7 @@ const FutureAppointmentTable = ({
                                 ? "Confirmation Send"
                                 : appointment_status === "CONFIRMED"
                                 ? "Waiting"
-                                : ""}
+                                : appointment_status}
                             </Button>
                             {/* <Button
                               onClick={reqModifyAppo}

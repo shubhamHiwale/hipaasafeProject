@@ -1,9 +1,33 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Table } from "react-bootstrap";
+import { Table,Button } from "react-bootstrap";
 import { GetPatients } from '../../../services/apiservices'
 import appContext from "../../../context/appcontext/AppContext";
 
-const PatientsList = ({ patients }) => {
+
+const PatientsList = ({ patients,chnageStatusAPICall }) => {
+
+  const getClassName = (appointment_status) => {
+    switch (appointment_status) {
+      case "CONFIRMED":
+        return "success";
+
+      case "RESCHEDULED":
+        return "primary";
+
+      case "PENDING":
+        return "light";
+
+      case "CANCELLED":
+        return "danger disabled";
+
+      case "SCHEDULED":
+        return "outline-info";
+
+      default:
+        return "outline-primary";
+    }
+  };
+
   return (
     <>
       <div className="col-12">
@@ -40,12 +64,21 @@ const PatientsList = ({ patients }) => {
                         <td>{i?.appointment_time}</td>
                         <td>{i?.patient_details?.mobile}</td>
                         <td>
-                          <button
-                            style={{ backgroundColor: "#0098FF" }}
-                            className="btn btn-primary px-4 rounded-pill"
-                          >
-                            {i?.appointment_status}
-                          </button>
+                          <Button
+                              className="btn-status rounded-pill"
+                              variant={getClassName(i?.appointment_status)}
+                              onClick={() => { chnageStatusAPICall( i?.appointment_id, i?.appointment_status, i?.appointment_time,i?.appointment_date);}}
+                            >
+                              {i?.appointment_status === "PENDING"
+                                ? "Take confirmation"
+                                : i?.appointment_status === "NEXT_IN_Q"
+                                ? "Mark as a complete"
+                                : i?.appointment_status === "REMINDER"
+                                ? "Confirmation Send"
+                                : i?.appointment_status === "CONFIRMED"
+                                ? "Waiting"
+                                : i?.appointment_status}
+                            </Button>
                         </td>
                       </tr>
                     ))}
