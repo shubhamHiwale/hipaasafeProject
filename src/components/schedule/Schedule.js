@@ -17,6 +17,7 @@ import {
   getDoctors,
   modifyPatientStatus,
   modifyAppo,
+  weekCountAPI
 } from "../../services/apiservices";
 import moment from "moment";
 import appContext from "../../context/appcontext/AppContext";
@@ -25,6 +26,7 @@ import { getTestReport } from "../../services/apiservices";
 const FutureAppoint = () => {
   const AppContext = useContext(appContext);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [weekCount, setWeekCount] = useState(null);
   const [seletedPatient, setSeletedPatient] = useState(null);
   const [selectedData, setSelectedDate] = useState(
     moment().add(1, "days").format("YYYY-MM-DD")
@@ -34,10 +36,17 @@ const FutureAppoint = () => {
     if (AppContext?.user?.role_id === 4) {
       getDoctorsAPI();
     } else {
+      setSelectedDoctor(AppContext?.user?.uid)
       appointmentHandler(AppContext?.user?.uid, selectedData);
       kpiHandler(AppContext?.user?.uid, selectedData);
+      GetWeekCountKPI(AppContext?.user?.uid);
     }
   }, []);
+
+  const GetWeekCountKPI = async (uid) => {
+    let res = await weekCountAPI(uid);
+    setWeekCount(res.data)
+  };
 
   const chnageStatusAPICall = async (
     appointment_id,
@@ -100,9 +109,9 @@ const FutureAppoint = () => {
   };
 
   const onChangeDateHanlder = (data) => {
-    setSelectedDate(data.dateForm);
-    appointmentHandler(selectedDoctor, data.dateForm);
-    kpiHandler(selectedDoctor, data.dateForm);
+    setSelectedDate(data.date);
+    appointmentHandler(selectedDoctor, data.date);
+    kpiHandler(selectedDoctor, data.date);
   };
 
   const getFutureDatesArr = (noOfDays) => {
@@ -145,16 +154,14 @@ const FutureAppoint = () => {
   const [kpiDetails, setKpidetails] = useState(null);
   const [ptnDataById, setPtnDataById] = useState();
 
-  // const appointmentHandler = async (uid, selectedData) => {
-
-  const appointmentHandler = useCallback(async (uid) => {
+  const appointmentHandler = async (uid, selectedData) => {
     try {
       let response = await getAppointsByDateRange(uid, selectedData);
       setAppointmentList(response?.data?.rows || []);
     } catch (e) {
       console.log(e, "error");
     }
-  });
+  };
 
   // const kpiHandler = async (uid, selectedData) => {
   //   try {
@@ -231,16 +238,16 @@ const FutureAppoint = () => {
 
         <div className="d-sm-flex bg-white pt-2 align-items-center justify-content-between mb-4">
           <div className="tabs-header">
-            {dates.map((e, i) => (
+            {weekCount?.map((e, i) => (
               <button
                 className={
-                  selectedData == e.dateForm
+                  selectedData == e.date
                     ? "btn btn-dates-focus"
                     : "btn btn-dates"
                 }
                 onClick={() => onChangeDateHanlder(e)}
               >
-                {e.name} <span className="tab-count">(0)</span>
+                {moment(e.date).format("DD MMM")} <span className="tab-count">({e.count})</span>
               </button>
             ))}
           </div>

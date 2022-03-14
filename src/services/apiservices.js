@@ -157,3 +157,10 @@ export function removeReq(obj) {
     body: JSON.stringify(obj),
   });
 }
+
+
+export function weekCountAPI(uid) {
+  return RequestAPI(BASE_URL +  `/query/appointments/fetch/week-count?doctor_id=${uid}`, {
+    method: "GET"
+  });
+}
