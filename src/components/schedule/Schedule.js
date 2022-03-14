@@ -16,6 +16,7 @@ import {
   getScheduleKpi,
   getDoctors,
   modifyPatientStatus,
+  modifyAppo,
 } from "../../services/apiservices";
 import moment from "moment";
 import appContext from "../../context/appcontext/AppContext";
@@ -38,17 +39,29 @@ const FutureAppoint = () => {
     }
   }, []);
 
-  const chnageStatusAPICall = async (appointment_id, appointment_status) => {
+  const chnageStatusAPICall = async (
+    appointment_id,
+    appointment_status,
+    appointment_time,
+    appointment_date
+  ) => {
     // window.alert(appointment_status);
-    if (appointment_status === "PENDING") {
-      const res = await modifyPatientStatus({
-        appointment_id,
-        type: "Notify confirmation",
-      });
-      if (res) {
-        console.log("modifyPatientStatus :", res);
-      }
+
+    const res = await modifyAppo({
+      appointment_id,
+      appointment_date: appointment_date,
+      type:
+        appointment_status === "PENDING"
+          ? "NOTIFY_CONFIRMATION"
+          : appointment_status === "Next_in_Q"
+          ? "COMPLETED"
+          : "",
+      appointment_time: appointment_time,
+    });
+    if (res) {
+      console.log("modifyPatientStatus :", res);
     }
+
     // switch (appointment_status) {
     //   case "CONFIRMED":
     //     console.log("case 1");
