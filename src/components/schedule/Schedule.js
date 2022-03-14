@@ -336,6 +336,8 @@ const FutureAppoint = () => {
 
         <div class="row">
           <FutureAppointmentTable
+          AppContext={AppContext}
+          selectedDoctor={selectedDoctor}
             demoFunc={demoFunc}
             appointMentList={appointMentList}
             chnageStatusAPICall={chnageStatusAPICall}

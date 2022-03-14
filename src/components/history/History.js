@@ -102,7 +102,7 @@ const History = () => {
             {appointments && Object.keys(appointments)?.map((ap) => {
               return (
                 <div className="date-block">
-                  <p className="font-weight-bold text-primary mb-1">{ap}</p>
+                  <p className="font-weight-bold text-primary mb-1">{moment(ap).format('DD-MMM')}</p>
                   <div className="row">
                     {appointments[ap][0]?.data?.map(u => (
                       <div className="col-sm-6">

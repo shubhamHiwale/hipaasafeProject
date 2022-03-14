@@ -4,7 +4,7 @@ import { GetPatients } from '../../../services/apiservices'
 import appContext from "../../../context/appcontext/AppContext";
 
 
-const PatientsList = ({ patients,chnageStatusAPICall }) => {
+const PatientsList = ({ patients,chnageStatusAPICall ,AppContext, selectedDoctor}) => {
 
   const getClassName = (appointment_status) => {
     switch (appointment_status) {
@@ -35,7 +35,11 @@ const PatientsList = ({ patients,chnageStatusAPICall }) => {
           <div className="card-body">
             <div className="mb-4">
               <div className="py-2">
-                <h6 className="mb-2 font-weight-bold">Patients List</h6>
+                <h6 className="mb-2 font-weight-bold">
+                  {AppContext?.user?.role_id === 4
+                     ? selectedDoctor?.name :    "Patients List"
+                  }
+                  </h6>
               </div>
               <div className="table-responsive">
                 <Table

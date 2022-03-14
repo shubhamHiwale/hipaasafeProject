@@ -234,7 +234,7 @@ const Dashboard = () => {
           </div>}
         {doctors &&
           <>
-            {selectedDoctor?.name}
+           
             <div style={{ width: 300 }}>
               <InputGroup className="input-group-floting">
                 <InputGroup.Text>
@@ -262,7 +262,7 @@ const Dashboard = () => {
         }
 
         <div className="row">
-          <PatientsList chnageStatusAPICall={chnageStatusAPICall} patients={patients} />
+          <PatientsList  selectedDoctor={selectedDoctor}AppContext={AppContext} chnageStatusAPICall={chnageStatusAPICall} patients={patients} />
         </div>
 
         {/* <!-- Content Row --> */}

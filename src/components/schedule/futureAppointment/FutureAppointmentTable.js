@@ -9,7 +9,7 @@ import { modifyAppo } from "../../../services/apiservices";
 import moment from "moment";
 
 const FutureAppointmentTable = ({
-  demoFunc,
+  demoFunc,selectedDoctor,AppContext,
   appointMentList,
   chnageStatusAPICall,
 }) => {
@@ -65,7 +65,12 @@ const FutureAppointmentTable = ({
           <div className="card-body">
             <div className="table-responsive">
               <div className="mb-2">
-                <span className="font-weight-bold">Patients List</span>
+                <span className="font-weight-bold">
+                {/* {AppContext?.user?.role_id === 4
+                     ? selectedDoctor?.name :    "Patients List"
+                  } */}
+                  Patients List
+                  </span>
               </div>
               <Table
                 className="table text-sm-start"
