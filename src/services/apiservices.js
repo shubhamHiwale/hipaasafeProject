@@ -36,7 +36,7 @@ export function addDoctor(obj) {
 }
 
 export function updateDoctor(obj) {
-  return RequestAPI(BASE_URL + "/user/update-profile", {
+  return RequestAPI(BASE_URL + "/user/doctor/update-profile", {
     method: "POST",
     body: JSON.stringify(obj),
   });
