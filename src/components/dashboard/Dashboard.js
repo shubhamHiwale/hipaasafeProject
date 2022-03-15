@@ -5,10 +5,12 @@ import CardIcon2 from "../../assets/img/cardIcon2.svg";
 import CardIcon3 from "../../assets/img/cardIcon3.svg";
 import PatientsList from "./patientsList/PatientsList";
 import moment from "moment";
-import { KPIDoctorDashboard, getDoctors, getAppointsByDateRange,modifyAppo } from '../../services/apiservices'
+import Drawer from "react-modern-drawer";
+import { KPIDoctorDashboard, getDoctors, getAppointsByDateRange,modifyAppo,getTestReport } from '../../services/apiservices'
 import appContext from "../../context/appcontext/AppContext";
 import { Form, InputGroup, } from "react-bootstrap";
-
+import CreateAppo from "../DrawerField/CreateAppo";
+import Patient from "../DrawerField/Patient";
 
 const Dashboard = () => {
   const AppContext = useContext(appContext);
@@ -16,6 +18,10 @@ const Dashboard = () => {
   const [doctors, setDoctors] = useState(null);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [patients, setPatients] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [seletedPatient, setSeletedPatient] = useState(null);
+  const [auth, setAuth] = useState();
+  const [ptnDataById, setPtnDataById] = useState(null);
 
   useEffect(() => {
     callDefaultAPI()
@@ -29,6 +35,23 @@ const Dashboard = () => {
       GetPatientAPI(AppContext?.user?.uid);
     }
   }
+
+  const toggleDrawer = (gt) => {
+    if (gt === "patient") {
+      setAuth(gt);
+    } else {
+      setAuth("futureAppo");
+    }
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const demoFunc = async (pr, p_id) => {
+    setSeletedPatient(p_id)
+    const res = await getTestReport(selectedDoctor ,p_id.patient_details.uid);
+    if (res) {
+      toggleDrawer(pr);
+    }
+  };
 
   const getDoctorsAPI = async () => {
     let res = await getDoctors();
@@ -88,8 +111,25 @@ const Dashboard = () => {
   };
 
 
+  const closeDrawer = () => {
+    setIsOpen(false);
+  };
+
+
   return (
     <>
+     <Drawer
+        open={isOpen}
+        onClose={toggleDrawer}
+        direction="right"
+        className="schedule-drawer"
+      >
+        {auth === "futureAppo" ? (
+          <CreateAppo closeDrawer={closeDrawer} />
+        ) : (
+          <Patient seletedPatient={seletedPatient} ptnData={ptnDataById} closeDrawer={closeDrawer} />
+        )}
+      </Drawer>
       {/* <!-- Begin Page Content --> */}
       <div className="container-fluid">
         {/* <!-- Page Heading --> */}
@@ -270,7 +310,7 @@ const Dashboard = () => {
         }
 
         <div className="row">
-          <PatientsList  selectedDoctor={selectedDoctor}AppContext={AppContext} chnageStatusAPICall={chnageStatusAPICall} patients={patients} />
+          <PatientsList demoFunc={demoFunc} selectedDoctor={selectedDoctor}AppContext={AppContext} chnageStatusAPICall={chnageStatusAPICall} patients={patients} />
         </div>
 
         {/* <!-- Content Row --> */}

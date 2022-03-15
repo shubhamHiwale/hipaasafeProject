@@ -4,7 +4,11 @@ import { GetPatients } from '../../../services/apiservices'
 import appContext from "../../../context/appcontext/AppContext";
 
 
-const PatientsList = ({ patients,chnageStatusAPICall ,AppContext, selectedDoctor}) => {
+const PatientsList = ({ patients,chnageStatusAPICall ,AppContext, selectedDoctor,demoFunc}) => {
+
+  const toggleDrawer2 = (e) => {
+    demoFunc("patient", e);
+  };
 
   const getClassName = (appointment_status) => {
     switch (appointment_status) {
@@ -69,7 +73,7 @@ const PatientsList = ({ patients,chnageStatusAPICall ,AppContext, selectedDoctor
                     {patients?.map((i, index) => (
                       <tr>
                         <td>{i?.queue_no}</td>
-                        <td>{i?.patient_details?.name}</td>
+                        <td   onClick={() => toggleDrawer2(i)}>{i?.patient_details?.name}</td>
                         <td>{i?.patient_details?.age}</td>
                         <td>{i?.appointment_time}</td>
                         <td>{i?.patient_details?.mobile}</td>
