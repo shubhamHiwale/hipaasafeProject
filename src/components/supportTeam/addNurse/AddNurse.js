@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { addNurse } from "../../../services/apiservices";
 import { MultiSelect } from "react-multi-select-component";
-import { getDoctors, getProfileById } from '../../../services/apiservices'
+import { getDoctors, getProfileById,updateNurse } from '../../../services/apiservices'
 import { useHistory, useLocation } from "react-router-dom";
 import {
   Form,
@@ -16,6 +16,7 @@ const AddNurse = () => {
   const [options, setOptions] = useState(null);
   const histroy = useHistory();
   const location = useLocation();
+  const [selected, setSelected] = useState([]);
   const [nurseData, setNurseData] = useState({
     name: "",
     email: "",
@@ -36,6 +37,7 @@ const AddNurse = () => {
     let profile = await getProfileById(uid);
     console.log("profile", profile.data);
     setNurseData({
+      uid: profile?.data?.uid,
       name: profile?.data?.name,
       email: profile?.data?.email,
       mobile: profile?.data?.number,
@@ -43,6 +45,7 @@ const AddNurse = () => {
       city: profile?.data?.metadata?.location,
       year_of_exp: profile?.data?.metadata?.experience
     });
+    setSelected(profile?.data?.doctors_mapped?.map(j=>{return {label: j.name,value: j.uid}}))
   }
 
   const getDoctorsAPI = async () => {
@@ -60,17 +63,15 @@ const AddNurse = () => {
     setNurseData({ ...nurseData, [name]: value });
   };
 
-  const [selected, setSelected] = useState([]);
 
   const reqAddNurse = async () => {
     const { name, email, mobile, country_code } = nurseData;
-    const res = await addNurse({
-      name,
-      email,
-      number: mobile,
-      country_code: "+91",
-      doctor_ids: ["4"],
-    });
+    let res;
+    if(nurseData?.uid){
+      res = await updateNurse({uid:nurseData?.uid,  name, email, number: mobile, country_code: "+91", doctor_ids: selected.map(i=>{return i.uid}),});
+    }else{
+      res = await addNurse({  name, email, number: mobile, country_code: "+91", doctor_ids: selected.map(i=>{return i.uid}),});
+    }
     if (res) {
       histroy.push("/main/support-dashboard");
     }
@@ -211,7 +212,7 @@ const AddNurse = () => {
             <Form className="mt-4">
               <Row>
                 <Col className="col-sm-4 mb-4">
-                  <Button onClick={reqAddNurse} className="w-100" variant="primary">Add Nurses</Button>
+                  <Button onClick={reqAddNurse} className="w-100" variant="primary">Save</Button>
                 </Col>
               </Row>
             </Form>

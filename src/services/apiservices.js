@@ -42,6 +42,13 @@ export function addNurse(obj) {
   });
 }
 
+export function updateNurse(obj) {
+  return RequestAPI(BASE_URL + "/user/nurse/update-profile", {
+    method: "PUT",
+    body: JSON.stringify(obj),
+  });
+}
+
 export function getSpecialityList() {
   return RequestAPI(BASE_URL + "/static/speciality/list", {
     method: "GET",
