@@ -66,7 +66,7 @@ const FutureAppoint = () => {
       break;
 
       case "RESCHEDULED":
-        obj.type = "RESCHEDULED";
+        obj.type = "RESCHEDULE";
         await modifyAppo(obj);
         callDefaultAPI()
       break;
