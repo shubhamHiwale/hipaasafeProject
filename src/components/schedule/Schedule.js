@@ -28,9 +28,7 @@ const FutureAppoint = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [weekCount, setWeekCount] = useState(null);
   const [seletedPatient, setSeletedPatient] = useState(null);
-  const [selectedData, setSelectedDate] = useState(
-    moment().add(1, "days").format("YYYY-MM-DD")
-  );
+  const [selectedData, setSelectedDate] = useState(moment().add(1, "days").format("YYYY-MM-DD"));
 
   useEffect(() => {
     callDefaultAPI()
@@ -234,13 +232,14 @@ const FutureAppoint = () => {
             {weekCount?.map((e, i) => (
               <button
                 className={
-                  selectedData == e.date
+                   moment(selectedData).format('DD') === moment(e.date).format('DD') 
                     ? "btn btn-dates-focus"
                     : "btn btn-dates"
                 }
                 onClick={() => onChangeDateHanlder(e)}
               >
-                {moment(e.date).format("DD MMM")} <span className="tab-count">({e.count})</span>
+                {moment().add(1,'days').format('DD') === moment(e.date).format('DD')  ? "Tomorrow" :moment(e.date).format("DD MMM") } 
+                <span className="tab-count">({e.count})</span>
               </button>
             ))}
           </div>
