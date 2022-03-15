@@ -35,6 +35,13 @@ export function addDoctor(obj) {
   });
 }
 
+export function updateDoctor(obj) {
+  return RequestAPI(BASE_URL + "/user/update-profile", {
+    method: "POST",
+    body: JSON.stringify(obj),
+  });
+}
+
 export function addNurse(obj) {
   return RequestAPI(BASE_URL + "/user/nurse/register", {
     method: "POST",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
-import { addDoctor, getSpecialityList } from "../../../services/apiservices";
+import { addDoctor, getSpecialityList,getProfileById,updateDoctor } from "../../../services/apiservices";
 import { useHistory, useLocation } from "react-router-dom";
 
 import {
@@ -40,18 +40,16 @@ const AddDoctor = () => {
 
   const reqAddDoctor = async () => {
     const { name, email, city, mobile, speciality, year_of_exp } = docterData;
-    const res = await addDoctor({
-      name,
-      email,
-      country_code: "+91",
-      number: mobile,
-      location: city,
-      experience: year_of_exp,
-      speciality_id: speciality,
-      tags: selected.map((i) => {
-        return i.value;
-      }),
+    let res;
+    if(docterData?.uid){
+      res = await updateDoctor({ name, email, country_code: "+91", number: mobile, location: city,
+      experience: year_of_exp, speciality_id: speciality,tags: selected.map((i) => { return i.value;}),
     });
+    }else{
+      res = await addDoctor({ name, email, country_code: "+91", number: mobile, location: city,
+      experience: year_of_exp, speciality_id: speciality,tags: selected.map((i) => { return i.value;}),
+    });
+    }
     if (res) {
       histroy.push("/main/support-dashboard");
     }
@@ -66,16 +64,19 @@ const AddDoctor = () => {
     if (res.success) {
       setSpcList(res.data);
       setOptions(res.data?.map((dt) => { return { label: dt.title, value: dt.speciality_id }; }));
+      let profile = await getProfileById(location?.state?.doctor?.uid);
+      console.log("profile", profile.data);
       if (location?.state?.doctor) {
         setDoctorData({
-          uid: location?.state?.doctor?.uid,
-          name: location?.state?.doctor?.name,
-          email: "",
-          city: location?.state?.doctor?.doctor_details?.location,
-          mobile: location?.state?.doctor?.number,
-          speciality: location?.state?.doctor?.doctor_details?.speciality?.speciality_id,
-          year_of_exp: location?.state?.doctor?.doctor_details?.experience,
+          uid:  profile?.data?.uid,
+          name: profile?.data?.name,
+          email:profile?.data?.email ,
+          city: profile?.data?.doctor_details?.location,
+          mobile: profile?.data?.number,
+          speciality:profile?.data?.doctor_details?.speciality?.speciality_id,
+          year_of_exp: profile?.data?.doctor_details?.experience,
         });
+      setSelected(profile?.data?.doctor_details?.tags?.map(j=>{return {label: j.title,value: j.speciality_id}}))
       }
     }
   }
