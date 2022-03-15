@@ -15,12 +15,18 @@ const PatientsList = ({ patients,chnageStatusAPICall ,AppContext, selectedDoctor
         return "primary";
 
       case "PENDING":
-        return "light";
+        return "warning";
 
       case "CANCELLED":
         return "danger disabled";
 
-      case "SCHEDULED":
+      case "REMINDER":
+        return "primary";
+
+      case "NEXT_IN_Q":
+        return "danger disabled";
+
+      case "COMPLETED":
         return "outline-info";
 
       default:
