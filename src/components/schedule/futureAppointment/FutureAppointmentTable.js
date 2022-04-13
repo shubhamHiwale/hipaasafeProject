@@ -9,7 +9,9 @@ import { modifyAppo } from "../../../services/apiservices";
 import moment from "moment";
 
 const FutureAppointmentTable = ({
-  demoFunc,selectedDoctor,AppContext,
+  demoFunc,
+  selectedDoctor,
+  AppContext,
   appointMentList,
   chnageStatusAPICall,
 }) => {
@@ -66,11 +68,11 @@ const FutureAppointmentTable = ({
             <div className="table-responsive">
               <div className="mb-2">
                 <span className="font-weight-bold">
-                {/* {AppContext?.user?.role_id === 4
+                  {/* {AppContext?.user?.role_id === 4
                      ? selectedDoctor?.name :    "Patients List"
                   } */}
                   Patients List
-                  </span>
+                </span>
               </div>
               <Table
                 className="table text-sm-start"
@@ -125,7 +127,14 @@ const FutureAppointmentTable = ({
                             <Button
                               className="btn-status rounded-pill"
                               variant={getClassName(appointment_status)}
-                              onClick={() => { chnageStatusAPICall( appointment_id, appointment_status, appointment_time,appointment_date);}}
+                              onClick={() => {
+                                chnageStatusAPICall(
+                                  appointment_id,
+                                  appointment_status,
+                                  appointment_time,
+                                  appointment_date
+                                );
+                              }}
                             >
                               {appointment_status === "PENDING"
                                 ? "Take confirmation"

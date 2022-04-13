@@ -115,14 +115,16 @@ export function getProfileById(uid) {
   });
 }
 
-export function hospitalRepoList() {
-  return RequestAPI(BASE_URL + `/static/hospital-reports/list`, {
-    method: "GET",
-  });
+export function hospitalRepoList(uid) {
+  return RequestAPI(
+    BASE_URL + `/static/hospital-reports/list?doctor_id=${uid}`,
+    {
+      method: "GET",
+    }
+  );
 }
 
 export function modifyPatientStatus(obj) {
-  console.log("obj : ", obj);
   return RequestAPI(BASE_URL + `appointment/patient/modify`, {
     method: "POST",
     body: JSON.stringify(obj),
@@ -135,10 +137,10 @@ export function modifyAppo(obj) {
   });
 }
 
-export function getTestReport(u_id, p_id) {
+export function getTestReport(doctor_id, petient_id) {
   return RequestAPI(
-    BASE_URL + `/documents/user/test-reports/fetch?doctor_id=${u_id}&patient_id=${p_id}`,
-   
+    BASE_URL +
+      `/documents/user/test-reports/fetch?doctor_id=${doctor_id}&patient_id=${petient_id}`,
     {
       method: "GET",
     }
@@ -159,9 +161,11 @@ export function removeReq(obj) {
   });
 }
 
-
 export function weekCountAPI(uid) {
-  return RequestAPI(BASE_URL +  `/query/appointments/fetch/week-count?doctor_id=${uid}`, {
-    method: "GET"
-  });
+  return RequestAPI(
+    BASE_URL + `/query/appointments/fetch/week-count?doctor_id=${uid}`,
+    {
+      method: "GET",
+    }
+  );
 }

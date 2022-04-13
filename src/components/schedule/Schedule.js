@@ -17,7 +17,7 @@ import {
   getDoctors,
   modifyPatientStatus,
   modifyAppo,
-  weekCountAPI
+  weekCountAPI,
 } from "../../services/apiservices";
 import moment from "moment";
 import appContext from "../../context/appcontext/AppContext";
@@ -26,29 +26,31 @@ import { getTestReport } from "../../services/apiservices";
 const FutureAppoint = () => {
   const AppContext = useContext(appContext);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  console.log("selectedDoctor : ", selectedDoctor);
   const [weekCount, setWeekCount] = useState(null);
   const [seletedPatient, setSeletedPatient] = useState(null);
-  const [selectedData, setSelectedDate] = useState(moment().add(1, "days").format("YYYY-MM-DD"));
+  const [selectedData, setSelectedDate] = useState(
+    moment().add(1, "days").format("YYYY-MM-DD")
+  );
 
   useEffect(() => {
-    callDefaultAPI()
+    callDefaultAPI();
   }, []);
 
-
-  const callDefaultAPI = ()=>{
+  const callDefaultAPI = () => {
     if (AppContext?.user?.role_id === 4) {
       getDoctorsAPI();
     } else {
-      setSelectedDoctor(AppContext?.user?.uid)
+      setSelectedDoctor(AppContext?.user?.uid);
       appointmentHandler(AppContext?.user?.uid, selectedData);
       kpiHandler(AppContext?.user?.uid, selectedData);
       GetWeekCountKPI(AppContext?.user?.uid);
     }
-  }
+  };
 
   const GetWeekCountKPI = async (uid) => {
     let res = await weekCountAPI(uid);
-    setWeekCount(res.data)
+    setWeekCount(res.data);
   };
 
   const chnageStatusAPICall = async (
@@ -57,18 +59,18 @@ const FutureAppoint = () => {
     appointment_time,
     appointment_date
   ) => {
-    let obj={appointment_id, appointment_date,type:"",appointment_time }
+    let obj = { appointment_id, appointment_date, type: "", appointment_time };
     switch (appointment_status) {
       case "PENDING":
         obj.type = "NOTIFY_CONFIRMATION";
         await modifyAppo(obj);
-        callDefaultAPI()
-      break;
+        callDefaultAPI();
+        break;
 
       case "NEXT_IN_Q":
         obj.type = "COMPLETED";
         await modifyAppo(obj);
-        callDefaultAPI()
+        callDefaultAPI();
         break;
 
       default:
@@ -154,9 +156,9 @@ const FutureAppoint = () => {
   //     let response = await getScheduleKpi(uid, selectedData);
   // }, [selectedData]);
 
-  const kpiHandler =async (uid,selectedData) => {
+  const kpiHandler = async (uid, selectedData) => {
     try {
-      let response = await getScheduleKpi(uid,selectedData);
+      let response = await getScheduleKpi(uid, selectedData);
       setKpidetails(response?.data || null);
     } catch (e) {
       console.log(e, "error");
@@ -164,11 +166,11 @@ const FutureAppoint = () => {
   };
 
   const demoFunc = async (pr, p_id) => {
-    setSeletedPatient(p_id)
-    const res = await getTestReport(selectedDoctor ,p_id.patient_details.uid);
+    toggleDrawer(pr);
+    setSeletedPatient(p_id);
+    const res = await getTestReport(selectedDoctor, p_id.patient_details.uid);
     if (res) {
-      toggleDrawer(pr);
-      // setPtnDataById(res.data);
+      setPtnDataById(res.data);
     }
   };
 
@@ -187,7 +189,11 @@ const FutureAppoint = () => {
         {auth === "futureAppo" ? (
           <CreateAppo closeDrawer={closeDrawer} />
         ) : (
-          <Patient seletedPatient={seletedPatient} ptnData={ptnDataById} closeDrawer={closeDrawer} />
+          <Patient
+            seletedPatient={seletedPatient}
+            ptnData={ptnDataById}
+            closeDrawer={closeDrawer}
+          />
         )}
       </Drawer>
       <div class="container-fluid">
@@ -195,7 +201,7 @@ const FutureAppoint = () => {
           <div>
             <span className="page-title">
               Future Appointments
-              {/* <span className="dash-date">Today, {moment().format("DD MMM YYYY")}</span> */}
+              {/* <span className="dash-date">Today, {momen                   t().format("DD MMM YYYY")}</span> */}
             </span>
           </div>
           <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -232,13 +238,17 @@ const FutureAppoint = () => {
             {weekCount?.map((e, i) => (
               <button
                 className={
-                   moment(selectedData).format('DD') === moment(e.date).format('DD') 
+                  moment(selectedData).format("DD") ===
+                  moment(e.date).format("DD")
                     ? "btn btn-dates-focus"
                     : "btn btn-dates"
                 }
                 onClick={() => onChangeDateHanlder(e)}
               >
-                {moment().add(1,'days').format('DD') === moment(e.date).format('DD')  ? "Tomorrow" :moment(e.date).format("DD MMM") } 
+                {moment().add(1, "days").format("DD") ===
+                moment(e.date).format("DD")
+                  ? "Tomorrow"
+                  : moment(e.date).format("DD MMM")}
                 <span className="tab-count">({e.count})</span>
               </button>
             ))}
@@ -339,8 +349,8 @@ const FutureAppoint = () => {
 
         <div class="row">
           <FutureAppointmentTable
-          AppContext={AppContext}
-          selectedDoctor={selectedDoctor}
+            AppContext={AppContext}
+            selectedDoctor={selectedDoctor}
             demoFunc={demoFunc}
             appointMentList={appointMentList}
             chnageStatusAPICall={chnageStatusAPICall}

@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import userIcon from "../../assets/img/user-icon.svg";
 import DatePicker from "react-date-picker";
 import moment from "moment";
+import { useSelector } from "react-redux";
 import {
   hospitalRepoList,
   testReport,
@@ -25,8 +26,9 @@ import {
 } from "react-bootstrap";
 import ReqFile from "../../assets/img/reqFile.svg";
 
-const Patient = ({seletedPatient, closeDrawer, ptnData }) => {
-  // console.log("ptnData : ", ptnData[0].patient_id);
+const Patient = ({ seletedPatient, closeDrawer, ptnData }) => {
+  const user_data = useSelector((state) => state.userDataReducer);
+  console.log("user_data_ : ", user_data.uid);
   const [date, setDate] = useState();
   const [cbVal, setCbVal] = useState([]);
   const [repoList, setRepoList] = useState();
@@ -102,77 +104,82 @@ const Patient = ({seletedPatient, closeDrawer, ptnData }) => {
   };
 
   useEffect(async () => {
-    const res = await hospitalRepoList();
+    const res = await hospitalRepoList(user_data?.uid);
     if (res) {
       setRepoList(res.data);
     }
-  }, []);
+  }, [user_data]);
 
   return (
     <>
       <div className="position-relative dwer-container">
-        <Form>
-          <Col className="py-3">
-            <span className="font-weight-bold text-black">Patient Details</span>
-            <span onClick={closeDrawer} className="btn-dwer-close">
-              <i class="fa fa-times" aria-hidden="true"></i>
-            </span>
-          </Col>
+        <Col className="py-3">
+          <span className="font-weight-bold text-black">Patient Details</span>
+          <span onClick={closeDrawer} className="btn-dwer-close">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </span>
+        </Col>
 
-          <div className="col-sm-12">
-            <div className="border rounded p-2 mb-2">
-              <div class="user-icon">
-                <img src={userIcon} alt="user-icon" />
-              </div>
-              <div className="user-detail">
-                <p className="name">{seletedPatient?.patient_details?.name}</p>
-                <p>Age -<span>{seletedPatient?.patient_details?.age}</span></p>
-              </div>
+        <div className="col-sm-12">
+          <div className="border rounded p-2 mb-2">
+            <div class="user-icon">
+              <img src={userIcon} alt="user-icon" />
+            </div>
+            <div className="user-detail">
+              <p className="name">{seletedPatient?.patient_details?.name}</p>
+              <p>
+                Age -<span>{seletedPatient?.patient_details?.age}</span>
+              </p>
             </div>
           </div>
+        </div>
 
-          <Col className="">
-            <Tabs>
-              <TabList className="d-flex tabs-header">
-                <Tab className="list-group-item">Documents</Tab>
-                <Tab className="list-group-item">Request Documents</Tab>
-              </TabList>
+        <Col className="">
+          <Tabs>
+            <TabList className="d-flex tabs-header">
+              <Tab className="list-group-item">Documents</Tab>
+              <Tab className="list-group-item">Request Documents</Tab>
+            </TabList>
 
-              <TabPanel className="custom-tab-panel">
-                {ptnData
-                  ? ptnData?.map((dt, ind) => (
-                      <div className="patient-document">
-                        <div className="px-2 py-2">
-                          <div>
-                            <span>
-                              {moment(dt.createdAt).format("YYYY-MM-DD")}
-                            </span>
-                            <div className="d-flex justify-content-between align-items-center mt-2">
-                              {dt.document_file.split(".")[1] === "pdf" ? (
-                                <img
-                                  className="file-icon"
-                                  src={PdfIcon}
-                                  alt="pdf-icon"
-                                ></img>
-                              ) : (
-                                <img
-                                  className="file-icon"
-                                  src={JpgIcon}
-                                  alt="jpg-icon"
-                                ></img>
-                              )}
-                              <span className="">{dt.hospital_tests.title}</span>
-                            </div>
-                          </div>
+            <TabPanel className="custom-tab-panel">
+              {ptnData?.length > 0 ? (
+                ptnData?.documents?.map((dt, ind) => (
+                  <div className="patient-document">
+                    <div className="px-2 py-2">
+                      <div>
+                        <span>{moment(dt.createdAt).format("YYYY-MM-DD")}</span>
+                        <div className="d-flex justify-content-between align-items-center mt-2">
+                          {dt.document_file.split(".")[1] === "pdf" ? (
+                            <img
+                              className="file-icon"
+                              src={PdfIcon}
+                              alt="pdf-icon"
+                            ></img>
+                          ) : (
+                            <img
+                              className="file-icon"
+                              src={JpgIcon}
+                              alt="jpg-icon"
+                            ></img>
+                          )}
+                          <span className="">{dt?.hospital_tests?.title}</span>
                         </div>
                       </div>
-                    ))
-                  : "no data found"}
-                <Col className="py-4">
-                  <div id="docReq-1" className="req-doc-div">
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="d-flex align-items-center justify-content-center border border-danger rounded p-3 mt-4">
+                  <span>no Document found</span>
+                </div>
+              )}
+
+              {ptnData?.documents_request?.length > 0 ? (
+                ptnData?.documents_request.map((dt, ind) => (
+                  <div id="docReq-1" className="req-doc-div mt-2">
                     <div className="req-doc-name">
                       <img src={ReqFile} alt="req-file"></img>
-                      <span className="ml-2">Blood Count</span>
+                      <span className="ml-2">{dt?.hospital_tests?.title}</span>
                     </div>
                     <button
                       value={1}
@@ -182,67 +189,57 @@ const Patient = ({seletedPatient, closeDrawer, ptnData }) => {
                       x
                     </button>
                   </div>
-
-                  <div id="docReq-2" className="req-doc-div mt-2">
-                    <div className="req-doc-name">
-                      <img src={ReqFile} alt="req-file"></img>
-                      <span className="ml-2">Coronary angiogram</span>
-                    </div>
-                    <button
-                      value={2}
-                      onClick={reqRemoveReq}
-                      className="req-doc-des"
-                    >
-                      x
-                    </button>
-                  </div>
-                </Col>
-              </TabPanel>
-              <TabPanel className="custom-tab-panel">
-                <div>
-                  <div className="p-2">
-                    <span>Test</span>
-                    <div className="px-3 py-2">
-                      {repoList
-                        ? repoList?.map((dt, ind) => (
-                            <>
-                              <Form.Group
-                                className="mb-3"
-                                controlId="formBasicCheckbox"
-                              >
-                                <Form.Check
-                                  onChange={handleCheck}
-                                  type="checkbox"
-                                  label={dt.title}
-                                  value={dt.id}
-                                />
-                              </Form.Group>
-                            </>
-                          ))
-                        : ""}
-                    </div>
+                ))
+              ) : (
+                <div className="d-flex align-items-center justify-content-center border border-danger rounded p-3 mt-4">
+                  <span>no request Document found</span>
+                </div>
+              )}
+            </TabPanel>
+            <TabPanel className="custom-tab-panel">
+              <div>
+                <div className="p-2">
+                  <span>Test</span>
+                  <div className="px-3 py-2">
+                    {repoList
+                      ? repoList?.map((dt, ind) => (
+                          <>
+                            <Form.Group
+                              className="mb-3"
+                              controlId="formBasicCheckbox"
+                            >
+                              <Form.Check
+                                onChange={handleCheck}
+                                type="checkbox"
+                                label={dt.title}
+                                value={dt.id}
+                              />
+                            </Form.Group>
+                          </>
+                        ))
+                      : ""}
                   </div>
                 </div>
-                <Col className="py-4">
-                  <div>
-                    <button
-                      onClick={reqSendTestRequest}
-                      className="btn btn-primary w-100"
-                    >
-                      Send Request
-                    </button>
-                  </div>
+              </div>
+              <Col className="py-4">
+                <div>
+                  <button
+                    onClick={reqSendTestRequest}
+                    className="btn btn-primary w-100"
+                  >
+                    Send Request
+                  </button>
+                </div>
 
-                  <div className="mt-2">
-                    <button className="btn btn-outline-primary w-100">
-                      Send & Complete Checkup
-                    </button>
-                  </div>
-                </Col>
-              </TabPanel>
-            </Tabs>
-          </Col>
-        </Form>
+                <div className="mt-2">
+                  <button className="btn btn-outline-primary w-100">
+                    Send & Complete Checkup
+                  </button>
+                </div>
+              </Col>
+            </TabPanel>
+          </Tabs>
+        </Col>
       </div>
     </>
   );
